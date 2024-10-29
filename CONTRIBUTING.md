@@ -1,13 +1,18 @@
-# Contributing to Mobile Kiosk - Module Guide
+# Mobile Kiosk Contribution Guidelines
 
 ## Table of Contents
-- [Module Structure](#module-structure)
-- [Contribution Guidelines by Module](#contribution-guidelines-by-module)
-- [Code Standards](#code-standards)
-- [Testing Requirements](#testing-requirements)
-- [Pull Request Process](#pull-request-process)
+1. [Introduction](#introduction)
+2. [Project Structure](#project-structure)
+3. [Commit Conventions](#commit-conventions)
+4. [Development Workflow](#development-workflow)
+5. [Testing Requirements](#testing-requirements)
+6. [Pull Request Process](#pull-request-process)
 
-## Module Structure
+## Introduction
+
+Welcome to Mobile Kiosk! We're building a .NET MAUI application that transforms mobile devices into accessible retail self-service stations. This guide will help you contribute effectively to our project.
+
+## Project Structure
 
 ```
 MobileKiosk/
@@ -21,303 +26,264 @@ MobileKiosk/
 └── Tests/                 # Test projects
 ```
 
-## Contribution Guidelines by Module
+### Module Guidelines
 
-### 1. Services Module
-
-Location: `Services/`
-Purpose: Core business logic implementation
-
+#### Services Module
 ```csharp
-// Example of a well-structured service
 public interface IKioskService
 {
     Task InitializeAsync();
     Task<Session> StartSessionAsync();
-    Task EndSessionAsync(Session session);
-}
-
-public class KioskService : IKioskService
-{
-    private readonly ILogger<KioskService> _logger;
-    
-    public KioskService(ILogger<KioskService> logger)
-    {
-        _logger = logger;
-    }
-    
-    public async Task InitializeAsync()
-    {
-        _logger.LogInformation("Initializing kiosk service");
-        // Implementation
-    }
 }
 ```
 
-Key Guidelines:
-- Always implement interfaces for services
-- Use dependency injection
-- Include logging
-- Handle exceptions appropriately
-- Document public methods
-
-### 2. Models Module
-
-Location: `Models/`
-Purpose: Data structures and entities
-
-```csharp
-public class CartItem
-{
-    public string ItemId { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-    public int Quantity { get; set; }
-    
-    public decimal Total => Price * Quantity;
-}
-```
-
-Key Guidelines:
-- Keep models simple and focused
-- Use data annotations for validation
-- Implement INotifyPropertyChanged where needed
-- Include XML documentation
-- Use appropriate data types
-
-### 3. Views Module
-
-Location: `Views/`
-Purpose: XAML UI definitions
-
+#### Views Module
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileKiosk.Views.CheckoutPage">
-    
-    <Grid RowDefinitions="Auto,*,Auto"
-          Padding="16">
-          
-        <!-- Accessibility-focused controls -->
-        <Label Text="Checkout"
-               SemanticProperties.HeadingLevel="Level1"
-               AutomationProperties.IsInAccessibleTree="True"/>
-               
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding CartItems}">
-            <!-- Item template -->
-        </CollectionView>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Implement accessibility -->
+        <Label SemanticProperties.HeadingLevel="Level1"/>
     </Grid>
 </ContentPage>
 ```
 
-Key Guidelines:
-- Use semantic properties for accessibility
-- Follow MVVM pattern
-- Implement responsive layouts
-- Use styles and themes
-- Include automation properties
+[More module details in Module Guidelines section...]
 
-### 4. ViewModels Module
+## Commit Conventions
 
-Location: `ViewModels/`
-Purpose: View logic and data binding
+### Message Structure
+```
+<type>(<scope>): <subject>
 
-```csharp
-public partial class CheckoutViewModel : BaseViewModel
-{
-    private readonly ICartService _cartService;
-    private readonly IPaymentService _paymentService;
+[optional body]
 
-    [ObservableProperty]
-    private ObservableCollection<CartItem> cartItems;
-
-    [RelayCommand]
-    private async Task ProcessCheckoutAsync()
-    {
-        try
-        {
-            IsBusy = true;
-            await _paymentService.ProcessPaymentAsync(GetTotal());
-        }
-        finally
-        {
-            IsBusy = false;
-        }
-    }
-}
+[optional footer(s)]
 ```
 
-Key Guidelines:
-- Use source generators ([ObservableProperty], [RelayCommand])
-- Implement proper error handling
-- Keep view models focused
-- Use async/await properly
-- Include loading states
+### MAUI-Specific Types
 
-### 5. Utilities Module
+| Type | Usage | Example |
+|------|-------|---------|
+| `ui` | UI/XAML changes | `ui(checkout): redesign payment flow` |
+| `layout` | Layout changes | `layout(cart): improve responsiveness` |
+| `bind` | Data binding | `bind(scanner): update barcode binding` |
+| `platform` | Platform-specific | `platform(ios): fix navigation` |
 
-Location: `Utilities/`
-Purpose: Helper classes and extensions
+### Standard Types
 
-```csharp
-public static class BarcodeScanner
-{
-    public static async Task<string> ScanBarcodeAsync(ICamera camera)
-    {
-        // Implementation
-    }
-}
+| Type | Usage | Example |
+|------|-------|---------|
+| `feat` | Features | `feat(payment): add Apple Pay` |
+| `fix` | Bug fixes | `fix(cart): resolve count issue` |
+| `docs` | Documentation | `docs(readme): update setup` |
+| `style` | Formatting | `style(views): format XAML` |
 
-public static class Extensions
-{
-    public static string ToFormattedPrice(this decimal price)
-    {
-        return price.ToString("C");
-    }
-}
+### Scope Categories
+
+```
+UI Layer:
+(pages)         - XAML pages
+(controls)      - Custom controls
+(styles)        - Style resources
+
+Features:
+(scanner)       - Barcode scanning
+(cart)          - Shopping cart
+(payment)       - Payment processing
+
+Platform:
+(android)       - Android-specific
+(ios)           - iOS-specific
+(windows)       - Windows-specific
 ```
 
-Key Guidelines:
-- Keep utilities focused and reusable
-- Document usage examples
-- Include unit tests
-- Handle edge cases
-- Use static classes appropriately
+### Example Commits
 
-### 6. Resources Module
+```bash
+# UI Changes
+ui(pages): update checkout layout
+- Improve spacing for accessibility
+- Add semantic properties
+- Update control styles
 
-Location: `Resources/`
-Purpose: Shared resources and assets
+# ViewModel Changes
+bind(viewmodels): implement cart validation
+- Add ObservableProperty
+- Include validation logic
+- Update commands
 
-```xaml
-<!-- Styles.xaml -->
-<ResourceDictionary>
-    <Style x:Key="PrimaryButton" TargetType="Button">
-        <Setter Property="HeightRequest" Value="44" />
-        <Setter Property="Padding" Value="16,8" />
-    </Style>
-</ResourceDictionary>
+# Platform-Specific
+platform(ios): customize payment sheet
+- Add native UI components
+- Handle safe areas
+- Implement iOS-specific animations
 ```
 
-Key Guidelines:
-- Use consistent naming conventions
-- Organize resources by type
-- Include accessibility considerations
-- Optimize images and assets
-- Document resource usage
+## Development Workflow
 
-### 7. Config Module
-
-Location: `Config/`
-Purpose: Application configuration
-
-```json
-{
-  "ApiSettings": {
-    "BaseUrl": "https://api.mobilekiosk.com",
-    "Timeout": 30
-  },
-  "Features": {
-    "EnableOfflineMode": true,
-    "EnableAnalytics": true
-  }
-}
+1. **Fork and Clone**
+```bash
+git clone https://github.com/your-username/mobile-kiosk.git
+cd mobile-kiosk
 ```
 
-Key Guidelines:
-- Use environment-specific configs
-- Secure sensitive information
-- Document configuration options
-- Include validation
-- Use strong typing
+2. **Set Up Development Environment**
+```bash
+dotnet workload install maui
+dotnet restore
+```
 
-### 8. Tests Module
+3. **Create Feature Branch**
+```bash
+# Format: feature/scope/description
+git checkout -b feature/payment/apple-pay-integration
+```
 
-Location: `Tests/`
-Purpose: Test projects and files
+4. **Make Changes Following Conventions**
+```bash
+# Make changes
+# Stage changes
+git add .
 
+# Commit with conventional message
+git commit -m "feat(payment): implement Apple Pay integration
+
+- Add payment handler
+- Implement UI components
+- Add platform-specific code
+
+Closes #123"
+```
+
+5. **Run Tests**
+```bash
+dotnet test
+```
+
+## Testing Requirements
+
+### Unit Tests
 ```csharp
 [TestClass]
-public class KioskServiceTests
+public class PaymentServiceTests
 {
-    private readonly IKioskService _kioskService;
-    
     [TestMethod]
-    public async Task Initialize_WithValidConfig_Succeeds()
+    public async Task ProcessPayment_ValidAmount_Succeeds()
     {
         // Arrange
-        var config = new KioskConfig();
+        var service = new PaymentService();
         
         // Act
-        await _kioskService.InitializeAsync(config);
+        var result = await service.ProcessPaymentAsync(100);
         
         // Assert
-        Assert.IsTrue(_kioskService.IsInitialized);
+        Assert.IsTrue(result.Success);
     }
 }
 ```
 
-Key Guidelines:
-- Follow AAA pattern (Arrange, Act, Assert)
-- Use meaningful test names
-- Include unit and integration tests
-- Test edge cases
-- Maintain high coverage
+### UI Tests
+```csharp
+[TestClass]
+public class CheckoutPageTests
+{
+    [TestMethod]
+    public async Task PriceDisplay_UpdatesCorrectly()
+    {
+        // Test UI elements
+    }
+}
+```
 
 ## Pull Request Process
 
-1. **Branch Naming**
+1. **Ensure Tests Pass**
 ```bash
-feature/module-name/feature-description
-bug/module-name/bug-description
+dotnet test
 ```
 
-2. **Commit Messages**
-```bash
-# Format:
-[Module] Brief description
+2. **Update Documentation**
+- Update README if needed
+- Add feature documentation
+- Update API documentation
 
-# Example:
-[Services] Add offline payment processing
-[Views] Improve checkout page accessibility
+3. **Create Pull Request**
+- Use PR template
+- Reference issues
+- Add screenshots for UI changes
+- List tested platforms
+
+4. **PR Template**
+```markdown
+## Description
+Brief description of changes
+
+## Type of Change
+- [ ] UI/XAML Change
+- [ ] Feature Addition
+- [ ] Bug Fix
+- [ ] Documentation Update
+
+## Tested On
+- [ ] Android
+- [ ] iOS
+- [ ] Windows
+
+## Screenshots
+[If applicable]
+
+## Checklist
+- [ ] Tests Added/Updated
+- [ ] Documentation Updated
+- [ ] Commit Messages Follow Convention
+- [ ] Code Follows Style Guide
 ```
 
-3. **PR Template Requirements**
-- Module(s) affected
-- Changes description
-- Testing performed
-- Screenshots (for UI changes)
-- Accessibility considerations
+## Style Guide Integration
 
-## Code Review Checklist
+### Visual Studio Settings
+```json
+{
+    "git.enableCommitSigning": true,
+    "git.allowForcePush": false,
+    "editor.formatOnSave": true
+}
+```
 
-### General
-- [ ] Follows coding standards
-- [ ] Properly documented
-- [ ] Includes tests
-- [ ] Handles errors appropriately
+### Git Hooks
+```bash
+#!/bin/sh
+# .githooks/commit-msg
 
-### Module-Specific
-- [ ] Services: Implements interfaces
-- [ ] Models: Includes validation
-- [ ] Views: Accessibility compliant
-- [ ] ViewModels: Follows MVVM
-- [ ] Tests: Covers edge cases
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Validate commit message format
+pattern='^(ui|layout|bind|platform|feat|fix|docs|style)\(([a-z-]+)\): .+'
+
+if ! echo "$commit_msg" | grep -Eq "$pattern"; then
+    echo "Invalid commit message format"
+    exit 1
+fi
+```
 
 ## Getting Help
 
-- Check module-specific documentation in `/docs`
-- Join our Discord channel
-- Tag maintainers in PR comments
-- Review existing implementations
+- Documentation: `/docs`
+- Discord: #mobile-kiosk
+- Email: contribute@mobilekiosk.com
 
 ## Recognition
 
 Contributors are recognized through:
-- Module maintainer roles
+- Contributors list in README
 - Feature credits
-- Documentation acknowledgments
 - Community highlights
 
-Need help? Contact: contribute@mobilekiosk.com
+---
+
+Remember: Quality over quantity. Take time to understand the conventions and ask questions when needed.
+
+Need help? Contact the maintainers:
+- GitHub: @mobile-kiosk-team
+- Email: lebohanglehutjo@gmail.ac.ul.za
