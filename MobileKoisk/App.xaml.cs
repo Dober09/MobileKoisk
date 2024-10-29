@@ -1,4 +1,6 @@
-﻿namespace MobileKoisk
+﻿using MobileKoisk.View;
+
+namespace MobileKoisk
 {
     public partial class App : Application
     {
@@ -6,7 +8,8 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new LoginPage();
+            
         }
     }
 }
