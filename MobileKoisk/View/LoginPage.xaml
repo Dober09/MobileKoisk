@@ -17,7 +17,7 @@
         <Label HeightRequest="50" />
         <!-- Empty label to create space -->
 
-        <Frame BorderColor="Yellow" CornerRadius="30" Padding="10" Margin="10,40,10,0">
+        <Frame BorderColor="#075639" CornerRadius="30" Padding="10" Margin="10,40,10,0">
             <Grid ColumnDefinitions="40,*" VerticalOptions="Center">
                 <Frame WidthRequest="40" HeightRequest="40" CornerRadius="30" BackgroundColor="#FFFAFA">
                     <Image Source="mail.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -38,7 +38,7 @@
         <!-- Additional spacing between entries -->
 
         <!-- Password Entry with Eye Icon inside Frame -->
-        <Frame BorderColor="Yellow" CornerRadius="30" Padding="10" Margin="10,0,10,0">
+        <Frame BorderColor="#075639" CornerRadius="30" Padding="10" Margin="10,0,10,0">
             <Grid ColumnDefinitions="40,*" VerticalOptions="Center">
                 <Frame WidthRequest="40" HeightRequest="40" CornerRadius="30" BackgroundColor="#FFFAFA">
                     <Image Source="padlock.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -68,7 +68,7 @@
 
         <!-- Login Button -->
         <Button Text="Login"
-                BackgroundColor="#FFCB27"
+                BackgroundColor="#065E3E"
                 TextColor="#fff"
                 CornerRadius="20"
                 WidthRequest="250"
@@ -90,23 +90,42 @@
         
 
         <!-- Social Media Registration Buttons -->
-        <Button Text="Register with Google"
-                BackgroundColor="#DB4437" 
-                TextColor="#fff"
-                CornerRadius="20"
-                WidthRequest="250"
-                FontAttributes="Bold"
-                FontSize="18"
-                Margin="10, 100,10,10" />
 
-            <Button Text="Register with Facebook"
-                BackgroundColor="#4267B2"
-                TextColor="#fff"
-                CornerRadius="20"
-                WidthRequest="250"
-                FontAttributes="Bold"
-                FontSize="18"
-                Margin="10" />
+        <Frame Padding="0" CornerRadius="40" WidthRequest="260" HeightRequest="50" Margin="10,100,10,10">
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0">
+                <ImageButton Source="google.png" 
+                         BackgroundColor="Transparent" 
+                         WidthRequest="40" 
+                         HeightRequest="40" 
+                         VerticalOptions="Start" 
+                         HorizontalOptions="Start" 
+                         IsEnabled="False" />
+                <!-- Disabled to act as an icon only -->
+                <Label Text="Register with Google" 
+                   TextColor="black" 
+                   FontAttributes="Bold" 
+                   FontSize="18" 
+                   VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Facebook Button -->
+            <Frame Padding="0" CornerRadius="40" WidthRequest="270" HeightRequest="50" Margin="10">
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                    <ImageButton Source="facebook.png"  
+                         WidthRequest="44" 
+                         HeightRequest="44" 
+                         VerticalOptions="Center" 
+                         HorizontalOptions="Center" 
+                         IsEnabled="False" />
+                    <!-- Disabled to act as an icon only -->
+                    <Label Text="Continue with Facebook" 
+                   TextColor="black" 
+                   FontAttributes="Bold" 
+                   FontSize="18" 
+                   VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Frame>
 
     </VerticalStackLayout>
 </ContentPage>
