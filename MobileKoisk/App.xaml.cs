@@ -8,7 +8,7 @@ namespace MobileKoisk
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new CheckoutPage();
             
         }
     }

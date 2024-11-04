@@ -57,11 +57,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\apple.png" />
 	  <None Remove="Resources\Images\eye.png" />
 	  <None Remove="Resources\Images\facebook.png" />
 	  <None Remove="Resources\Images\google.png" />
 	  <None Remove="Resources\Images\mail.png" />
 	  <None Remove="Resources\Images\padlock.png" />
+	  <None Remove="Resources\Images\search.png" />
+	  <None Remove="Resources\Images\shopping.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,11 +76,13 @@
 	<ItemGroup>
 	  <Folder Include="Models\" />
 	  <Folder Include="utilities\" />
-	  <Folder Include="ViewModel\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="CheckoutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
