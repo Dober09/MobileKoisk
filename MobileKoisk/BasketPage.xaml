@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileKoisk.BasketPage"
+             Title="BasketPage">
+    <Grid RowSpacing="10">
+        <!-- First Row: Cart Summary Header -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <!-- Fixed height for header -->
+            <RowDefinition Height="90" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Frame to create rounded bottom corners for the background -->
+        <Frame Grid.Row="0"
+            BackgroundColor="#FFD700"
+            HasShadow="True"
+            Padding="0"
+            Margin="0,-20,0,0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            HeightRequest="100"
+            CornerRadius="20">
+
+            <Frame.Shadow>
+                <Shadow 
+                     Opacity="0.3"
+                     Offset="8,8"/>
+            </Frame.Shadow>
+
+            <!-- Label inside Frame with Cart Summary title -->
+            <Label Text="Basket"
+                FontSize="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="White"/>
+        </Frame>
+        <StackLayout Grid.Row="1" VerticalOptions="StartAndExpand" Padding="20">
+            <Label Text="My Items In The Basket" FontSize="18" HorizontalOptions="Start" FontAttributes="Bold" />
+        </StackLayout>
+
+        <!-- CollectionView for Items in Basket -->
+        <CollectionView x:Name="BasketCollectionView" 
+                        ItemsSource="{Binding BasketItems}" 
+                        VerticalOptions="FillAndExpand"
+                        Grid.Row="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Item Container Frame -->
+                    <Frame CornerRadius="10" 
+                           Padding="10"
+
+                           Margin="0,5,0,5"
+                           HasShadow="True"
+                           BorderColor="#CCCCCC">
+                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
+                            <!-- Product Image -->
+                            <Image Source="{Binding ImageSource}"
+                                   WidthRequest="60"
+                                   HeightRequest="60"
+                                   Aspect="AspectFill"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,10,0"/>
+
+                            <!-- Product Name and Quantity -->
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="{Binding ProductName}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       TextColor="Black" />
+                                <Label Text="{Binding Quantity}" 
+                                       FontSize="14" 
+                                       TextColor="Gray" />
+                            </VerticalStackLayout>
+
+                            <!-- Product Price -->
+                            <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" 
+                                   FontSize="16" 
+                                   TextColor="Green"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                   Grid.Column="2" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <VerticalStackLayout Grid.Row="3" Padding="10">
+            <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,10" >
+                <Label Text="Basket Total" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" />
+                <Label Text="R99.99" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        HorizontalOptions="End" 
+                        VerticalOptions="Center" 
+                        Grid.Column="1"/>
+            </Grid>
+
+            <!-- Underline Divider -->
+            <BoxView HeightRequest="1" 
+                     BackgroundColor="Gray" 
+                     HorizontalOptions="FillAndExpand" />
+
+            <!-- Confirm Button -->
+            <Button Text="Confirm" 
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="White" 
+                    BackgroundColor="Black" 
+                    CornerRadius="10" 
+                    Padding="10"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="FillAndExpand" />
+        </VerticalStackLayout>
+       
+
+    </Grid>
+</ContentPage>
