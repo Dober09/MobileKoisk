@@ -11,8 +11,12 @@ namespace MobileKoisk
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+             
+                    //This is our new primary fonts
+                    fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
+                    fonts.AddFont("Poppins-Light.ttf", "PoppinsLight");
+                    fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
+                    fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
                 });
 
 #if DEBUG

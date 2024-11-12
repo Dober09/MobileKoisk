@@ -39,10 +39,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+			<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFCB27" BaseSize="30,30" />
+
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFCB27" BaseSize="128,128" />
+
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -56,9 +58,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Light.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Thin.ttf" />
+	  <None Remove="Resources\Images\clipboard.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\menu.png" />
+	  <None Remove="Resources\Images\sale.png" />
+	  <None Remove="Resources\Images\scan.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
