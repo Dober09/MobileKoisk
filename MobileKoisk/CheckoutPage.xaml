@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileKoisk.CheckoutPage"
              Title="CheckoutPage">
-    <Grid  RowSpacing="10">
+    <Grid RowSpacing="10">
 
         <!-- First Row: Cart Summary Header -->
         <Grid.RowDefinitions>
@@ -18,19 +18,17 @@
                BackgroundColor="#FFD700"
                HasShadow="True"
                Padding="0"
-               Margin="0,-15,0,0"
+               Margin="0,-20,0,0"
                HorizontalOptions="FillAndExpand"
                VerticalOptions="Start"
                HeightRequest="100"
-               CornerRadius="20"
-               >
+               CornerRadius="20">
+
             <Frame.Shadow>
-                <Shadow Brush="grey"
+                <Shadow 
                         Opacity="0.3"
                         Offset="8,8"/>
             </Frame.Shadow>
-          
-            
 
             <!-- Label inside Frame with Cart Summary title -->
             <Label Text="Your Cart"
@@ -38,17 +36,92 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    FontAttributes="Bold"
-                   TextColor="White"
-                   />
-
+                   TextColor="White"/>
         </Frame>
 
         <!-- Other content goes in the second row -->
-        <StackLayout Grid.Row="1" VerticalOptions="StartAndExpand">
-            <!-- Placeholder for additional content -->
-            <Label Text="Other content here..." FontSize="18" HorizontalOptions="Center" />
-            <!-- Add your CollectionView and other checkout details here as needed -->
-        </StackLayout>
+        <StackLayout Grid.Row="1" VerticalOptions="StartAndExpand" Padding="20">
+            <Label Text="Add Payment Method" FontSize="18" HorizontalOptions="Center" FontAttributes="Bold" />
 
+            <!-- Payment Method Icons -->
+            <HorizontalStackLayout
+                Spacing="25"
+                HorizontalOptions="Center"
+                Margin="0,30,0,420">
+
+                <!-- Mastercard Icon Frame -->
+                <Frame CornerRadius="10"
+                       Padding="10"
+                       BackgroundColor="White"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       HasShadow="True">
+                    <Image Source="card.png" 
+                           HeightRequest="40" 
+                           WidthRequest="40" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Apple Pay Icon Frame -->
+                <Frame CornerRadius="10"
+                       Padding="10"
+                      
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       HasShadow="True">
+                    <Image Source="appleicon.png" 
+                           HeightRequest="40" 
+                           WidthRequest="40" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center"/>
+                </Frame>
+
+                <!-- Google Pay Icon Frame -->
+                <Frame CornerRadius="10"
+                       Padding="10"
+                       BackgroundColor="White"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       HasShadow="True">
+                    <Image Source="google.png" 
+                           HeightRequest="30" 
+                           WidthRequest="30" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center"/>
+                </Frame>
+
+            </HorizontalStackLayout>
+
+            <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,10">
+                <Label Text="Basket Total" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" />
+                <Label Text="R99.99" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="End" 
+                       VerticalOptions="Center" 
+                       Grid.Column="1"/>
+            </Grid>
+
+            <!-- Underline Divider -->
+            <BoxView HeightRequest="1" 
+                     BackgroundColor="Gray" 
+                     HorizontalOptions="FillAndExpand" />
+
+            <!-- Confirm Button -->
+            <Button Text="Confirm" 
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="White" 
+                    BackgroundColor="Black" 
+                    CornerRadius="10" 
+                    Padding="10"
+                    Margin="0,20,0,0"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
     </Grid>
+
 </ContentPage>

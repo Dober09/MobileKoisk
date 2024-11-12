@@ -57,7 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\apple.png" />
+	  <MauiImage Remove="Resources\Images\search.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\apple.png" />
+	  <None Remove="Resources\Images\appleicon.png" />
+	  <None Remove="Resources\Images\applepayicon.png" />
+	  <None Remove="Resources\Images\card.png" />
 	  <None Remove="Resources\Images\eye.png" />
 	  <None Remove="Resources\Images\facebook.png" />
 	  <None Remove="Resources\Images\google.png" />
