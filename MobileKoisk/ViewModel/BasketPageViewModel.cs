@@ -22,8 +22,8 @@ namespace MobileKoisk.ViewModel
             {
                new BasketItem {ImageSource = "coffee.png", ProductName = "Coffee", Quantity=1, Price = 19.99M },
                new BasketItem { ImageSource = "selatisugar.png", ProductName = "Sugar", Quantity = 1, Price = 9.99M },
-               new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M }
-            };
+			   new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M }
+			};
 
 			NavigateToCheckoutCommand = new Command(async () => await GoToCheckoutPage());
 		}
