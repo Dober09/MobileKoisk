@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 			<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFCB27" BaseSize="30,30" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFCB27" BaseSize="50,50" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFCB27" BaseSize="128,128" />
@@ -55,6 +55,21 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="Services\**" />
+	  <AndroidResource Remove="utilities\**" />
+	  <Compile Remove="Services\**" />
+	  <Compile Remove="utilities\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <EmbeddedResource Remove="utilities\**" />
+	  <MauiCss Remove="Services\**" />
+	  <MauiCss Remove="utilities\**" />
+	  <MauiXaml Remove="Services\**" />
+	  <MauiXaml Remove="utilities\**" />
+	  <None Remove="Services\**" />
+	  <None Remove="utilities\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -86,6 +101,7 @@
 	  <None Remove="Resources\Images\padlock.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\shopping.png" />
+	  <None Remove="View\CheckoutPage.xaml~RFee3b4ef.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -101,18 +117,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="utilities\" />
-	  <Folder Include="Services\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="BasketPage.xaml">
+	  <MauiXaml Update="View\BasketPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CheckoutPage.xaml">
+	  <MauiXaml Update="View\CheckoutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\LoginPage.xaml">
+	  <MauiXaml Update="View\Auth\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
