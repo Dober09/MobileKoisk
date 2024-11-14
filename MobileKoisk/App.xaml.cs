@@ -7,7 +7,7 @@ namespace MobileKoisk
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new BasketPage();
             
         }
     }
