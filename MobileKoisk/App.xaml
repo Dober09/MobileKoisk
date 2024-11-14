@@ -9,6 +9,33 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <!--Additional styles -->
+            <!--Large Text-->
+            <Style  TargetType="Label" x:Key="largeText" >
+                <Setter Property="FontFamily" Value="PoppinsBold"/>
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="27"/>
+            </Style>
+            
+            <!--Medium Text-->
+            <Style  TargetType="Label" x:Key="mediumText" >
+                <Setter Property="FontFamily" Value="PoppinsRegular"/>
+                <Setter Property="FontSize" Value="21"/>
+            </Style> 
+            
+            <!--Small Text-->
+            <Style  TargetType="Label" x:Key="smallText" >
+                <Setter Property="FontFamily" Value="PoppinsThin"/>
+                <Setter Property="FontSize" Value="19"/>
+            </Style>
+
+            <!--Tiny Text-->
+            <Style  TargetType="Label" x:Key="tinyText" >
+                <Setter Property="FontFamily" Value="Poppinslight"/>
+                <Setter Property="FontSize" Value="19"/>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

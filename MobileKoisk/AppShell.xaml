@@ -20,26 +20,26 @@
         <!--Sale Tab-->
         <Tab Title="Sale"
              Icon="sale.png">
-            <ShellContent ContentTemplate="{DataTemplate view:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
         </Tab>  
         
         <!--GroceryList Tab-->
         <Tab Title="Scan"
              Icon="scan.png">
-            <ShellContent ContentTemplate="{DataTemplate view:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:ScanningPage}" />
         </Tab> 
         
         <!--Scanning Tab-->
         <Tab Title="ShopList"
              Icon="clipboard.png">
-            <ShellContent ContentTemplate="{DataTemplate view:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:ShoppingListPage}" />
         </Tab>
         
         <!--More Tab-->
         <Tab Title="More"
              Icon="menu.png">
             
-            <ShellContent ContentTemplate="{DataTemplate view:MainPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
         </Tab>
     </TabBar>
 
