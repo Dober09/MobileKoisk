@@ -111,8 +111,6 @@
 
             <!-- Confirm Button -->
             <Button Text="Confirm" 
-                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BasketPageViewModel}}, Path=NavigateToCheckoutCommand}"
-                    CommandParameter="{Binding}"
                     FontSize="18"
                     FontAttributes="Bold"
                     TextColor="White" 
