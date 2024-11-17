@@ -40,8 +40,7 @@
 
 	<ItemGroup>
 			<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFCB27" BaseSize="50,50" />
-
+		<MauiIcon Include="Resources\AppIcon\appicon.png" BaseSize="50,50" />
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFCB27" BaseSize="128,128" />
 
@@ -80,6 +79,7 @@
 	  <None Remove="Resources\Images\basketblack.png" />
 	  <None Remove="Resources\Images\clipboard.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\lebohang.jpg" />
 	  <None Remove="Resources\Images\menu.png" />
 	  <None Remove="Resources\Images\sale.png" />
 	  <None Remove="Resources\Images\scan.png" />
