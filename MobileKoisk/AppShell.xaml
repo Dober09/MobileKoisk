@@ -23,7 +23,7 @@
             <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
         </Tab>  
         
-        <!--GroceryList Tab-->
+        <!-- Tab-->
         <Tab Title="Scan"
              Icon="scan.png">
             <ShellContent ContentTemplate="{DataTemplate view:ScanningPage}" />

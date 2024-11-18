@@ -46,9 +46,211 @@
 
                      </Frame>
              </StackLayout>
-                <!--The body-->
-        <Grid Grid.Row="1" >
-            <Label Text="Hello" Style="{StaticResource tinyText}" />
+         
+        <!--The body-->
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,-230,0,0" >
+            <ScrollView>
+                <VerticalStackLayout>
+                    
+               
+                
+                <VerticalStackLayout Margin="10,0,10,0" Spacing="9">
+                <!--Card Title-->
+                <Label Text="Account" 
+                       Style="{StaticResource tinyText}" 
+                       FontAttributes="Bold"/>
+
+                    <VerticalStackLayout Spacing="10">
+                        
+                        <!--Card Items  1-->
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="My Profile"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        
+                        
+                        <!--Card Items  2-->
+                        
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="Payment Methods"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>                   
+                        <!--Card Items  3-->
+                        
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="Order History"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>     
+                        
+                        <!--Card Items  4-->
+                        
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="My Address"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        
+                        
+                        
+                        
+                    </VerticalStackLayout>
+                </VerticalStackLayout> 
+                
+                <VerticalStackLayout Margin="10,0,10,0" Spacing="9">
+                <!--Card Title-->
+                <Label Text="Preferences" 
+                       Style="{StaticResource tinyText}" 
+                       FontAttributes="Bold"/>
+
+                    <VerticalStackLayout Spacing="10">
+                        
+                        <!--Card Items  1-->
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="Notifications"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        
+                        
+                        <!--Card Items  2-->
+                        
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="Favorite Stores"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>                   
+                        <!--Card Items  3-->
+                        
+                        <Frame BackgroundColor="{StaticResource White}"
+                           BorderColor="{StaticResource Primary}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                          >
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="lebohang.jpg" 
+                                           WidthRequest="60"
+                                           Aspect="AspectFit"
+                                           HeightRequest="40"
+                                       />
+
+                                <Label Text="App setting"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource smallText}"
+                                       FontSize="17" FontAttributes="Bold"
+                                       />
+                            </HorizontalStackLayout>
+                        </Frame>     
+                        
+                       
+                        
+                        
+                        
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </ScrollView>
         </Grid>
 
     </Grid>
