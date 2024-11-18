@@ -25,13 +25,6 @@ namespace MobileKoisk.ViewModel
 			   new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M }
 			};
 
-			NavigateToCheckoutCommand = new Command(async () => await GoToCheckoutPage());
-		}
-
-		private async Task GoToCheckoutPage()
-		{
-			// Navigate to CheckoutPage
-			await Shell.Current.GoToAsync(nameof(CheckoutPage));
 		}
 	}
 }
