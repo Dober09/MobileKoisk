@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
+             xmlns:model="clr-namespace:MobileKoisk.Models"
+             x:Class="MobileKoisk.View.IntroScreenPage"
+             x:DataType="vm:IntroScreenViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource White}"
+             >
+    <VerticalStackLayout>
+        <CarouselView ItemsSource="{Binding IntroScreens}"
+                      IndicatorView="indicatorView"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      Loop="False">
+            <CarouselView.ItemTemplate>
+                <DataTemplate  x:DataType="model:IntroScreenModel">
+                    <Grid RowDefinitions="50*,60*"
+                       
+                          HeightRequest="450"
+                          
+                          Margin="10,100,10,0"
+                          >
+
+                        <Image Source="{Binding IntroImage}"
+                               Aspect="AspectFill"
+                               Grid.Row="0"
+                               WidthRequest="90"
+                               HeightRequest="90"
+                                   />
+
+
+                        <VerticalStackLayout Grid.Row="1" 
+                                            
+                                             HorizontalOptions="Center">
+                            
+                            <Label Text="{Binding IntroTitle}"
+                                   Style="{StaticResource largeText }"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource Primary}"
+                                   />
+                        
+                            <Label Text="{Binding IntroDescription}"
+                                   Style="{StaticResource mediumText}"
+                                   TextColor="{StaticResource SecondaryDarkText}"
+                                   WidthRequest="400"
+                                   HorizontalTextAlignment="Center"
+                                   
+                                   />
+                        </VerticalStackLayout>
+                    </Grid>
+   
+                </DataTemplate>
+                
+            </CarouselView.ItemTemplate>
+            
+        </CarouselView>
+
+        <StackLayout Orientation="Vertical"
+                     
+                     Spacing="20"
+                     >
+            <IndicatorView x:Name="indicatorView"
+                           HorizontalOptions="Center"
+                           IndicatorSize="20"
+                           IndicatorsShape="Circle"
+                           IndicatorColor="{StaticResource Primary}"
+                           SelectedIndicatorColor="{StaticResource PrimaryDarkText}"
+                           />
+            <Frame Padding="0"
+                   HeightRequest="50"
+                   WidthRequest="160"
+                   BackgroundColor="{StaticResource Primary}"
+                   BorderColor="{StaticResource Primary}"
+                   >
+                
+                <Label Text="Next" 
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource largeText}"
+                       />
+           
+            </Frame>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

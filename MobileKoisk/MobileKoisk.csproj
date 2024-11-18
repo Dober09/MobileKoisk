@@ -81,6 +81,7 @@
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\lebohang.jpg" />
 	  <None Remove="Resources\Images\menu.png" />
+	  <None Remove="Resources\Images\payment.png" />
 	  <None Remove="Resources\Images\sale.png" />
 	  <None Remove="Resources\Images\scan.png" />
 	</ItemGroup>
@@ -112,6 +113,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\IntroScreenPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

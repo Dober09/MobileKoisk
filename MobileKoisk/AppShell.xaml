@@ -7,8 +7,9 @@
     xmlns:view="clr-namespace:MobileKoisk.View"
     Shell.FlyoutBehavior="Disabled"
     Title="MobileKoisk">
-    
-  
+
+
+    <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}" />
 
     <TabBar>
         <!--Home Tab-->
