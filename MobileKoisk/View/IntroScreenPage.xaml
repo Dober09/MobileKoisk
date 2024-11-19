@@ -9,7 +9,10 @@
              BackgroundColor="{StaticResource White}"
              >
     <VerticalStackLayout>
+        <!--Carousel view-->
         <CarouselView ItemsSource="{Binding IntroScreens}"
+                      Position="{Binding Position}"
+                     
                       IndicatorView="indicatorView"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
@@ -17,29 +20,26 @@
             <CarouselView.ItemTemplate>
                 <DataTemplate  x:DataType="model:IntroScreenModel">
                     <Grid RowDefinitions="50*,60*"
-                       
                           HeightRequest="450"
-                          
                           Margin="10,100,10,0"
                           >
-
+                        
                         <Image Source="{Binding IntroImage}"
                                Aspect="AspectFill"
                                Grid.Row="0"
                                WidthRequest="90"
                                HeightRequest="90"
-                                   />
+                        />
 
 
                         <VerticalStackLayout Grid.Row="1" 
-                                            
                                              HorizontalOptions="Center">
-                            
+             
                             <Label Text="{Binding IntroTitle}"
                                    Style="{StaticResource largeText }"
                                    HorizontalTextAlignment="Center"
                                    TextColor="{StaticResource Primary}"
-                                   />
+                            />
                         
                             <Label Text="{Binding IntroDescription}"
                                    Style="{StaticResource mediumText}"
@@ -47,7 +47,8 @@
                                    WidthRequest="400"
                                    HorizontalTextAlignment="Center"
                                    
-                                   />
+                            />
+                            
                         </VerticalStackLayout>
                     </Grid>
    
@@ -61,21 +62,26 @@
                      
                      Spacing="20"
                      >
+            <!--Three dots on the screen-->
             <IndicatorView x:Name="indicatorView"
                            HorizontalOptions="Center"
                            IndicatorSize="20"
                            IndicatorsShape="Circle"
                            IndicatorColor="{StaticResource Primary}"
                            SelectedIndicatorColor="{StaticResource PrimaryDarkText}"
-                           />
+             />
+            <!--The next Button-->
             <Frame Padding="0"
                    HeightRequest="50"
                    WidthRequest="160"
                    BackgroundColor="{StaticResource Primary}"
-                   BorderColor="{StaticResource Primary}"
+                   BorderColor="{StaticResource PrimaryDarkText}"
                    >
-                
-                <Label Text="Next" 
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextCommand }"
+                                       />
+                </Frame.GestureRecognizers>
+                <Label Text="{Binding ButtonText}" 
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Style="{StaticResource largeText}"

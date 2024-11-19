@@ -15,7 +15,9 @@
         <!--Home Tab-->
         <Tab Title="Home"
              Icon="home.png">
-            <ShellContent ContentTemplate="{DataTemplate view:MainPage}" />
+            
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
+                          Route="MainPage"/>
         </Tab>  
         
         <!--Sale Tab-->

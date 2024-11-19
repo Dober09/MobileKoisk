@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using MobileKoisk.View;
+using MobileKoisk.ViewModel;
 
 namespace MobileKoisk
 {
@@ -18,9 +20,9 @@ namespace MobileKoisk
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
                 });
-
+           
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
