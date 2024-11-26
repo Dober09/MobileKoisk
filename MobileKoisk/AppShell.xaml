@@ -9,8 +9,8 @@
     Title="MobileKoisk">
 
 
-    <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}" />
-
+    <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}"
+              Route="introPage"/>
     <TabBar>
         <!--Home Tab-->
         <Tab Title="Home"
@@ -18,11 +18,12 @@
             
             <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
                           Route="MainPage"/>
+            
         </Tab>  
         
         <!--Sale Tab-->
-        <Tab Title="Sale"
-             Icon="sale.png">
+        <Tab Title="Quick Picks"
+             Icon="clipboard.png">
             <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
         </Tab>  
         
@@ -33,8 +34,8 @@
         </Tab> 
         
         <!--Scanning Tab-->
-        <Tab Title="ShopList"
-             Icon="clipboard.png">
+        <Tab Title="My Basket"
+             Icon="fruitsandvegetables.png">
             <ShellContent ContentTemplate="{DataTemplate view:ShoppingListPage}" />
         </Tab>
         
