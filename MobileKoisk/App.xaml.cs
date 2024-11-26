@@ -1,4 +1,4 @@
-﻿
+﻿using MobileKoisk.View;
 namespace MobileKoisk
 {
     public partial class App : Application
@@ -6,9 +6,7 @@ namespace MobileKoisk
         public App()
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
-            
+            MainPage = new CheckoutPage();
         }
     }
 }

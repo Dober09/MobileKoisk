@@ -34,7 +34,7 @@
         
         <!--Scanning Tab-->
         <Tab Title="ShopList"
-             Icon="clipboard.png">
+             Icon="basketblack.png">
             <ShellContent ContentTemplate="{DataTemplate view:ShoppingListPage}" />
         </Tab>
         

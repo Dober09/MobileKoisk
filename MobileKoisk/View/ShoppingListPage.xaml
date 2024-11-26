@@ -4,8 +4,13 @@
              x:Class="MobileKoisk.View.ShoppingListPage"
              >
     <!--Layout-->
-    <Grid RowDefinitions="*, *"  ColumnDefinitions="*,*" >
-
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
         <!--Header Title-->
 
         <StackLayout  Grid.Row="0" 
@@ -27,18 +32,9 @@
                            TextColor="{StaticResource White}"
                      />
                 </HorizontalStackLayout>
-
-
-
-
-
-
             </Frame>
         </StackLayout>
         <!--The body-->
-        <Grid Grid.Row="1" >
-            <Label Text="Hello" Style="{StaticResource tinyText}" />
-        </Grid>
-
+   
     </Grid>
 </ContentPage>
