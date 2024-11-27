@@ -6,7 +6,7 @@ namespace MobileKoisk
         public App()
         {
             InitializeComponent();
-            MainPage = new CheckoutPage();
+            MainPage = new AppShell();
         }
     }
 }

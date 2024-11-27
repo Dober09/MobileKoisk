@@ -6,37 +6,32 @@
     
     <!--Layout -->
 
-    <Grid RowDefinitions="*, *"
-          ColumnDefinitions="*,*" >
+    <Grid RowDefinitions="*, *">
         
         <!--Header Title-->
 
         <StackLayout  Grid.Row="0" 
                       Grid.ColumnSpan="2"
                       >
-            
-        <Frame BackgroundColor="{StaticResource yellow}"
+
+            <Frame BackgroundColor="{StaticResource yellow}"
                HasShadow="True"
                HeightRequest="70"
                BorderColor="{StaticResource yellow}"
-               CornerRadius="0"
-        >
-                
-          
+               CornerRadius="0">
 
-            <HorizontalStackLayout  Margin="-20" Padding="4" HeightRequest="40" Spacing="76" VerticalOptions="Center"  >
-                <Label Text="Where in the world?"
-                       />
-      
-            </HorizontalStackLayout>
+                <Label Text="Payment"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
 
-
-
-        </Frame>
+            </Frame>
         </StackLayout>
         <!--The body-->
         <Grid Grid.Row="1" >
-            <Label Text="Hello" />
+            
         </Grid>
         
     </Grid>

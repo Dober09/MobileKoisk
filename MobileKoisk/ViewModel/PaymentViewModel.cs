@@ -8,16 +8,22 @@ using System.Windows.Input;
 
 namespace MobileKoisk.ViewModel
 {
+	// ViewModel for managing payment options in a mobile kiosk application
 	public class PaymentViewModel : INotifyPropertyChanged
 	{
+		// Indicates whether the credit card option is currently selected
 		private bool _isCreditCardSelected;
+
+		// Indicates whether the credit card button is toggled on
 		private bool _isCreditCardButtonSelected;
 
+		// Public property to access and modify the credit card selection state
 		public bool IsCreditCardSelected
 		{
 			get => _isCreditCardSelected;
 			set
 			{
+				// Update the property value and notify listeners if it changes
 				if (_isCreditCardSelected != value)
 				{
 					_isCreditCardSelected = value;
@@ -26,11 +32,13 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 
+		// Public property to access and modify the credit card button selection state
 		public bool IsCreditCardButtonSelected
 		{
 			get => _isCreditCardButtonSelected;
 			set
 			{
+				// Update the property value and notify listeners if it changes
 				if (_isCreditCardButtonSelected != value)
 				{
 					_isCreditCardButtonSelected = value;
@@ -39,21 +47,22 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 
+		// Command to toggle the selection state of the credit card button and visibility
 		public ICommand SelectCreditCardCommand => new Command(() =>
 		{
-			// Toggle button selection
-			IsCreditCardButtonSelected = !IsCreditCardButtonSelected; 
-			// Toggle visibility
+			// Toggle the button's selected state
+			IsCreditCardButtonSelected = !IsCreditCardButtonSelected;
+			// Toggle the visibility of the credit card option
 			IsCreditCardSelected = !IsCreditCardSelected;
 		});
 
-
+		// Event for notifying property changes to the UI or other listeners
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		// Helper method to raise the PropertyChanged event for a specific property
 		protected void OnPropertyChanged(string propertyName)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
-
 	}
 }

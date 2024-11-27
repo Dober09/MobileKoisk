@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileKoisk.View.ReceiptPage" >
+
+    <ScrollView>
+        <StackLayout Padding="10" Spacing="10" BackgroundColor="White">
+
+            <!-- Header Section -->
+            <StackLayout>
+                <Label Text="Shoprite South Africa"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <Label Text="Address: 123 Main Street, Cape Town"
+                       FontSize="14"
+                       HorizontalOptions="Center" />
+                <Label Text="Contact: +27 123 456 789"
+                       FontSize="14"
+                       HorizontalOptions="Center" />
+                <BoxView HeightRequest="1" Color="Black" />
+            </StackLayout>
+
+            <!-- Transaction Details -->
+            <StackLayout>
+                <Label Text="Transaction Details"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,0" />
+                <Label Text="{Binding TransactionId, StringFormat='Transtion ID: {0}'}" />
+                <Label Text="{Binding TransactionTime, StringFormat='Time: {0}'}" FontSize="14" />
+            </StackLayout>
+
+            <!-- Items List -->
+            <StackLayout>
+                <Label Text="Items Purchased"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,5" />
+                <CollectionView ItemsSource="{Binding Items}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="5" Spacing="10">
+                                <Label Text="{Binding Quantity}" FontSize="14" WidthRequest="50" />
+                                <Label Text="{Binding Description}" FontSize="14" WidthRequest="150" />
+                                <Label Text="{Binding UnitPrice}" FontSize="14" WidthRequest="80" />
+                                <Label Text="{Binding TotalPrice}" FontSize="14" WidthRequest="80" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <BoxView HeightRequest="1" Color="Black" />
+            </StackLayout>
+
+            <!-- Footer Section -->
+            <StackLayout>
+                <Label Text="Summary"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,5" />
+                <Label Text="{Binding VatAmount, StringFormat='Vat: {0}'}"
+                       FontSize="14"
+                       HorizontalOptions="End" />
+                <Label Text="{Binding TotalAmount, StringFormat='Total Amount: {0}'}" 
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       HorizontalOptions="End" />
+                <BoxView HeightRequest="1" Color="Black" />
+                <Label Text="Thank You for Shopping with Us!"
+                       FontSize="14"
+                       FontAttributes="Italic"
+                       HorizontalOptions="Center" 
+                       Margin="10,20,10,0" />
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

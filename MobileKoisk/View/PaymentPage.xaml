@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileKoisk.View.CheckoutPage"
+             x:Class="MobileKoisk.View.PaymentPage"
              xmlns:local="clr-namespace:MobileKoisk.Helper"
              xmlns:entry="clr-namespace:MobileKoisk"
-             Title="CheckoutPage">
+             >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,28 +22,28 @@
 
         <!-- Frame to create rounded bottom corners for the background -->
         <Frame Grid.Row="0"
-               BackgroundColor="#FFD700"
-               HasShadow="True"
-               Padding="0,10,0,0"
-               Margin="0,-20,0,0"
-               HorizontalOptions="FillAndExpand"
-               VerticalOptions="Start"
-               HeightRequest="100"
-               CornerRadius="20">
+            BackgroundColor="#FFD700"
+            HasShadow="True"
+            Padding="0,10,0,0"
+            Margin="0,-20,0,0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start"
+            HeightRequest="100"
+            CornerRadius="20">
 
             <Frame.Shadow>
                 <Shadow 
-                        Opacity="0.3"
-                        Offset="8,8"/>
+                     Opacity="0.3"
+                     Offset="8,8"/>
             </Frame.Shadow>
 
             <!-- Label inside Frame with Cart Summary title -->
             <Label Text="Payment"
-                   FontSize="24"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   FontAttributes="Bold"
-                   TextColor="White"/>
+                FontSize="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="White"/>
         </Frame>
 
         <!-- Other content goes in the second row -->
@@ -52,8 +52,8 @@
                 <Label Text="Choose Preffered Payment Method" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center"  />
                 <!-- Placeholder for Payment Option 1: Credit Card -->
                 <Frame Padding="10" Margin="0,30,0,10" BackgroundColor="#F7F7F7" CornerRadius="10" HasShadow="True"
-                       HorizontalOptions="Fill"
-                       >
+                    HorizontalOptions="Fill"
+                    >
                     <Grid ColumnSpacing="10" Padding="5,10,10,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -69,9 +69,9 @@
 
                         <!-- Circular Select Button Placeholder -->
                         <Frame Grid.Column="2" Padding="5" WidthRequest="20" HeightRequest="20" 
-                                CornerRadius="15"  
-                               BorderColor="{Binding IsCreditCardButtonSelected, Converter={StaticResource BoolToColorConverter}}" 
-                               BackgroundColor="{Binding IsCreditCardButtonSelected, Converter={StaticResource BoolToColorConverter}}">
+                             CornerRadius="15"  
+                            BorderColor="{Binding IsCreditCardButtonSelected, Converter={StaticResource BoolToColorConverter}}" 
+                            BackgroundColor="{Binding IsCreditCardButtonSelected, Converter={StaticResource BoolToColorConverter}}">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectCreditCardCommand}" />
                             </Frame.GestureRecognizers>
@@ -81,7 +81,7 @@
 
                 <StackLayout IsVisible="{Binding IsCreditCardSelected}" Padding="10,-5,10,10"  Margin="0,0,0,10">
                     <!-- Entries for user input -->
-               
+
 
                     <!-- New Frame with light yellow background -->
                     <Frame BackgroundColor="#FFFFE0" CornerRadius="10" Padding="10" Margin="0,10,0,0">
@@ -110,13 +110,13 @@
                                 <Frame  Grid.Row="1" Grid.Column="0" Background="#fff" CornerRadius="5" Padding="10,5" BackgroundColor="Transparent">
                                     <entry:BorderlessEntry Placeholder="Expiry Date (MM/YY)" Keyboard="Numeric" />
                                 </Frame>
-                                
+
 
                                 <!-- CVV Entry -->
                                 <Frame Grid.Row="1" Grid.Column="1" Background="#fff" CornerRadius="5" Padding="10,5">
                                     <entry:BorderlessEntry Placeholder="CVV" Keyboard="Numeric" IsPassword="True"  />
                                 </Frame>
-                                
+
                             </Grid>
                         </StackLayout>
                     </Frame>
@@ -124,7 +124,7 @@
 
                 <!-- Placeholder for Payment Option 2: Apple Pay -->
                 <Frame Padding="10" Margin="0,0,0,10" BackgroundColor="#F7F7F7" CornerRadius="10" HasShadow="True"
-                   HorizontalOptions="Fill" >
+                HorizontalOptions="Fill" >
                     <Grid ColumnSpacing="10" Padding="5,10,10,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -140,14 +140,14 @@
 
                         <!-- Circular Select Button Placeholder -->
                         <Frame Grid.Column="2" Padding="5" WidthRequest="20" HeightRequest="20" 
-                           BackgroundColor="Transparent" CornerRadius="15" 
-                           BorderColor="#D3D3D3">
+                        BackgroundColor="Transparent" CornerRadius="15" 
+                        BorderColor="#D3D3D3">
                         </Frame>
                     </Grid>
                 </Frame>
                 <!-- Placeholder for Payment Option 3: Google Pay -->
                 <Frame Padding="10" Margin="0,0,0,10" BackgroundColor="#F7F7F7" CornerRadius="10" HasShadow="True"
-                   HorizontalOptions="Fill" >
+                HorizontalOptions="Fill" >
                     <Grid ColumnSpacing="10" Padding="5,10,10,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -163,8 +163,8 @@
 
                         <!-- Circular Select Button Placeholder -->
                         <Frame Grid.Column="2" Padding="5" WidthRequest="20" HeightRequest="20" 
-                           BackgroundColor="Transparent" CornerRadius="15" 
-                           BorderColor="#D3D3D3">
+                        BackgroundColor="Transparent" CornerRadius="15" 
+                        BorderColor="#D3D3D3">
                         </Frame>
                     </Grid>
                 </Frame>
@@ -174,32 +174,33 @@
         <VerticalStackLayout Grid.Row="2" Padding="10" Margin="0,30,0,0">
             <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,10" >
                 <Label Text="Basket Total" 
-                       FontSize="18" 
-                       FontAttributes="Bold" 
-                       VerticalOptions="Center" />
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    VerticalOptions="Center" />
                 <Label Text="R99.99" 
-                       FontSize="18" 
-                       FontAttributes="Bold" 
-                       HorizontalOptions="End" 
-                       VerticalOptions="Center" 
-                       Grid.Column="1"/>
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="End" 
+                    VerticalOptions="Center" 
+                    Grid.Column="1"/>
             </Grid>
 
             <!-- Underline Divider -->
             <BoxView HeightRequest="1" 
-         BackgroundColor="Gray" 
-         HorizontalOptions="FillAndExpand" />
+      BackgroundColor="Gray" 
+      HorizontalOptions="FillAndExpand" />
 
             <!-- Confirm Button -->
             <Button Text="Confirm" 
-                    FontSize="18"
-                    FontAttributes="Bold"
-                    TextColor="White" 
-                    BackgroundColor="Black" 
-                    CornerRadius="10" 
-                    Padding="10"
-                    Margin="0,20,0,0"
-                    HorizontalOptions="FillAndExpand" />
+                 FontSize="18"
+                 FontAttributes="Bold"
+                 TextColor="White" 
+                 BackgroundColor="Black" 
+                 CornerRadius="10" 
+                 Padding="10"
+                 Margin="0,20,0,0"
+                 HorizontalOptions="FillAndExpand"
+                 Command="{Binding ConfirmCommand}"  />
         </VerticalStackLayout>
     </Grid>
 

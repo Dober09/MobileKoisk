@@ -21,9 +21,9 @@
         </Tab>  
         
         <!--Sale Tab-->
-        <Tab Title="Sale"
+        <Tab Title="Receipt"
              Icon="sale.png">
-            <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:ReceiptPage}" />
         </Tab>  
         
         <!-- Tab-->
@@ -33,9 +33,9 @@
         </Tab> 
         
         <!--Scanning Tab-->
-        <Tab Title="ShopList"
+        <Tab Title="Payment"
              Icon="basketblack.png">
-            <ShellContent ContentTemplate="{DataTemplate view:ShoppingListPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:PaymentPage }" />
         </Tab>
         
         <!--More Tab-->
