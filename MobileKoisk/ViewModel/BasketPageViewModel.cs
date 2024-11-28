@@ -6,12 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MobileKoisk.Models;
+using System.Windows.Input;
+using Microsoft.Maui.Controls;
 
 namespace MobileKoisk.ViewModel
 {
     class BasketPageViewModel
     {
-        public ObservableCollection<BasketItem> BasketItems { get; set; }
+		public ICommand NavigateToCheckoutCommand { get; }
+		public ObservableCollection<BasketItem> BasketItems { get; set; }
 
         public BasketPageViewModel()
         {
@@ -19,10 +22,9 @@ namespace MobileKoisk.ViewModel
             {
                new BasketItem {ImageSource = "coffee.png", ProductName = "Coffee", Quantity=1, Price = 19.99M },
                new BasketItem { ImageSource = "selatisugar.png", ProductName = "Sugar", Quantity = 1, Price = 9.99M },
-               new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M }
-            };
-        }
+			   new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M }
+			};
 
-        
-    }
+		}
+	}
 }
