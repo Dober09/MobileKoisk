@@ -36,7 +36,7 @@
         <!--Scanning Tab-->
         <Tab Title="My Basket"
              Icon="fruitsandvegetables.png">
-            <ShellContent ContentTemplate="{DataTemplate view:ShoppingListPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:}" />
         </Tab>
         
         <!--More Tab-->

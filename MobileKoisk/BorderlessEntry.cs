@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MobileKoisk
 {
-	internal class BorderlessEntry : Entry
+	public class BorderlessEntry : Entry
 	{
 	}
 }

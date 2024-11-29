@@ -10,4 +10,9 @@ public partial class CheckoutPage : ContentPage
 		BindingContext = new PaymentViewModel();
 
 	}
+
+    private async void BackClicked(object sender, EventArgs e)
+    {
+		await Shell.Current.GoToAsync("..");
+    }
 }

@@ -56,17 +56,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="Services\**" />
 	  <AndroidResource Remove="utilities\**" />
-	  <Compile Remove="Services\**" />
 	  <Compile Remove="utilities\**" />
-	  <EmbeddedResource Remove="Services\**" />
 	  <EmbeddedResource Remove="utilities\**" />
-	  <MauiCss Remove="Services\**" />
 	  <MauiCss Remove="utilities\**" />
-	  <MauiXaml Remove="Services\**" />
 	  <MauiXaml Remove="utilities\**" />
-	  <None Remove="Services\**" />
 	  <None Remove="utilities\**" />
 	</ItemGroup>
 
@@ -132,6 +126,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\MorePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\MyBasketPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SalePage.xaml">

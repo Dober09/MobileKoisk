@@ -4,7 +4,8 @@
              x:Class="MobileKoisk.View.CheckoutPage"
              xmlns:local="clr-namespace:MobileKoisk.Helper"
              xmlns:entry="clr-namespace:MobileKoisk"
-             Title="CheckoutPage">
+             Shell.NavBarIsVisible="False"
+             >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -23,7 +24,7 @@
         <!-- Frame to create rounded bottom corners for the background -->
         <Frame Grid.Row="0"
                BackgroundColor="#FFD700"
-               HasShadow="True"
+               HasShadow="False"
                Padding="0,10,0,0"
                Margin="0,-20,0,0"
                HorizontalOptions="FillAndExpand"
@@ -31,19 +32,23 @@
                HeightRequest="100"
                CornerRadius="20">
 
-            <Frame.Shadow>
-                <Shadow 
-                        Opacity="0.3"
-                        Offset="8,8"/>
-            </Frame.Shadow>
 
-            <!-- Label inside Frame with Cart Summary title -->
-            <Label Text="Payment"
-                   FontSize="24"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   FontAttributes="Bold"
-                   TextColor="White"/>
+            <HorizontalStackLayout Spacing="120" >
+
+                <ImageButton Source="back.png"
+                             WidthRequest="20"
+                             Margin="10,0,0,0"
+                             HorizontalOptions="Start"
+                             Clicked="BackClicked"
+                             />
+                <!-- Label inside Frame with Cart Summary title -->
+                <Label Text="Payment"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+            </HorizontalStackLayout>
         </Frame>
 
         <!-- Other content goes in the second row -->

@@ -1,4 +1,6 @@
 using Camera.MAUI;
+using Camera.MAUI.ZXingHelper;
+using MobileKoisk.Models;
 using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace MobileKoisk.View;
@@ -8,6 +10,7 @@ public partial class ScanningPage : ContentPage
 
     private bool isCameraInitialized = false;
     private bool hasPermission = false;
+    private ScannedItem currentScandedItem;
     public ScanningPage()
 	{
 		InitializeComponent();
@@ -27,8 +30,76 @@ public partial class ScanningPage : ContentPage
         }
     }
 
-    private async void CameraView_BarcodeDetected(object sender, Camera.MAUI.ZXingHelper.BarcodeEventArgs args)
-    { 
+    private async void CameraView_BarcodeDetected(object sender, BarcodeEventArgs args)
+    {
+        // stop further procwssing if we're already handling a scan
+        if (currentScandedItem == null)
+            return;
+
+
+        try
+        {
+            //process the scanned barcode
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                //Validate and process the barcode
+                if (!string.IsNullOrEmpty(args.Result.ToString()))
+                {
+                    // stop camera to prevent multiple scans
+                    await cameraView.StopCameraAsync();
+                }
+            });
+        }
+        catch (Exception ex) {
+            await DisplayAlert("Scan Error", $"Error processing barcode: {ex.Message}", "OK");
+        }
+    }
+
+
+    private async Task ProcessScannedBarcode(string barcodeText, BarcodeFormat format)
+    {
+        try
+        {
+
+            // Here you would typically:
+            // 1. Look up the product in your database
+            // 2. Create a ScannedItem object
+            currentScandedItem = new ScannedItem
+            {
+                Barcode = barcodeText,
+                ProductName = "aQuelle",
+                Price = 19.99m,
+                ScannedAt = DateTime.Now,
+                ProductCategory = "unknown"
+
+            };
+
+            //show confimation dialog
+            bool result = await DisplayAlert(
+                 "Item Scanned",
+                 $"Barcode: {barcodeText}\nProduct: {currentScandedItem.ProductName}\nPrice: {currentScandedItem.Price:C}",
+                 "Add to Cart",
+                 "Cancel"
+             );
+
+            if (result)
+            {
+
+                // add to cart or ptovedd the item
+            }
+
+            //reset for the next scan
+            currentScandedItem = null;
+
+            //restart the camera
+            await cameraView.StartCameraAsync();
+
+
+        }
+        catch (Exception ex) {
+            await DisplayAlert("Processing Error", $"Error: {ex.Message}", "OK");
+        }
+
     }
 
     private async Task CheckAndRequestPermission()

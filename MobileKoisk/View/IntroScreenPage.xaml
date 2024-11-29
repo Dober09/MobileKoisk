@@ -71,23 +71,24 @@
                            SelectedIndicatorColor="{StaticResource PrimaryDarkText}"
              />
             <!--The next Button-->
-            <Frame Padding="0"
-                   HeightRequest="50"
-                   WidthRequest="160"
-                   BackgroundColor="{StaticResource Primary}"
-                   BorderColor="{StaticResource PrimaryDarkText}"
-                   >
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NextCommand }"
-                                       />
-                </Frame.GestureRecognizers>
-                <Label Text="{Binding ButtonText}" 
-                       HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       Style="{StaticResource largeText}"
-                       />
+
+            <Grid ColumnDefinitions="*,*">
+                <Button Text="skip"
+                        Command="{Binding SkipCommand}"
+                        HorizontalOptions="Start"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource Primary}"
+                        Grid.Column="0"
+                        />
+                <Button Text="{Binding  ButtonText}"
+                        Command="{Binding NextCommand}"
+                        TextColor="White"
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource Primary}"
+                        HorizontalOptions="End"/> 
+
+            </Grid>
            
-            </Frame>
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

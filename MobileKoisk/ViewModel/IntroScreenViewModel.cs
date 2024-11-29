@@ -1,6 +1,7 @@
 ﻿using MobileKoisk.Models;
 using MobileKoisk.View;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 using System.Windows.Input;
 
@@ -10,26 +11,26 @@ namespace MobileKoisk.ViewModel
     {
 
         #region Property
-        private int _position;
+        private int position;
 
         private string _buttonText = "Next";
 
-        public string ButtonText
+       public string ButtonText
         {
-            get => _position == IntroScreens.Count - 1 ? "Start" : "Next";
+            get => position == IntroScreens.Count - 1 ? "Start" : "Next";
             set => SetProperty(ref _buttonText, value);
         }
 
         public int Position
         {
 
-            get => _position;
+            get => position;
             set
             {
-                if (SetProperty(ref _position, value))
+                if (SetProperty(ref position, value))
                 {
-                    OnPropertyChanged(nameof(ButtonText));
-                    System.Diagnostics.Debug.WriteLine($"Position changed to: {value}");
+                    OnPropertyChanged(ButtonText);
+                    Debug.WriteLine($"Position changed to: {value}");
                 }
             }
         }
@@ -73,18 +74,38 @@ namespace MobileKoisk.ViewModel
             {
                 if (Position <= IntroScreens.Count - 1)
                 {
-                    Position += 1; // Increment Position
+                    Position++; // Increment Position
                 }
                 else
                 {
                     // Navigate to MainPage if last item
-                    await AppShell.Current.GoToAsync($"//{nameof(MainPage)}");
+                    await CompleteOnboarding();
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error in NextCommand: {ex}");
+                Debug.WriteLine($"Error in NextCommand: {ex}");
             }
         });
+
+        public ICommand SkipCommand => new Command(async () => await CompleteOnboarding());
+
+        private async Task CompleteOnboarding()
+
+        {
+            try
+            {
+
+                Preferences.Set("OnboandingComplete", true);
+
+                await Shell.Current.GoToAsync("//MainPage");
+            }
+            catch (Exception ex)
+            {
+                // Log the error for debugging purposes
+                Debug.WriteLine($"Error during onboarding completion: {ex.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "Unable to complete onboarding.", "OK");
+            }
+        }
     }
 }

@@ -1,0 +1,223 @@
+[
+  {
+    "from_date": "20-Feb",
+    "department": 12,
+    "section": 32,
+    "barcode": 6009681824701,
+    "item_num": 376,
+    "item_description": "Plastic bags",
+    "purshase_price": 98,
+    "selling_price": 108.95,
+    "quantity": 5.433
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 52,
+    "barcode": 2133000000000,
+    "item_num": 31776,
+    "item_description": "CHICKEN BREAST FILLET/KG",
+    "purshase_price": 98,
+    "selling_price": 108.95,
+    "quantity": 5.433
+  },
+
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 57,
+    "barcode": 2000000000000,
+    "item_num": 361939,
+    "item_description": "WATER 600 ML",
+    "purshase_price": 1.637,
+    "selling_price": 4,
+    "quantity": 69
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 52,
+    "barcode": 6223000000000,
+    "item_num": 337701,
+    "item_description": "SHAHD SHISH TAWOOK 400GR",
+    "purshase_price": 42,
+    "selling_price": 49.95,
+    "quantity": 6
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 50,
+    "barcode": 2110930000000,
+    "item_num": 298974,
+    "item_description": "BAGUETTE CHEDDAR SAND",
+    "purshase_price": 7,
+    "selling_price": 9.95,
+    "quantity": 1
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 51,
+    "barcode": 2122710000000,
+    "item_num": 30596,
+    "item_description": "HALAWA CHOCOLATE",
+    "purshase_price": 36,
+    "selling_price": 43.95,
+    "quantity": 44.672
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 50,
+    "barcode": 6224000000000,
+    "item_num": 464422,
+    "item_description": "DATES 200GM ALMOND",
+    "purshase_price": 19,
+    "selling_price": 23.95,
+    "quantity": 6
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 51,
+    "barcode": 2122700000000,
+    "item_num": 332646,
+    "item_description": "HALAWA PISTACHIO",
+    "purshase_price": 58,
+    "selling_price": 69.95,
+    "quantity": 19.152
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 50,
+    "barcode": 2111020000000,
+    "item_num": 330823,
+    "item_description": "GREEK SALAD",
+    "purshase_price": 2.997,
+    "selling_price": 6.95,
+    "quantity": 17
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 56,
+    "barcode": 2176680000000,
+    "item_num": 32761,
+    "item_description": "A- GINGER",
+    "purshase_price": 49,
+    "selling_price": 57.95,
+    "quantity": 61.246
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 56,
+    "barcode": 2176670000000,
+    "item_num": 32882,
+    "item_description": "A- POTATO SWEET",
+    "purshase_price": 6.75,
+    "selling_price": 7.95,
+    "quantity": 74.203
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 54,
+    "barcode": 2155030000000,
+    "item_num": 486521,
+    "item_description": "N.WHITE LOAF BREAD",
+    "purshase_price": 7.75,
+    "selling_price": 10.95,
+    "quantity": 79.871
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 50,
+    "barcode": 2111070000000,
+    "item_num": 137737,
+    "item_description": "KOFTA GRILLED/KG",
+    "purshase_price": 84.8,
+    "selling_price": 120.95,
+    "quantity": 2.088
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 57,
+    "barcode": 2000000000000,
+    "item_num": 357769,
+    "item_description": "TEA GREEN JASMINE",
+    "purshase_price": 1.95,
+    "selling_price": 7,
+    "quantity": 1
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 57,
+    "barcode": 2000000000000,
+    "item_num": 361976,
+    "item_description": "SCHWEPPES SODA 300ML",
+    "purshase_price": 4.46,
+    "selling_price": 7,
+    "quantity": 1
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 52,
+    "barcode": 2133010000000,
+    "item_num": 31784,
+    "item_description": "CHICKEN WINGS/KG",
+    "purshase_price": 32,
+    "selling_price": 35.95,
+    "quantity": 1.125
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 56,
+    "barcode": 2176510000000,
+    "item_num": 32615,
+    "item_description": "A- CAPSICUM RED",
+    "purshase_price": 16,
+    "selling_price": 18.95,
+    "quantity": 442.501
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 52,
+    "barcode": 2133500000000,
+    "item_num": 426178,
+    "item_description": "BEEF MINCE",
+    "purshase_price": 84,
+    "selling_price": 89.95,
+    "quantity": 216.871
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 56,
+    "barcode": 6224010000000,
+    "item_num": 32603,
+    "item_description": "CABBAGE BALADY",
+    "purshase_price": 8,
+    "selling_price": 11.95,
+    "quantity": 22
+  },
+  {
+    "from_date": "19-Feb",
+    "department": 2,
+    "section": 50,
+    "barcode": 2110550000000,
+    "item_num": 389592,
+    "item_description": "ABA SALTED CORN",
+    "purshase_price": 72.336,
+    "selling_price": 109.95,
+    "quantity": 3.471
+  }
+]
