@@ -47,6 +47,7 @@
         <CollectionView x:Name="BasketCollectionView" 
                         ItemsSource="{Binding BasketItems}" 
                         VerticalOptions="FillAndExpand"
+                        HeightRequest="330"
                         Grid.Row="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -57,7 +58,7 @@
                            Margin="5,5,5,5"
                            HasShadow="True"
                            BorderColor="#CCCCCC">
-                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto">
+                        <Grid ColumnDefinitions="Auto,*,Auto"  ZIndex="3" BackgroundColor="AliceBlue" RowDefinitions="Auto,Auto" >
                             <!-- Product Image -->
                             <Image Source="{Binding ImageSource}"
                                    WidthRequest="60"
@@ -92,7 +93,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <VerticalStackLayout Grid.Row="3" Padding="10" Margin="0,0,0,0">
+        <VerticalStackLayout Grid.Row="3" Padding="10" Margin="0,110,0,0">
             <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,10" >
                 <Label Text="Basket Total" 
                        FontSize="18" 
