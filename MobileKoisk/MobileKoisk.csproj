@@ -57,17 +57,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="Services\**" />
+	  <AndroidResource Remove="NewFolder1\**" />
+	  <AndroidResource Remove="NewFolder\**" />
 	  <AndroidResource Remove="utilities\**" />
-	  <Compile Remove="Services\**" />
+	  <Compile Remove="NewFolder1\**" />
+	  <Compile Remove="NewFolder\**" />
 	  <Compile Remove="utilities\**" />
-	  <EmbeddedResource Remove="Services\**" />
+	  <EmbeddedResource Remove="NewFolder1\**" />
+	  <EmbeddedResource Remove="NewFolder\**" />
 	  <EmbeddedResource Remove="utilities\**" />
-	  <MauiCss Remove="Services\**" />
+	  <MauiCss Remove="NewFolder1\**" />
+	  <MauiCss Remove="NewFolder\**" />
 	  <MauiCss Remove="utilities\**" />
-	  <MauiXaml Remove="Services\**" />
+	  <MauiXaml Remove="NewFolder1\**" />
+	  <MauiXaml Remove="NewFolder\**" />
 	  <MauiXaml Remove="utilities\**" />
-	  <None Remove="Services\**" />
+	  <None Remove="NewFolder1\**" />
+	  <None Remove="NewFolder\**" />
 	  <None Remove="utilities\**" />
 	</ItemGroup>
 
@@ -123,6 +129,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\CartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\IntroScreenPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

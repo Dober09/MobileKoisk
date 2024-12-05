@@ -15,33 +15,32 @@
         <!--Home Tab-->
         <Tab Title="Home"
              Icon="home.png">
-            
             <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
                           Route="MainPage"/>
-        </Tab>  
-        
+        </Tab>
+
         <!--Sale Tab-->
         <Tab Title="Cart"
              Icon="sale.png">
-            <ShellContent ContentTemplate="{DataTemplate view:B}" />
-        </Tab>  
-        
+            <ShellContent ContentTemplate="{DataTemplate view:CartPage}" />
+        </Tab>
+
         <!-- Tab-->
         <Tab Title="Scan"
              Icon="scan.png">
             <ShellContent ContentTemplate="{DataTemplate view:ScanningPage}" />
-        </Tab> 
-        
+        </Tab>
+
         <!--Scanning Tab-->
         <Tab Title="Payment"
              Icon="basketblack.png">
             <ShellContent ContentTemplate="{DataTemplate view:PaymentPage }" />
         </Tab>
-        
+
         <!--More Tab-->
         <Tab Title="More"
              Icon="menu.png">
-            
+
             <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
         </Tab>
     </TabBar>
