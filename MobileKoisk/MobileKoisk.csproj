@@ -72,6 +72,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="ViewModel\checkoutViewModel.cs" />
+	  <Compile Remove="View\CheckoutPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Light.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
@@ -90,6 +95,10 @@
 	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\apple.png" />
 	  <MauiImage Remove="Resources\Images\search.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="View\CheckoutPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -124,9 +133,6 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="View\BasketPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\CheckoutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Auth\LoginPage.xaml">

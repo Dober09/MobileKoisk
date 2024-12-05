@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileKoisk.View.ReceiptPage" >
+             x:Class="MobileKoisk.View.ReceiptPage">
 
     <ScrollView>
         <StackLayout Padding="10" Spacing="10" BackgroundColor="White">
 
             <!-- Header Section -->
             <StackLayout>
-                <Label Text="Shoprite South Africa"
+                <Label Text="Retail Mobile Kioske"
                        FontSize="24"
                        FontAttributes="Bold"
                        HorizontalOptions="Center" />

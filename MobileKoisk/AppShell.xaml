@@ -21,9 +21,9 @@
         </Tab>  
         
         <!--Sale Tab-->
-        <Tab Title="Receipt"
+        <Tab Title="Cart"
              Icon="sale.png">
-            <ShellContent ContentTemplate="{DataTemplate view:ReceiptPage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:B}" />
         </Tab>  
         
         <!-- Tab-->

@@ -17,7 +17,7 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
         <!-- Frame to create rounded bottom corners for the background -->
@@ -102,19 +102,19 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Card Number Entry -->
-                                <Frame Grid.Row="0" Grid.ColumnSpan="2"  CornerRadius="5" Padding="10,5" BackgroundColor="Transparent" Background="#fff" BorderColor="LightGray">
-                                    <entry:BorderlessEntry Placeholder="Card Number" Keyboard="Numeric"  />
+                                <Frame Grid.Row="0" Grid.ColumnSpan="2"  CornerRadius="5" Padding="10,5" BorderColor="LightGray">
+                                    <entry:BorderlessEntry Placeholder="Card Number" Keyboard="Numeric" BackgroundColor="white"  />
                                 </Frame>
 
                                 <!-- Expiry Date Entry -->
                                 <Frame  Grid.Row="1" Grid.Column="0" Background="#fff" CornerRadius="5" Padding="10,5" BackgroundColor="Transparent">
-                                    <entry:BorderlessEntry Placeholder="Expiry Date (MM/YY)" Keyboard="Numeric" />
+                                    <entry:BorderlessEntry Placeholder="Expiry Date (MM/YY)" Keyboard="Numeric" BackgroundColor="white" />
                                 </Frame>
 
 
                                 <!-- CVV Entry -->
                                 <Frame Grid.Row="1" Grid.Column="1" Background="#fff" CornerRadius="5" Padding="10,5">
-                                    <entry:BorderlessEntry Placeholder="CVV" Keyboard="Numeric" IsPassword="True"  />
+                                    <entry:BorderlessEntry Placeholder="CVV" Keyboard="Numeric" IsPassword="True" BackgroundColor="white"  />
                                 </Frame>
 
                             </Grid>
@@ -173,7 +173,7 @@
 
         <VerticalStackLayout Grid.Row="2" Padding="10" Margin="0,30,0,0">
             <Grid ColumnDefinitions="*,Auto" Margin="0,20,0,10" >
-                <Label Text="Basket Total" 
+                <Label Text="Total to pay" 
                     FontSize="18" 
                     FontAttributes="Bold" 
                     VerticalOptions="Center" />
