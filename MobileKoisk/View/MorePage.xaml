@@ -66,6 +66,8 @@
                         <Frame BackgroundColor="{StaticResource PrimaryDarkText}"
                                BorderColor="{StaticResource Primary}"
                                >
+                            
+                                
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
