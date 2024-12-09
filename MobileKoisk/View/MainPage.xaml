@@ -32,7 +32,7 @@
         </Grid>
         <!-- search bar -->
         <Grid Grid.Row="1">
-            <Frame BorderColor="Transparent" Background="#F8F8F8" Margin="20, 10, 20, 10" HasShadow="True">
+            <Frame BorderColor="Transparent" Background="#E1E1E1" Margin="20, 10, 20, 10" HasShadow="True">
                 <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
             </Frame>
         </Grid>
@@ -41,25 +41,25 @@
             <HorizontalStackLayout Spacing="10" Margin="0,20,0,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
                 <StackLayout>
                     <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-
+                        <Image Source="fresh.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
                     </Frame>
                     <Label Text="Fresh" HorizontalOptions="Center" />
                 </StackLayout>
                 <StackLayout>
                     <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-
+                        <Image Source="health.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70" />
                     </Frame>
                     <Label Text="Health" HorizontalOptions="Center" />
                 </StackLayout>
                 <StackLayout>
                     <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-
+                        <Image Source="redmeat.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70" />
                     </Frame>
                     <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center"  />
                 </StackLayout>
                 <StackLayout>
                     <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-
+                        <Image Source="backery.png" Aspect="AspectFill" WidthRequest="80" HeightRequest="80"/>
                     </Frame>
                     <Label Text="Bakery" HorizontalOptions="Center"  />
                 </StackLayout>
@@ -67,14 +67,43 @@
             </HorizontalStackLayout>
         </Grid>
 
-        <!-- special frame -->
         <Grid Grid.Row="3">
-            <Frame Margin="25" Background="#938059" CornerRadius="20">
-                
-            </Frame>
-            
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
+                <HorizontalStackLayout Spacing="15" Padding="10">
+                    <!-- Sale Item 1 -->
+                    <Frame Margin="25" Background="#938059" CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="Get up to 50%" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                            <Label Text="Red Friday Sales" TextColor="White" FontSize="20"/>
+                            <Label Text="Fri 09 - Sun 11 November" TextColor="White" Margin="0,20,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Sale Item 2 -->
+                    <Frame Margin="25" Background="#6B8E23" CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="New Arrivals!" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                            <Label Text="Spring Collection" TextColor="White" FontSize="20"/>
+                            <Label Text="Shop Now" TextColor="White" Margin="0,20,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Sale Item 3 -->
+                    <Frame Margin="25" Background="#4682B4" CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="Up to 30% Off" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                            <Label Text="Exclusive Deals" TextColor="White" FontSize="20"/>
+                            <Label Text="Limited Time Offer" TextColor="White" Margin="0,20,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </HorizontalStackLayout>
+            </ScrollView>
         </Grid>
-        <!-- scrollable menu -->
+
+
+
+
+        <!-- vertical scrolling menu -->
         <Grid Grid.Row="4">
             <ScrollView>
                 <VerticalStackLayout>
