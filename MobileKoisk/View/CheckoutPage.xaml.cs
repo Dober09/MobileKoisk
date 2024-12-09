@@ -7,8 +7,6 @@ public partial class CheckoutPage : ContentPage
 	public CheckoutPage()
 	{
 		InitializeComponent();
-		BindingContext = new PaymentViewModel();
-
 	}
 
     private async void BackClicked(object sender, EventArgs e)
