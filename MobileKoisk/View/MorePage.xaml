@@ -137,7 +137,9 @@
 
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding GoToPayment}" 
-                                                          CommandParameter="{Binding . }" />
+                                                          CommandParameter="{Binding . }"
+                                                          NumberOfTapsRequired="1"
+                                                          />
                                 </Frame.GestureRecognizers>
                             <HorizontalStackLayout VerticalOptions="Center">
 
