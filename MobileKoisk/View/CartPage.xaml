@@ -16,14 +16,14 @@
 
         <!-- Frame to create rounded bottom corners for the background -->
         <Frame Grid.Row="0"
-         BackgroundColor="#FFD700"
-         HasShadow="True"
-         Padding="0"
-         Margin="0,-20,0,0"
-         HorizontalOptions="FillAndExpand"
-         VerticalOptions="Start"
-         HeightRequest="100"
-         CornerRadius="20">
+               BackgroundColor="#FFD700"
+               HasShadow="True"
+               Padding="0"
+               Margin="0,-20,0,0"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start"
+               HeightRequest="100"
+               CornerRadius="20">
 
             <Frame.Shadow>
                 <Shadow 

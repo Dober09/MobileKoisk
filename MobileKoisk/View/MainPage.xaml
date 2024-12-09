@@ -6,32 +6,38 @@
     
     <!--Layout -->
 
-    <Grid RowDefinitions="*, *">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
         <!--Header Title-->
-
         <StackLayout  Grid.Row="0" 
                       Grid.ColumnSpan="2"
                       >
-
-            <Frame BackgroundColor="{StaticResource yellow}"
-               HasShadow="True"
-               HeightRequest="70"
-               BorderColor="{StaticResource yellow}"
-               CornerRadius="0">
-
-                <Label Text="Payment"
-                           FontSize="24"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           FontAttributes="Bold"
-                           TextColor="White"/>
-
-            </Frame>
         </StackLayout>
         <!--The body-->
-        <Grid Grid.Row="1" >
-            
+        <Grid Grid.Row="0" >
+            <Frame Padding="10" BorderColor="Transparent">
+                <VerticalStackLayout HorizontalOptions="FillAndExpand" >
+                    <!-- First Label: Welcome Ayisha -->
+                    <Label Text="Welcome Ayisha" FontAttributes="Bold" FontSize="30" VerticalOptions="Start"/>
+
+                    <!-- Second Label: Are you ready to shop smart today? -->
+                    <Label Text="Are you ready to shop smart today :) ?"  FontSize="15" VerticalOptions="Start"/>
+
+                    <!-- Profile Picture at the end -->
+                    <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Frame BorderColor="Transparent" Background="#F8F8F8" Margin="20, 10, 20, 10" HasShadow="True">
+                <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
+            </Frame>
         </Grid>
         
     </Grid>
