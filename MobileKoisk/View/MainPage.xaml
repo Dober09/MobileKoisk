@@ -10,6 +10,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="90"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
@@ -18,27 +20,138 @@
                       Grid.ColumnSpan="2"
                       >
         </StackLayout>
-        <!--The body-->
+        <!--Welcome Header-->
         <Grid Grid.Row="0" >
             <Frame Padding="10" BorderColor="Transparent">
                 <VerticalStackLayout HorizontalOptions="FillAndExpand" >
-                    <!-- First Label: Welcome Ayisha -->
                     <Label Text="Welcome Ayisha" FontAttributes="Bold" FontSize="30" VerticalOptions="Start"/>
-
-                    <!-- Second Label: Are you ready to shop smart today? -->
                     <Label Text="Are you ready to shop smart today :) ?"  FontSize="15" VerticalOptions="Start"/>
-
-                    <!-- Profile Picture at the end -->
                     <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
                 </VerticalStackLayout>
             </Frame>
         </Grid>
-
+        <!-- search bar -->
         <Grid Grid.Row="1">
             <Frame BorderColor="Transparent" Background="#F8F8F8" Margin="20, 10, 20, 10" HasShadow="True">
                 <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
             </Frame>
         </Grid>
+        <!-- grocery category -->
+        <Grid Grid.Row="2">
+            <HorizontalStackLayout Spacing="10" Margin="0,20,0,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+
+                    </Frame>
+                    <Label Text="Fresh" HorizontalOptions="Center" />
+                </StackLayout>
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+
+                    </Frame>
+                    <Label Text="Health" HorizontalOptions="Center" />
+                </StackLayout>
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+
+                    </Frame>
+                    <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center"  />
+                </StackLayout>
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+
+                    </Frame>
+                    <Label Text="Bakery" HorizontalOptions="Center"  />
+                </StackLayout>
+
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!-- special frame -->
+        <Grid Grid.Row="3">
+            <Frame Margin="25" Background="#938059" CornerRadius="20">
+                
+            </Frame>
+            
+        </Grid>
+        <!-- scrollable menu -->
+        <Grid Grid.Row="4">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Padding="10" Spacing="10">
+                        <!-- Product Frame 1 -->
+                        <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Product Frame 2 -->
+                        <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Padding="10" Spacing="10">
+                        <!-- Product Frame 1 -->
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Product Frame 2 -->
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        
+        
         
     </Grid>
 </ContentPage>
