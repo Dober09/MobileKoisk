@@ -6,38 +6,181 @@
     
     <!--Layout -->
 
-    <Grid RowDefinitions="*, *"
-          ColumnDefinitions="*,*" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
         <!--Header Title-->
-
         <StackLayout  Grid.Row="0" 
                       Grid.ColumnSpan="2"
                       >
-            
-        <Frame BackgroundColor="{StaticResource yellow}"
-               HasShadow="True"
-               HeightRequest="70"
-               BorderColor="{StaticResource yellow}"
-               CornerRadius="0"
-        >
-                
-          
-
-            <HorizontalStackLayout  Margin="-20" Padding="4" HeightRequest="40" Spacing="76" VerticalOptions="Center"  >
-                <Label Text="Where in the world?"
-                       />
-      
-            </HorizontalStackLayout>
-
-
-
-        </Frame>
         </StackLayout>
-        <!--The body-->
-        <Grid Grid.Row="1" >
-            <Label Text="Hello" />
+        <!--Welcome Header-->
+        <Grid Grid.Row="0" >
+            <Frame Padding="10" BorderColor="Transparent">
+                <VerticalStackLayout HorizontalOptions="FillAndExpand" >
+                    <Label Text="Welcome Ayisha" FontAttributes="Bold" FontSize="30" VerticalOptions="Start"/>
+                    <Label Text="Are you ready to shop smart today :) ?"  FontSize="15" VerticalOptions="Start"/>
+                    <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
+                </VerticalStackLayout>
+            </Frame>
         </Grid>
+        <!-- search bar -->
+        <Grid Grid.Row="1">
+            <Frame BorderColor="Transparent" Background="#E1E1E1" Margin="20, 10, 20, 10" HasShadow="True">
+                <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
+            </Frame>
+        </Grid>
+        <!-- grocery category -->
+        <Grid Grid.Row="2">
+            <HorizontalStackLayout Spacing="10" Margin="0,20,0,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                        <Image Source="fresh.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
+                    </Frame>
+                    <Label Text="Fresh" HorizontalOptions="Center" />
+                </StackLayout>
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                        <Image Source="health.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70" />
+                    </Frame>
+                    <Label Text="Health" HorizontalOptions="Center" />
+                </StackLayout>
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                        <Image Source="redmeat.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70" />
+                    </Frame>
+                    <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center"  />
+                </StackLayout>
+                <StackLayout>
+                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                        <Image Source="backery.png" Aspect="AspectFill" WidthRequest="80" HeightRequest="80"/>
+                    </Frame>
+                    <Label Text="Bakery" HorizontalOptions="Center"  />
+                </StackLayout>
+
+            </HorizontalStackLayout>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
+                <HorizontalStackLayout Spacing="15" Padding="10">
+                    <!-- Sale Item 1 -->
+                    <Frame Margin="25" Background="#938059" CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="Get up to 50%" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                            <Label Text="Red Friday Sales" TextColor="White" FontSize="20"/>
+                            <Label Text="Fri 09 - Sun 11 November" TextColor="White" Margin="0,20,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Sale Item 2 -->
+                    <Frame Margin="25" Background="#6B8E23" CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="New Arrivals!" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                            <Label Text="Spring Collection" TextColor="White" FontSize="20"/>
+                            <Label Text="Shop Now" TextColor="White" Margin="0,20,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Sale Item 3 -->
+                    <Frame Margin="25" Background="#4682B4" CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="Up to 30% Off" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                            <Label Text="Exclusive Deals" TextColor="White" FontSize="20"/>
+                            <Label Text="Limited Time Offer" TextColor="White" Margin="0,20,0,0"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </HorizontalStackLayout>
+            </ScrollView>
+        </Grid>
+
+
+
+
+        <!-- vertical scrolling menu -->
+        <Grid Grid.Row="4">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout Padding="10" Spacing="10">
+                        <!-- Product Frame 1 -->
+                        <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Product Frame 2 -->
+                        <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Padding="10" Spacing="10">
+                        <!-- Product Frame 1 -->
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Product Frame 2 -->
+                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                <HorizontalStackLayout Margin="0,12,0,0">
+                                    <StackLayout>
+                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
+                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <StackLayout Margin="40,20,0,0">
+                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </HorizontalStackLayout>
+
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+        
+        
         
     </Grid>
 </ContentPage>

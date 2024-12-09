@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              x:Class="MobileKoisk.BasketPage"
              Title="BasketPage">
+
     <Grid RowSpacing="10">
         <!-- First Row: Cart Summary Header -->
         <Grid.RowDefinitions>
@@ -126,4 +127,5 @@
        
 
     </Grid>
+
 </ContentPage>

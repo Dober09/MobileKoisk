@@ -56,12 +56,37 @@
 	</ItemGroup>
 
 	<ItemGroup>
+
+	  <AndroidResource Remove="NewFolder1\**" />
+	  <AndroidResource Remove="NewFolder\**" />
+	  <AndroidResource Remove="utilities\**" />
+	  <Compile Remove="NewFolder1\**" />
+	  <Compile Remove="NewFolder\**" />
+	  <Compile Remove="utilities\**" />
+	  <EmbeddedResource Remove="NewFolder1\**" />
+	  <EmbeddedResource Remove="NewFolder\**" />
+	  <EmbeddedResource Remove="utilities\**" />
+	  <MauiCss Remove="NewFolder1\**" />
+	  <MauiCss Remove="NewFolder\**" />
+	  <MauiCss Remove="utilities\**" />
+	  <MauiXaml Remove="NewFolder1\**" />
+	  <MauiXaml Remove="NewFolder\**" />
+	  <MauiXaml Remove="utilities\**" />
+	  <None Remove="NewFolder1\**" />
+	  <None Remove="NewFolder\**" />
+
 	  <AndroidResource Remove="utilities\**" />
 	  <Compile Remove="utilities\**" />
 	  <EmbeddedResource Remove="utilities\**" />
 	  <MauiCss Remove="utilities\**" />
 	  <MauiXaml Remove="utilities\**" />
+
 	  <None Remove="utilities\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="ViewModel\checkoutViewModel.cs" />
+	  <Compile Remove="View\CheckoutPage.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,6 +107,10 @@
 	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\apple.png" />
 	  <MauiImage Remove="Resources\Images\search.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="View\CheckoutPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -107,6 +136,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="View\CartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\IntroScreenPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -119,16 +151,19 @@
 	  <MauiXaml Update="View\BasketPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\CheckoutPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="View\Auth\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\MorePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\PaymentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\ReceiptPage.xaml">
+
 	  <MauiXaml Update="View\MyBasketPage.xaml">
+
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SalePage.xaml">

@@ -85,7 +85,7 @@
                     </Grid>
                 </Frame>
 
-                <StackLayout IsVisible="{Binding IsCreditCardSelected}" Padding="10,0,10,10" BackgroundColor="#FFF5F5" Margin="0,0,0,10">
+                <StackLayout IsVisible="{Binding IsCreditCardSelected}" Padding="10,-5,10,10"  Margin="0,0,0,10">
                     <!-- Entries for user input -->
                
 
@@ -96,7 +96,7 @@
                             <Label Text="Card Information" FontAttributes="Bold" FontSize="Medium" TextColor="Black" />
 
                             <!-- Grid for card details -->
-                            <Grid  Margin="0,10,0,0">
+                            <Grid ColumnSpacing="5" RowSpacing="5" Margin="0,10,0,0">
                                 <!-- Define the grid structure -->
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -108,13 +108,21 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Card Number Entry -->
-                                <entry:BorderlessEntry Placeholder="Card Number" Keyboard="Numeric" Grid.Row="0" Grid.ColumnSpan="2"  Background="#fff" Visual="Material" />
+                                <Frame Grid.Row="0" Grid.ColumnSpan="2"  CornerRadius="5" Padding="10,5" BackgroundColor="Transparent" Background="#fff" BorderColor="LightGray">
+                                    <entry:BorderlessEntry Placeholder="Card Number" Keyboard="Numeric"  />
+                                </Frame>
 
                                 <!-- Expiry Date Entry -->
-                                <entry:BorderlessEntry Placeholder="Expiry Date (MM/YY)" Keyboard="Numeric" Grid.Row="1" Grid.Column="0" Background="#fff" />
+                                <Frame  Grid.Row="1" Grid.Column="0" Background="#fff" CornerRadius="5" Padding="10,5" BackgroundColor="Transparent">
+                                    <entry:BorderlessEntry Placeholder="Expiry Date (MM/YY)" Keyboard="Numeric" />
+                                </Frame>
+                                
 
                                 <!-- CVV Entry -->
-                                <entry:BorderlessEntry Placeholder="CVV" Keyboard="Numeric" IsPassword="True" Grid.Row="1" Grid.Column="1" Background="#fff" />
+                                <Frame Grid.Row="1" Grid.Column="1" Background="#fff" CornerRadius="5" Padding="10,5">
+                                    <entry:BorderlessEntry Placeholder="CVV" Keyboard="Numeric" IsPassword="True"  />
+                                </Frame>
+                                
                             </Grid>
                         </StackLayout>
                     </Frame>
