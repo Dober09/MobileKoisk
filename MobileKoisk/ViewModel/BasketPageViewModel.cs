@@ -1,8 +1,12 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+
 using MobileKoisk.Models;
 using MobileKoisk.Services;
 using MobileKoisk.View;
+
+
+
 
 namespace MobileKoisk.ViewModel
 {

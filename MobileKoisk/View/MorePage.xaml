@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm ="clr-namespace:MobileKoisk.ViewModel"
+             x:DataType="vm:MoreVeiwModel"
              x:Class="MobileKoisk.View.MorePage"
             >
     
@@ -20,13 +22,17 @@
                         CornerRadius="0"
                     >  
 
-                            <HorizontalStackLayout  Margin="-20" Padding="4" HeightRequest="40" Spacing="-20"  VerticalOptions="Center"  HorizontalOptions="Center" >
+                            <HorizontalStackLayout  Margin="-20"
+                                                    Padding="4"
+                                                    HeightRequest="40"
+                                                    Spacing="-20"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Center" >
+                                
                                 <Label Text="Mobile Koisk"
                                        FontFamily="PoppinsBold"
                                        FontAttributes="Bold"
-                          
                                        FontSize="27"
-                           
                                        TextColor="{StaticResource White}"
                                 />
                                 <StackLayout>
@@ -48,19 +54,54 @@
              </StackLayout>
          
         <!--The body-->
-        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,-230,0,0" >
-            <ScrollView>
-                <VerticalStackLayout>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,-320,0,0" >
+            <ScrollView Margin="10">
+                
+                <VerticalStackLayout Spacing="30">
                     
                
                 
-                <VerticalStackLayout Margin="10,0,10,0" Spacing="9">
-                <!--Card Title-->
+                <VerticalStackLayout Margin="10,0,10,0" Spacing="10" >
+                        <!--Card Items  1-->
+                        <Frame BackgroundColor="{StaticResource PrimaryDarkText}"
+                               BorderColor="{StaticResource Primary}"
+                               >
+                            
+                                
+                            <HorizontalStackLayout VerticalOptions="Center">
+
+
+                                <Image Source="premium.png" 
+                                       WidthRequest="60"
+                                       Aspect="AspectFit"
+                                       HeightRequest="40"
+                                />
+                                <VerticalStackLayout>
+                                    
+
+                                <Label Text="Try Premiun"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource largeText}"
+                                       TextColor="White"
+                                       FontSize="17" 
+                                      
+                                />
+                                    <Label Text="Get best deals quickly and avoid queus"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource tinyText}"
+                                       TextColor="White"
+                                       FontSize="14" 
+                                      
+                                />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <!--Card Title-->
                 <Label Text="Account" 
                        Style="{StaticResource tinyText}" 
                        FontAttributes="Bold"/>
 
-                    <VerticalStackLayout Spacing="10">
+                    <VerticalStackLayout Spacing="30">
                         
                         <!--Card Items  1-->
                         <Frame BackgroundColor="{StaticResource White}"
@@ -71,7 +112,7 @@
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="user.png" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"
@@ -93,10 +134,15 @@
                            CornerRadius="5"
                            HasShadow="False"
                           >
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToPayment}" 
+                                                          CommandParameter="{Binding . }" />
+                                </Frame.GestureRecognizers>
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="payment.jpg" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"
@@ -119,7 +165,7 @@
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="history.png" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"
@@ -143,13 +189,13 @@
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="clipboard.png" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"
                                        />
 
-                                <Label Text="My Address"
+                                <Label Text="Shopping List"
                                        VerticalOptions="Center"
                                        Style="{StaticResource smallText}"
                                        FontSize="17" FontAttributes="Bold"
@@ -163,7 +209,7 @@
                     </VerticalStackLayout>
                 </VerticalStackLayout> 
                 
-                <VerticalStackLayout Margin="10,0,10,0" Spacing="9">
+                <VerticalStackLayout Margin="10,0,10,0" Spacing="10">
                 <!--Card Title-->
                 <Label Text="Preferences" 
                        Style="{StaticResource tinyText}" 
@@ -180,7 +226,7 @@
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="bell.png" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"
@@ -205,13 +251,13 @@
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="info.png" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"
                                        />
 
-                                <Label Text="Favorite Stores"
+                                <Label Text="Information"
                                        VerticalOptions="Center"
                                        Style="{StaticResource smallText}"
                                        FontSize="17" FontAttributes="Bold"
@@ -228,7 +274,7 @@
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
-                                <Image Source="lebohang.jpg" 
+                                <Image Source="settings.png" 
                                            WidthRequest="60"
                                            Aspect="AspectFit"
                                            HeightRequest="40"

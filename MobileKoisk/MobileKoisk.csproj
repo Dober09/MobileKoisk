@@ -47,7 +47,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -57,6 +56,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+
 	  <AndroidResource Remove="NewFolder1\**" />
 	  <AndroidResource Remove="NewFolder\**" />
 	  <AndroidResource Remove="utilities\**" />
@@ -74,6 +74,13 @@
 	  <MauiXaml Remove="utilities\**" />
 	  <None Remove="NewFolder1\**" />
 	  <None Remove="NewFolder\**" />
+
+	  <AndroidResource Remove="utilities\**" />
+	  <Compile Remove="utilities\**" />
+	  <EmbeddedResource Remove="utilities\**" />
+	  <MauiCss Remove="utilities\**" />
+	  <MauiXaml Remove="utilities\**" />
+
 	  <None Remove="utilities\**" />
 	</ItemGroup>
 
@@ -89,7 +96,6 @@
 	  <None Remove="Resources\Fonts\Poppins-Thin.ttf" />
 	  <None Remove="Resources\Images\basketblack.png" />
 	  <None Remove="Resources\Images\clearbasket.png" />
-	  <None Remove="Resources\Images\clipboard.png" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\lebohang.jpg" />
 	  <None Remove="Resources\Images\menu.png" />
@@ -123,6 +129,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Camera.MAUI" Version="1.5.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -154,6 +161,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\ReceiptPage.xaml">
+
+	  <MauiXaml Update="View\MyBasketPage.xaml">
+
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SalePage.xaml">

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="MobileKoisk.View.ScanningPage"
             >
     <!--Layout-->
-    <Grid RowDefinitions="*, *"  ColumnDefinitions="*,*" >
+    <Grid RowDefinitions="auto, *"  ColumnDefinitions="*,*" >
 
         <!--Header Title-->
 
@@ -39,8 +40,61 @@
             </Frame>
         </StackLayout>
         <!--The body-->
-        <Grid Grid.Row="1" >
-            <Label Text="Hello" Style="{StaticResource tinyText}" />
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="2"
+              Padding="20"
+              >
+            
+            <Border 
+                    StrokeShape="RoundRectangle 10"
+                    Stroke="Gray"
+                    StrokeThickness="1"
+                    Margin="0,10">
+                
+               
+                  
+                
+            </Border>
+
+            <!-- Scan Status -->
+            <VerticalStackLayout Grid.Row="2"
+                                 Spacing="10"
+                                 Margin="0,10">
+                
+                <Label Text="Binding scanStatus"
+                       HorizontalOptions="Center"
+                        FontSize="16"/>
+                
+            </VerticalStackLayout>
+
+            <!-- Product Details card -->
+            <Border  StrokeShape="RoundRectangle 10"
+                     BackgroundColor="{AppThemeBinding Light={StaticResource NavigationBarTextColor}, Dark={StaticResource NavigationBarTextColor}}"
+                     Padding="15"
+                    Margin="0,10">
+                <cv:CameraView  x:Name="cameraView"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                CamerasLoaded="CameraView_CamerasLoaded"
+                                BarcodeDetected="CameraView_BarcodeDetected"/>
+
+            </Border>
+
+            <!-- Control Buttuns-->
+            <HorizontalStackLayout Grid.Row="1"
+                                   Spacing="10"
+                                   HorizontalOptions="Center">
+                <Button Text=""
+                     
+                        HeightRequest="50"
+                        WidthRequest="150"/>
+                
+                <Button Text="Switch Camera"
+                       
+                        HeightRequest="50"
+                        WidthRequest="150"/>
+
+            </HorizontalStackLayout>
         </Grid>
 
     </Grid>
