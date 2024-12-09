@@ -12,16 +12,15 @@ namespace MobileKoisk.ViewModel
 {
 	public class BasketPageViewModel
 	{
-		private readonly INavigationService _navigationService;
+	
 
 		public ICommand ProceedToPaymentCommand { get; }
 
 		public ObservableCollection<BasketItem> BasketItems { get; set; }
 
-		public BasketPageViewModel(INavigationService navigationService)
+		public BasketPageViewModel()
 		{
-			_navigationService = navigationService; // Use the injected INavigationService
-			ProceedToPaymentCommand = new Command(async () => await NavigateToPayment());
+			
 
 			BasketItems = new ObservableCollection<BasketItem>
 			{
@@ -31,9 +30,6 @@ namespace MobileKoisk.ViewModel
 			};
 		}
 
-		private async Task NavigateToPayment()
-		{
-			await _navigationService.NavigateToAsync<PaymentPage>();
-		}
+		
 	}
 }

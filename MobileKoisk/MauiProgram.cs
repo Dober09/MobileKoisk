@@ -13,23 +13,17 @@ namespace MobileKoisk
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                //cameraview
                 .UseMauiCameraView()
                 .ConfigureFonts(fonts =>
                 {
-             
                     //This is our new primary fonts
                     fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
                     fonts.AddFont("Poppins-Light.ttf", "PoppinsLight");
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
                 });
-            //navigation service
-            builder.Services.AddSingleton<INavigationService, NavigationService>();
-            builder.Services.AddTransient<BasketPageViewModel>();
-
-            //Register Pages 
-            builder.Services.AddTransient<CartPage>();
-			builder.Services.AddTransient<PaymentPage>();
+         
 
 
 #if DEBUG
