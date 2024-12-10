@@ -94,6 +94,7 @@
                                             HeightRequest="35"
                                             Padding="0,-3,0,5"
                                             FontSize="28"
+                                            Command="{Binding DecreaseQuantityCommand}"
                                     />
                                     <Label Text="{Binding Quantity}" 
                                            FontSize="18"
@@ -106,6 +107,7 @@
                                             HeightRequest="35"
                                             VerticalOptions="Center"
                                             Padding="0,-3,0,5"
+                                            Command="{Binding IncreaseQuantityCommand}"
                                              />
 
                                 </HorizontalStackLayout>
