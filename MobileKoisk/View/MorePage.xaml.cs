@@ -7,5 +7,10 @@ public partial class MorePage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = new MoreVeiwModel();
-	} 
+	}
+
+    private async void onTappedButton(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("paymentpage");
+    }
 }

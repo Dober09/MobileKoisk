@@ -24,12 +24,7 @@ namespace MobileKoisk
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
                 });
             //navigation service
-            builder.Services.AddSingleton<INavigationService, NavigationService>();
-            builder.Services.AddTransient<BasketPageViewModel>();
-
-            //Register Pages 
-            builder.Services.AddTransient<CartPage>();
-			builder.Services.AddTransient<PaymentPage>();
+           
 
 
 #if DEBUG

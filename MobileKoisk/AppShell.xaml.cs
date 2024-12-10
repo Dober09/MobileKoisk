@@ -9,7 +9,7 @@ namespace MobileKoisk
         {
             InitializeComponent();
 
-            Routing.RegisterRoute("checkoutpage", typeof(CheckoutPage));
+            Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
             Routing.RegisterRoute("morepage", typeof(MorePage));
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
             {

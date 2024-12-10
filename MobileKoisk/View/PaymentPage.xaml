@@ -4,6 +4,8 @@
              x:Class="MobileKoisk.View.PaymentPage"
              xmlns:local="clr-namespace:MobileKoisk.Helper"
              xmlns:entry="clr-namespace:MobileKoisk"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              >
 
     <ContentPage.Resources>
@@ -22,8 +24,8 @@
 
         <!-- Frame to create rounded bottom corners for the background -->
         <Frame Grid.Row="0"
-            BackgroundColor="#FFD700"
-            HasShadow="True"
+            BackgroundColor="#FFCB27"
+           
             Padding="0,10,0,0"
             Margin="0,-20,0,0"
             HorizontalOptions="FillAndExpand"
@@ -31,11 +33,7 @@
             HeightRequest="100"
             CornerRadius="20">
 
-            <Frame.Shadow>
-                <Shadow 
-                     Opacity="0.3"
-                     Offset="8,8"/>
-            </Frame.Shadow>
+           
 
             <!-- Label inside Frame with Cart Summary title -->
             <Label Text="Payment"

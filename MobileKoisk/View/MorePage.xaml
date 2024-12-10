@@ -4,6 +4,8 @@
              xmlns:vm ="clr-namespace:MobileKoisk.ViewModel"
              x:DataType="vm:MoreVeiwModel"
              x:Class="MobileKoisk.View.MorePage"
+             Shell.NavBarIsVisible="False"
+            
             >
     
     <!--Layout-->
@@ -15,10 +17,10 @@
                           Grid.ColumnSpan="2"
                    >
 
-                    <Frame BackgroundColor="{StaticResource yellow}"
+                    <Frame BackgroundColor="{StaticResource Primary}"
                         HasShadow="True"
                         HeightRequest="70"
-                        BorderColor="{StaticResource yellow}"
+                      
                         CornerRadius="0"
                     >  
 
@@ -66,8 +68,6 @@
                         <Frame BackgroundColor="{StaticResource PrimaryDarkText}"
                                BorderColor="{StaticResource Primary}"
                                >
-                            
-                                
                             <HorizontalStackLayout VerticalOptions="Center">
 
 
@@ -136,9 +136,10 @@
                           >
 
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToPayment}" 
-                                                          CommandParameter="{Binding . }"
-                                                          NumberOfTapsRequired="1"
+                                    <TapGestureRecognizer  
+                                                          Tapped="onTappedButton"
+                                                         
+                                                          NumberOfTapsRequired="2"
                                                           />
                                 </Frame.GestureRecognizers>
                             <HorizontalStackLayout VerticalOptions="Center">
