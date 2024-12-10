@@ -129,7 +129,7 @@
                   FontAttributes="Bold" 
                   VerticalOptions="Center"
                   />
-                <Label Text="R99.99" 
+                <Label Text="{Binding TotalPrice, StringFormat='R{0:F2}'}" 
                    FontSize="18" 
                    FontAttributes="Bold" 
                    TextColor="Green" 
