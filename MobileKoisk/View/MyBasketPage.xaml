@@ -94,19 +94,23 @@
                                             HeightRequest="35"
                                             Padding="0,-3,0,5"
                                             FontSize="28"
+                                            BackgroundColor="#B08600"
                                             Command="{Binding DecreaseQuantityCommand}"
                                     />
                                     <Label Text="{Binding Quantity}" 
                                            FontSize="18"
                                            VerticalOptions="Center"
                                            HorizontalTextAlignment="Center"
-                                           WidthRequest="40" />
+                                           WidthRequest="30"
+                                           BackgroundColor="#E1E1E1"/>
+                                           
                                     <Button Text="+" 
                                             FontSize="28"
                                             WidthRequest="35"
                                             HeightRequest="35"
                                             VerticalOptions="Center"
                                             Padding="0,-3,0,5"
+                                            BackgroundColor="#B08600"
                                             Command="{Binding IncreaseQuantityCommand}"
                                              />
 
