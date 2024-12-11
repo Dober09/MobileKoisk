@@ -6,6 +6,7 @@
              xmlns:model="clr-namespace:MobileKoisk.Models"
              Shell.NavBarHasShadow="False"
              NavigationPage.HasNavigationBar="False"
+             
              >
     <Grid BackgroundColor="#F1F1F1" >
         <Grid.RowDefinitions>
@@ -40,7 +41,7 @@
 
         <!-- CollectionView for Items in Basket -->
         <CollectionView x:Name="BasketCollectionView" 
-                        x:DataType="vm:BasketPageViewModel"
+                        
                         ItemsSource="{Binding BasketItems}" 
                         VerticalOptions="Start"
                         Grid.Row="1">
@@ -140,7 +141,9 @@
 
                 <!-- Confirm Button -->
             <Button Text="Go to Payment" 
+                   
                     WidthRequest="180"
+                    Command="{Binding GoToPayemt}"
                     FontSize="18"
                     FontAttributes="Bold"
                     TextColor="White" 

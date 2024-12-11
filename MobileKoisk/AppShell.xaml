@@ -22,7 +22,7 @@
         
    
         <!--Sale Tab-->
-        <Tab Title="Quick Picks"
+        <Tab Title="WishList"
              Icon="clipboard.png">
             <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
         </Tab>  

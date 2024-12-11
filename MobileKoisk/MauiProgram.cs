@@ -2,6 +2,7 @@
 using MobileKoisk.Services;
 using MobileKoisk.View;
 using MobileKoisk.ViewModel;
+using CommunityToolkit.Maui;
 using Camera.MAUI;
 
 namespace MobileKoisk
@@ -10,9 +11,12 @@ namespace MobileKoisk
     {
         public static MauiApp CreateMauiApp()
         {
-            var builder = MauiApp.CreateBuilder();
+			
+			var builder = MauiApp.CreateBuilder();
+
             builder
                 .UseMauiApp<App>()
+				.UseMauiCommunityToolkit()
                 //cameraview
                 .UseMauiCameraView()
                 .ConfigureFonts(fonts =>

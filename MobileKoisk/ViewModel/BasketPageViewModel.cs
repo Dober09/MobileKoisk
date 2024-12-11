@@ -10,9 +10,26 @@ namespace MobileKoisk.ViewModel
 	{
 		private decimal _totalPrice;
 
-		public ICommand ProceedToPaymentCommand { get; }
+		public ICommand GoToPayemt { get; }
 
+		//basket items list
 		public ObservableCollection<BasketItem> BasketItems { get; set; }
+
+		//sales list
+		private ObservableCollection<SaleItem> _salesItem;
+
+		public ObservableCollection<SaleItem> SalesItems
+		{
+			get => _salesItem;
+			set
+			{
+				if (_salesItem != value)
+				{
+					_salesItem = value;
+					OnPropertyChanged(nameof(SalesItems));
+				}
+			}
+		}
 
 		public decimal TotalPrice
 		{
@@ -29,6 +46,7 @@ namespace MobileKoisk.ViewModel
 
 		public BasketPageViewModel()
 		{
+			GoToPayemt = new Command(async () => await Shell.Current.GoToAsync("paymentpage"));
 			// Initialize the basket items
 			BasketItems = new ObservableCollection<BasketItem>
 			{
@@ -45,6 +63,15 @@ namespace MobileKoisk.ViewModel
 
 			// Update the total price
 			UpdateTotalPrice();
+
+			//basket items list
+			SalesItems = new ObservableCollection<SaleItem>
+			{
+				new SaleItem { saleName = "Red Friday Sales", saleDescription = "Save Up to 50%", saleDate = "Fri 09 - Sun 11 November",Color = "#938059" },
+				new SaleItem { saleName = "Fresh Wednesdays", saleDescription = "R10 Wednesday", saleDate = "Wednesdays", Color = "#618943" },
+				new SaleItem { saleName = "Rush Hour Monday", saleDescription = "Exclusive Deals", saleDate = "Monday 17h00 to 18h00", Color = "#C5D86D" }
+			};
+		
 		}
 
 		private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)

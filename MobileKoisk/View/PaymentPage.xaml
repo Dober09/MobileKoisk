@@ -4,6 +4,8 @@
              x:Class="MobileKoisk.View.PaymentPage"
              xmlns:local="clr-namespace:MobileKoisk.Helper"
              xmlns:entry="clr-namespace:MobileKoisk"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              >
 
     <ContentPage.Resources>
@@ -187,8 +189,8 @@
 
             <!-- Underline Divider -->
             <BoxView HeightRequest="1" 
-      BackgroundColor="Gray" 
-      HorizontalOptions="FillAndExpand" />
+                     BackgroundColor="Gray" 
+                     HorizontalOptions="FillAndExpand" />
 
             <!-- Confirm Button -->
             <Button Text="Confirm" 
