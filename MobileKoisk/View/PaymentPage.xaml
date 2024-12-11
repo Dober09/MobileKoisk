@@ -13,6 +13,7 @@
             <local:BoolToColorConverter x:Key="BoolToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <Grid RowSpacing="10">
 
         <Grid.RowDefinitions>
@@ -175,7 +176,7 @@
                     FontSize="18" 
                     FontAttributes="Bold" 
                     VerticalOptions="Center" />
-                <Label Text="R99.99" 
+                <Label Text="{Binding TotalPrice, StringFormat='R{0:F2}'}" 
                     FontSize="18" 
                     FontAttributes="Bold" 
                     HorizontalOptions="End" 

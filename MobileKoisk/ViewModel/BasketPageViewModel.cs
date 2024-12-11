@@ -6,7 +6,7 @@ using MobileKoisk.Models;
 
 namespace MobileKoisk.ViewModel
 {
-	public class BasketPageViewModel : INotifyPropertyChanged
+	public class BasketPageViewModel : BaseViewModel
 	{
 
 		private decimal _totalPrice;
@@ -33,8 +33,6 @@ namespace MobileKoisk.ViewModel
 				}
 			}
 		}
-		public BasketPageViewModel()
-		{
 			
 
 
@@ -96,13 +94,7 @@ namespace MobileKoisk.ViewModel
 			TotalPrice = BasketItems.Sum(item => item.Price * item.Quantity);
 		}
 
-		// Correctly implement the INotifyPropertyChanged interface
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
+		
 
 	}
 }

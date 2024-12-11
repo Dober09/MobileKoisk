@@ -7,6 +7,5 @@ public partial class PaymentPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = new PaymentViewModel();
-
 	}
 }
