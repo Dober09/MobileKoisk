@@ -185,8 +185,8 @@
 
             <!-- Underline Divider -->
             <BoxView HeightRequest="1" 
-      BackgroundColor="Gray" 
-      HorizontalOptions="FillAndExpand" />
+                     BackgroundColor="Gray" 
+                     HorizontalOptions="FillAndExpand" />
 
             <!-- Confirm Button -->
             <Button Text="Confirm" 

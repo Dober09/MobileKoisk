@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
+             xmlns:model="clr-namespace:MobileKoisk.Models"
+             
              x:Class="MobileKoisk.View.MainPage"
              >
-    
-    <!--Layout -->
 
+    <!--Layout -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -67,117 +69,70 @@
             </HorizontalStackLayout>
         </Grid>
 
-        <Grid Grid.Row="3">
-            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
-                <HorizontalStackLayout Spacing="15" Padding="10">
-                    <!-- Sale Item 1 -->
-                    <Frame Margin="25" Background="#938059" CornerRadius="20" WidthRequest="350" HeightRequest="160">
-                        <VerticalStackLayout Padding="10">
-                            <Label Text="Get up to 50%" FontAttributes="Bold" TextColor="White" FontSize="30"/>
-                            <Label Text="Red Friday Sales" TextColor="White" FontSize="20"/>
-                            <Label Text="Fri 09 - Sun 11 November" TextColor="White" Margin="0,20,0,0"/>
-                        </VerticalStackLayout>
-                    </Frame>
+        <Grid Grid.Row="3" RowDefinitions="*,auto" Margin="0,0,0,10" RowSpacing="10">
 
-                    <!-- Sale Item 2 -->
-                    <Frame Margin="25" Background="#6B8E23" CornerRadius="20" WidthRequest="350" HeightRequest="160">
-                        <VerticalStackLayout Padding="10">
-                            <Label Text="New Arrivals!" FontAttributes="Bold" TextColor="White" FontSize="30"/>
-                            <Label Text="Spring Collection" TextColor="White" FontSize="20"/>
-                            <Label Text="Shop Now" TextColor="White" Margin="0,20,0,0"/>
-                        </VerticalStackLayout>
-                    </Frame>
+            <CarouselView x:Name="salesCarousel"
+                          ItemsSource="{Binding SalesItems}"
+                          IndicatorView="indicator"
+                          x:DataType="vm:BasketPageViewModel"
+                          >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="model:SaleItem">
+                        <Frame Margin="25" BackgroundColor="{Binding Color}"  CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                            <VerticalStackLayout Padding="10">
+                                <Label Text="{Binding saleDescription}" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                                <Label Text="{Binding saleName}" TextColor="White" FontSize="20"/>
+                                <Label Text="{Binding saleDate}" TextColor="White" Margin="0,20,0,0"/>
+                            </VerticalStackLayout>
+                        </Frame>
 
-                    <!-- Sale Item 3 -->
-                    <Frame Margin="25" Background="#4682B4" CornerRadius="20" WidthRequest="350" HeightRequest="160">
-                        <VerticalStackLayout Padding="10">
-                            <Label Text="Up to 30% Off" FontAttributes="Bold" TextColor="White" FontSize="30"/>
-                            <Label Text="Exclusive Deals" TextColor="White" FontSize="20"/>
-                            <Label Text="Limited Time Offer" TextColor="White" Margin="0,20,0,0"/>
-                        </VerticalStackLayout>
-                    </Frame>
-                </HorizontalStackLayout>
-            </ScrollView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicator" 
+                           HorizontalOptions="Center"  
+                           Grid.Row="1"  
+                           IndicatorSize="12"
+                           IndicatorsShape="Circle"
+                           Margin="20,0,20,0"
+                           IndicatorColor="{StaticResource Primary}"
+                           SelectedIndicatorColor="{StaticResource PrimaryDarkText}"/>
         </Grid>
-
-
-
 
         <!-- vertical scrolling menu -->
         <Grid Grid.Row="4">
-            <ScrollView>
-                <VerticalStackLayout>
-                    <HorizontalStackLayout Padding="10" Spacing="10">
-                        <!-- Product Frame 1 -->
-                        <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
-                            <StackLayout>
-                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
-                                <HorizontalStackLayout Margin="0,12,0,0">
-                                    <StackLayout>
-                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
-                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
-                                    </StackLayout>
-                                    <StackLayout Margin="40,20,0,0">
-                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
-                                    </StackLayout>
-                                </HorizontalStackLayout>
-                            </StackLayout>
-                        </Frame>
+            <CollectionView  x:Name="BasketCollectionView" 
+                             x:DataType="vm:BasketPageViewModel"
+                             ItemsSource="{Binding BasketItems}"
+                             >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
 
-                        <!-- Product Frame 2 -->
-                        <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
-                            <StackLayout>
-                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
-                                <HorizontalStackLayout Margin="0,12,0,0">
-                                    <StackLayout>
-                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
-                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
-                                    </StackLayout>
-                                    <StackLayout Margin="40,20,0,0">
-                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
-                                    </StackLayout>
-                                </HorizontalStackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </HorizontalStackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:BasketItem">
+                        <HorizontalStackLayout Padding="10" Spacing="10" >
+                            <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
+                                <StackLayout>
+                                    <Image Source="{Binding ImageSource}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
+                                    <HorizontalStackLayout Margin="0,12,0,0">
+                                        <StackLayout>
+                                            <Label Text="{Binding ProductName}" FontSize="20" FontAttributes="Bold"/>
+                                            <Label Text="{Binding ProductSize}" FontSize="14" TextColor="Gray"/>
+                                        </StackLayout>
+                                        <StackLayout Margin="35,20,0,0">
+                                            <Label Text="{Binding Price, StringFormat='R {0}'}" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
+                                        </StackLayout>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                    <HorizontalStackLayout Padding="10" Spacing="10">
-                        <!-- Product Frame 1 -->
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
-                            <StackLayout>
-                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
-                                <HorizontalStackLayout Margin="0,12,0,0">
-                                    <StackLayout>
-                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
-                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
-                                    </StackLayout>
-                                    <StackLayout Margin="40,20,0,0">
-                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
-                                    </StackLayout>
-                                </HorizontalStackLayout>
-                            </StackLayout>
-                        </Frame>
+            </CollectionView>
+           
 
-                        <!-- Product Frame 2 -->
-                        <Frame BorderColor="Gray" CornerRadius="10" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
-                            <StackLayout>
-                                <Image Source="coffee.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
-                                <HorizontalStackLayout Margin="0,12,0,0">
-                                    <StackLayout>
-                                        <Label Text="Coffee" FontSize="20" FontAttributes="Bold"/>
-                                        <Label Text="75ml" FontSize="14" TextColor="Gray"/>
-                                    </StackLayout>
-                                    <StackLayout Margin="40,20,0,0">
-                                        <Label Text="R10.00" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
-                                    </StackLayout>
-                                </HorizontalStackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </HorizontalStackLayout>
-
-
-                </VerticalStackLayout>
-            </ScrollView>
         </Grid>
         
         
