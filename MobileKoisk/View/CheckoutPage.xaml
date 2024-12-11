@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:MobileKoisk.Helper"
              xmlns:entry="clr-namespace:MobileKoisk"
              Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              >
 
     <ContentPage.Resources>

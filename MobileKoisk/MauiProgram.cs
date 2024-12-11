@@ -27,7 +27,7 @@ namespace MobileKoisk
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
                 });
-         
+
 
 
 #if DEBUG

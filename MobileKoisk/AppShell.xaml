@@ -34,6 +34,7 @@
             <ShellContent ContentTemplate="{DataTemplate view:ScanningPage}" />
         </Tab>
 
+
         <Tab Title="My Basket"
              Icon="fruitsandvegetables.png">
             <ShellContent ContentTemplate="{DataTemplate view:MyBasketPage}" />

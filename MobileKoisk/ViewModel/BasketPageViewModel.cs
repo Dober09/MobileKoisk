@@ -8,12 +8,15 @@ namespace MobileKoisk.ViewModel
 {
 	public class BasketPageViewModel : INotifyPropertyChanged
 	{
+
 		private decimal _totalPrice;
 
 		public ICommand GoToPayemt { get; }
 
+
 		//basket items list
 		public ObservableCollection<BasketItem> BasketItems { get; set; }
+
 
 		//sales list
 		private ObservableCollection<SaleItem> _salesItem;
@@ -30,6 +33,10 @@ namespace MobileKoisk.ViewModel
 				}
 			}
 		}
+		public BasketPageViewModel()
+		{
+			
+
 
 		public decimal TotalPrice
 		{
@@ -74,6 +81,7 @@ namespace MobileKoisk.ViewModel
 		
 		}
 
+
 		private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(BasketItem.Quantity))
@@ -95,5 +103,6 @@ namespace MobileKoisk.ViewModel
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
+
 	}
 }
