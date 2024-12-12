@@ -2,6 +2,7 @@
 
 
 using Camera.MAUI;
+using MobileKiosk.ViewModel;
 
 namespace MobileKoisk
 {
@@ -25,9 +26,11 @@ namespace MobileKoisk
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
                 });
-
-
-
+            // Register ViewModels and Views
+                  builder.Services.AddTransient<LoginRegisterViewModel>();
+                  builder.Services.AddTransient<LoginRegisterPage>();
+                  builder.Services.AddTransient<MainPage>();
+                  builder.Services.AddSingleton<AppShell>();
 #if DEBUG
 			builder.Logging.AddDebug();
 #endif

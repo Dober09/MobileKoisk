@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="MobileKoisk.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MobileKoisk"
-    xmlns:view="clr-namespace:MobileKoisk.View"
-    Shell.FlyoutBehavior="Disabled"
-    Title="MobileKoisk">
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:view="clr-namespace:MobileKoisk.View"
+       xmlns:viewModel="clr-namespace:MobileKoisk.ViewModel;assembly=MobileKoisk"
+       x:Class="MobileKoisk.AppShell">
 
+    <!-- Login/Register -->
+    <ShellContent
+        Route="LoginRegisterPage"
+        ContentTemplate="{DataTemplate view:LoginRegisterPage}" />
 
     <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}"
               Route="introPage"/>
@@ -47,5 +48,4 @@
             <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
         </Tab>
     </TabBar>
-
 </Shell>
