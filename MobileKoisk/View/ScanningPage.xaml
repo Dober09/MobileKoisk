@@ -47,10 +47,10 @@
             
             <Border 
                     StrokeShape="RoundRectangle 10"
-                    Stroke="Gray"
+                    Stroke="{StaticResource PrimaryDark}"
                     StrokeThickness="1"
                     Margin="0,10">
-                
+                                   
                
                   
                 
@@ -70,7 +70,8 @@
             <!-- Product Details card -->
             <Border  StrokeShape="RoundRectangle 10"
                      BackgroundColor="{AppThemeBinding Light={StaticResource NavigationBarTextColor}, Dark={StaticResource NavigationBarTextColor}}"
-                     Padding="15"
+                     Padding="0"
+                     Stroke="{StaticResource PrimaryDark}"
                     Margin="0,10">
                 <cv:CameraView  x:Name="cameraView"
                                 HorizontalOptions="FillAndExpand"
@@ -83,14 +84,21 @@
             <!-- Control Buttuns-->
             <HorizontalStackLayout Grid.Row="1"
                                    Spacing="10"
+                                   Margin="0 ,20"
+                                   VerticalOptions="Start"
                                    HorizontalOptions="Center">
-                <Button Text=""
-                     
-                        HeightRequest="50"
+                <Button Text="Scan Bacode"
+                        TextColor="{StaticResource PrimaryDarkText}"
+                        FontFamily="PoppinsBold"
+                       
+                        HeightRequest="50"  
+                        
                         WidthRequest="150"/>
                 
-                <Button Text="Switch Camera"
-                       
+                <Button Text="Enter Barcode"
+                        TextColor="{StaticResource PrimaryDarkText}"
+                        IsEnabled="False"
+                        FontFamily="PoppinsBold"
                         HeightRequest="50"
                         WidthRequest="150"/>
 

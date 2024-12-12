@@ -109,6 +109,9 @@
                            CornerRadius="5"
                            HasShadow="False"
                           >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GoToProfile" NumberOfTapsRequired="2"/>
+                                </Frame.GestureRecognizers>
                             <HorizontalStackLayout VerticalOptions="Center">
 
 

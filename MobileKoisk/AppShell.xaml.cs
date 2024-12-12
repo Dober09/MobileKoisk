@@ -9,8 +9,8 @@ namespace MobileKoisk
         {
             InitializeComponent();
             // Registering the pages
-         
 
+            Routing.RegisterRoute("profilepage", typeof(ProfilePage));
 
             Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
             Routing.RegisterRoute("reciptpage", typeof(ReceiptPage));
