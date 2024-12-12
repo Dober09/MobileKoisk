@@ -6,17 +6,42 @@ using MobileKoisk.Models;
 
 namespace MobileKoisk.ViewModel
 {
-	public class BasketPageViewModel : BaseViewModel
+	public class BasketPageViewModel : INotifyPropertyChanged
 	{
+		public decimal _vatRate = 0.15m;
+		private decimal _vatAmount;
+		private decimal _totalAmount;
+
+		public decimal VatAmount
+		{
+			get => _vatAmount;
+			set
+			{
+				if (_vatAmount != value)
+				{
+					_vatAmount = value;
+					OnPropertyChanged(nameof(VatAmount));	
+				}
+			}
+		}
 
 		private decimal _totalPrice;
-
-		public ICommand GoToPayemt { get; }
+		public decimal TotalAmount
+		{
+			get => _totalAmount;
+			set
+			{
+				if (_totalAmount != value)
+				{
+					_totalAmount = value;
+					OnPropertyChanged(nameof(TotalAmount));
+				}
+			}
+		}
 
 
 		//basket items list
 		public ObservableCollection<BasketItem> BasketItems { get; set; }
-
 
 		//sales list
 		private ObservableCollection<SaleItem> _salesItem;
@@ -34,8 +59,6 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 			
-
-
 		public decimal TotalPrice
 		{
 			get => _totalPrice;
@@ -49,9 +72,54 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 
+		// Indicates whether the credit card option is currently selected
+		private bool _isCreditCardSelected;
+
+		// Indicates whether the credit card button is toggled on
+		private bool _isCreditCardButtonSelected;
+
+		// Public property to access and modify the credit card selection state
+		public bool IsCreditCardSelected
+		{
+			get => _isCreditCardSelected;
+			set
+			{
+				// Update the property value and notify listeners if it changes
+				if (_isCreditCardSelected != value)
+				{
+					_isCreditCardSelected = value;
+					OnPropertyChanged(nameof(IsCreditCardSelected));
+				}
+			}
+		}
+
+		// Public property to access and modify the credit card button selection state
+		public bool IsCreditCardButtonSelected
+		{
+			get => _isCreditCardButtonSelected;
+			set
+			{
+				// Update the property value and notify listeners if it changes
+				if (_isCreditCardButtonSelected != value)
+				{
+					_isCreditCardButtonSelected = value;
+					OnPropertyChanged(nameof(IsCreditCardButtonSelected));
+				}
+			}
+		}
+
+		// Command to toggle the selection state of the credit card button and visibility
+		public ICommand SelectCreditCardCommand => new Command(() =>
+		{
+			// Toggle the button's selected state
+			IsCreditCardButtonSelected = !IsCreditCardButtonSelected;
+			// Toggle the visibility of the credit card option
+			IsCreditCardSelected = !IsCreditCardSelected;
+		});
+
 		public BasketPageViewModel()
 		{
-			GoToPayemt = new Command(async () => await Shell.Current.GoToAsync("paymentpage"));
+			
 			// Initialize the basket items
 			BasketItems = new ObservableCollection<BasketItem>
 			{
@@ -68,6 +136,8 @@ namespace MobileKoisk.ViewModel
 
 			// Update the total price
 			UpdateTotalPrice();
+
+		
 
 			//basket items list
 			SalesItems = new ObservableCollection<SaleItem>
@@ -92,9 +162,25 @@ namespace MobileKoisk.ViewModel
 		{
 			// Calculate the total price by summing up the price of each item multiplied by its quantity
 			TotalPrice = BasketItems.Sum(item => item.Price * item.Quantity);
+
+			//calculate vat
+			VatAmount = TotalPrice * _vatRate /(1 + _vatRate);
+
+			////Calculate Total Amount including vat
+			TotalAmount = TotalPrice;
+
+			// Notify that VAT-related properties have changed
+			OnPropertyChanged(nameof(VatAmount));
+			OnPropertyChanged(nameof(TotalAmount));
 		}
 
-		
+		public event PropertyChangedEventHandler? PropertyChanged;
+		protected void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 
 	}
-}
+
+	
+	}

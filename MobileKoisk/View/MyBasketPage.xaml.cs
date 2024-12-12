@@ -9,4 +9,9 @@ public partial class MyBasketPage : ContentPage
 		InitializeComponent();
         BindingContext = new BasketPageViewModel();
 	}
+
+	private async void GoToPayment(object sender, EventArgs e)
+	{
+		await Shell.Current.GoToAsync("paymentpage", true);
+    }
 }
