@@ -2,20 +2,29 @@ using Microsoft.Maui.Controls;
 using MobileKoisk.View;
 
 namespace MobileKoisk
-{
+{ 
     public partial class AppShell : Shell
     {
         public AppShell()
         {
             InitializeComponent();
             RegisterRoutes();
+
+            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
+            {
+#if __ANDROID__
+                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.AntiqueWhite);
+#endif
+            });
+
         }
 
         // Register routes
         private void RegisterRoutes()
         {
             Routing.RegisterRoute("LoginRegisterPage", typeof(LoginRegisterPage));
-            Routing.RegisterRoute("MainPage", typeof(MainPage));
+            Routing.RegisterRoute("IntroPage", typeof(IntroScreenPage));
+            Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
             Routing.RegisterRoute("SalePage", typeof(SalePage));
             Routing.RegisterRoute("ScanningPage", typeof(ScanningPage));
             Routing.RegisterRoute("MyBasketPage", typeof(MyBasketPage));
@@ -31,20 +40,14 @@ namespace MobileKoisk
             if (IsUserLoggedIn())
             {
                 // Navigate to MainPage tab bar if logged in
-                await Shell.Current.GoToAsync("//MainPage");
+                await Shell.Current.GoToAsync("///MainPage");
             }
-            else
+            else { 
             // Registering the pages
-         
 
-
-            Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
-            Routing.RegisterRoute("morepage", typeof(MorePage));
-
-            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
-            {
+           
                 // Navigate to LoginRegisterPage if not logged in
-                await Shell.Current.GoToAsync("//LoginRegisterPage");
+                await Shell.Current.GoToAsync("///IntroPage");
             }
         }
 
@@ -55,12 +58,8 @@ namespace MobileKoisk
             // For example, check a saved authentication token or user state.
             return false;  // Return true if user is logged in, false if not
         }
-#if __ANDROID__
-                handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.AntiqueWhite);
-#endif
-            });
 
             
-		}
-    }
+	}
 }
+

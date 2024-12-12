@@ -173,7 +173,8 @@ namespace MobileKiosk.ViewModel
                 bool registrationResult = await RegisterUser();
                 if (registrationResult)
                 {
-                    await NavigateToMainPage();
+                    //await NavigateToMainPage();
+                    await Shell.Current.GoToAsync("///MainPage");
                 }
             }
             else
@@ -181,19 +182,21 @@ namespace MobileKiosk.ViewModel
                 bool loginResult = await LoginUser();
                 if (loginResult)
                 {
-                    await NavigateToMainPage();
+                    await Shell.Current.GoToAsync("///MainPage");
                 }
             }
         }
 
         private async Task<bool> LoginUser()
         {
-            bool isAuthenticated = Email == "test@example.com" && Password == "password";
-            if (!isAuthenticated)
-            {
-                await ShowAlert("Login Failed", "Invalid email or password");
-                return false;
-            }
+
+            await Shell.Current.GoToAsync("///MainPage");
+            //bool isAuthenticated = Email == "test@example.com" && Password == "password";
+            //if (!isAuthenticated)
+            //{
+            //    await ShowAlert("Login Failed", "Invalid email or password");
+            //    return false;
+            //}
             return true;
         }
 
@@ -205,7 +208,7 @@ namespace MobileKiosk.ViewModel
 
         private async Task NavigateToMainPage()
         {
-            await Shell.Current.GoToAsync("MainPage");
+            await Shell.Current.GoToAsync("///MainPage");
         }
 
         private async Task ShowAlert(string title, string message)

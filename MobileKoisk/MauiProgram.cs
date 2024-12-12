@@ -3,6 +3,7 @@
 
 using Camera.MAUI;
 using MobileKiosk.ViewModel;
+using MobileKoisk.View;
 
 namespace MobileKoisk
 {
