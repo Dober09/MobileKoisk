@@ -27,7 +27,7 @@
             <Frame Padding="10" BorderColor="Transparent">
                 <VerticalStackLayout HorizontalOptions="FillAndExpand" >
                     <Label Text="Welcome Ayisha" FontAttributes="Bold" FontSize="30" VerticalOptions="Start"/>
-                    <Label Text="Are you ready to shop smart today :) ?"  FontSize="15" VerticalOptions="Start"/>
+                    <Label Text="Ready to shop smart at mankweng shoprite :) ?"  FontSize="15" VerticalOptions="Start"/>
                     <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
                 </VerticalStackLayout>
             </Frame>

@@ -7,6 +7,6 @@ public partial class ReceiptPage : ContentPage
 	public ReceiptPage()
 	{
 		InitializeComponent();
-		BindingContext = new ReceiptPageViewModel();
+		BindingContext = new BasketPageViewModel();
 	}
 }

@@ -6,6 +6,15 @@ public partial class PaymentPage : ContentPage
 	public PaymentPage()
 	{
 		InitializeComponent();
-		BindingContext = new PaymentViewModel();
+		BindingContext = new BasketPageViewModel();
 	}
+
+	private async void GoToReceiptPage(object sender, EventArgs e)
+	{
+
+		await Shell.Current.GoToAsync("reciptpage");
+	}
+
+
+
 }

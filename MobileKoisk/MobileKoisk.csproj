@@ -86,6 +86,7 @@
 
 	<ItemGroup>
 	  <Compile Remove="ViewModel\checkoutViewModel.cs" />
+	  <Compile Remove="View\BasketPage.xaml.cs" />
 	  <Compile Remove="View\CheckoutPage.xaml.cs" />
 	</ItemGroup>
 
@@ -110,6 +111,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="View\BasketPage.xaml" />
 	  <MauiXaml Remove="View\CheckoutPage.xaml" />
 	</ItemGroup>
 
@@ -147,9 +149,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\BasketPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="View\Auth\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
