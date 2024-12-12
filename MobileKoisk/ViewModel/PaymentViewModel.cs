@@ -14,9 +14,25 @@ namespace MobileKoisk.ViewModel
 	{
 
 
+        private bool _isCreditCardSelected;
 
-		// Public property to access and modify the credit card button selection state
-		public bool IsCreditCardButtonSelected
+        private bool _isCreditCardButtonSelected;
+
+        public bool IsCreditCardSelected
+        {
+            get => _isCreditCardSelected;
+            set
+            {
+                // Update the property value and notify listeners if it changes
+                if (_isCreditCardSelected != value)
+                {
+                    _isCreditCardSelected = value;
+                    OnPropertyChanged(nameof(IsCreditCardSelected));
+                }
+            }
+        }
+        // Public property to access and modify the credit card button selection state
+        public bool IsCreditCardButtonSelected
 		{
 			get => _isCreditCardButtonSelected;
 			set
