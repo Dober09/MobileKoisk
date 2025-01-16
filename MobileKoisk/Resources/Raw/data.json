@@ -3,9 +3,9 @@
     "from_date": "20-Feb",
     "department": 12,
     "section": 32,
-    "barcode": 6009681824701,
+    "barcode": 5449000255693,
     "item_num": 376,
-    "item_description": "Plastic bags",
+    "item_description": "cappy still",
     "purshase_price": 98,
     "selling_price": 108.95,
     "quantity": 5.433
@@ -14,9 +14,9 @@
     "from_date": "19-Feb",
     "department": 2,
     "section": 52,
-    "barcode": 2133000000000,
+    "barcode": 8694965532458,
     "item_num": 31776,
-    "item_description": "CHICKEN BREAST FILLET/KG",
+    "item_description": "Dance of flowers wet towel",
     "purshase_price": 98,
     "selling_price": 108.95,
     "quantity": 5.433
@@ -26,11 +26,11 @@
     "from_date": "19-Feb",
     "department": 2,
     "section": 57,
-    "barcode": 2000000000000,
+    "barcode": 6009612471257,
     "item_num": 361939,
-    "item_description": "WATER 600 ML",
+    "item_description": "WATER 500 ML",
     "purshase_price": 1.637,
-    "selling_price": 4,
+    "selling_price": 19,
     "quantity": 69
   },
   {

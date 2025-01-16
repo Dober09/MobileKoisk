@@ -187,27 +187,7 @@
                         
                         <!--Card Items  4-->
                         
-                        <Frame BackgroundColor="{StaticResource White}"
-                           BorderColor="{StaticResource Primary}"
-                           CornerRadius="5"
-                           HasShadow="False"
-                          >
-                            <HorizontalStackLayout VerticalOptions="Center">
-
-
-                                <Image Source="clipboard.png" 
-                                           WidthRequest="60"
-                                           Aspect="AspectFit"
-                                           HeightRequest="40"
-                                       />
-
-                                <Label Text="Shopping List"
-                                       VerticalOptions="Center"
-                                       Style="{StaticResource smallText}"
-                                       FontSize="17" FontAttributes="Bold"
-                                       />
-                            </HorizontalStackLayout>
-                        </Frame>
+                       
                         
                         
                         

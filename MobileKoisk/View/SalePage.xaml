@@ -22,7 +22,7 @@
                 <HorizontalStackLayout   HeightRequest="40"
                                          VerticalOptions="Center"
                                          HorizontalOptions="Center" >
-                    <Label Text="Sales"
+                    <Label Text="Wishlist"
                             Style="{StaticResource largeText}"
                             TextColor="{StaticResource White}"
                             />

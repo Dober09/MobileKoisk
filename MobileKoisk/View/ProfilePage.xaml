@@ -40,8 +40,25 @@
                RowSpacing="60"
                RowDefinitions="auto,auto,*">
             <FlexLayout Direction="Column"
+                       
+                        VerticalOptions="Center"
+                        AlignItems="Center"
                         Grid.Row="0">
-              
+                <Border  StrokeShape="RoundRectangle 10"
+                         StrokeThickness="4"
+                         Stroke="{StaticResource Primary}"
+                         WidthRequest="100"
+                         Padding="10"
+                         >
+                    
+                <Image Source="user.png" 
+                       Aspect="AspectFill"
+                       HeightRequest="70"
+                       WidthRequest="70"/>
+                </Border>
+
+
+
                 <Label Text="Ayisha"
                        Style="{StaticResource largeText}"
                        TextColor="{StaticResource PrimaryDarkText}"
@@ -78,10 +95,10 @@
                             WidthRequest="100"
                             
                             Stroke="{StaticResource PrimaryDark}">
-                        <Image Source="coupons.png" Aspect="AspectFill" WidthRequest="40"/>
+                        <Image Source="sale.png" Aspect="AspectFit" WidthRequest="40"/>
                     </Border>
-                    <Label Text="Coupons" Style="{StaticResource mediumText}" FontSize="18" />
-                    <Label Text="Coupons" Style="{StaticResource tinyText}" FontSize="15" />
+                    <Label Text="Sales" Style="{StaticResource mediumText}" FontSize="18" />
+                    <Label Text="R 300.00" Style="{StaticResource tinyText}" FontSize="15" />
                 </VerticalStackLayout>              
                 
                 <VerticalStackLayout>
@@ -92,10 +109,10 @@
                             WidthRequest="100"
                             
                             Stroke="{StaticResource PrimaryDark}">
-                        <Image Source="coupons.png" Aspect="AspectFill" WidthRequest="40"/>
+                        <Image Source="shopcard.png" Aspect="AspectFit" WidthRequest="40"/>
                     </Border>
-                    <Label Text="Coupons" Style="{StaticResource mediumText}" FontSize="18" />
-                    <Label Text="Coupons" Style="{StaticResource tinyText}" FontSize="15" />
+                    <Label Text="SmartCard" Style="{StaticResource mediumText}" FontSize="18" />
+                    <Label Text="A20c0244" Style="{StaticResource tinyText}" FontSize="15" />
                 </VerticalStackLayout>
                 
                 
@@ -131,27 +148,38 @@
                 </CollectionView>
                 
                 <VerticalStackLayout>
-                    <Label Text="Update Password"
+                    <Label Text="Password"
                            Style="{StaticResource tinyText}"
                            TextColor="{StaticResource PrimaryDarkText}"/>
                     <BoxView Color="{StaticResource PrimaryDark}"
                     HeightRequest="2"
                     HorizontalOptions="Fill" />
-                   
-                    
+
                 </VerticalStackLayout> 
                 <VerticalStackLayout>
-                    <Label Text="Support"
+                    <Label Text="Email Address"
                            Style="{StaticResource tinyText}"
                            TextColor="{StaticResource PrimaryDarkText}"/>
                     <BoxView Color="{StaticResource PrimaryDark}"
-                    HeightRequest="2"
-                    HorizontalOptions="Fill" />
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
                    
                     
                 </VerticalStackLayout>
-                
+
                 <VerticalStackLayout>
+                    <Label Text="Support"
+                           Style="{StaticResource tinyText}"
+                          TextColor="{StaticResource PrimaryDarkText}"/>
+                    <BoxView Color="{StaticResource PrimaryDark}"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    
                     <Label Text="Logout"
                            Style="{StaticResource tinyText}"
                            TextColor="{StaticResource PrimaryDarkText}"/>
