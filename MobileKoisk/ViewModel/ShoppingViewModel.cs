@@ -15,22 +15,22 @@ namespace MobileKoisk.ViewModel
 		private readonly DatabaseService _dbService;
 
 		//for binding shopping items to the ui
-		public ObservableCollection<ShoppingItem> ShoppingItems { get; set; } = new ObservableCollection<ShoppingItem>();
+		public ObservableCollection<Product> products { get; set; } = new ObservableCollection<Product>();
 
 		public ShoppingViewModel(DatabaseService dbService)
 		{
 			_dbService = dbService;
-			LoadShoppingItems();
+			LoadProducts();
 		}
 
-		private async void LoadShoppingItems()
+		private async void LoadProducts()
 		{
 			try
 			{
-				var items = await _dbService.GetShoppingItemsAsync();
-				foreach (var item in items)
+				var products = await _dbService.GetShoppingItemsAsync();
+				foreach (var product in products)
 				{
-					ShoppingItems.Add(item);
+					products.Add(product);
 				}
 			}
 			catch (Exception ex)

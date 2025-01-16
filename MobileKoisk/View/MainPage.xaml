@@ -101,23 +101,23 @@
 
         <!-- vertical scrolling menu -->
         <Grid Grid.Row="4">
-            <CollectionView  x:Name="BasketCollectionView" 
-                             x:DataType="vm:BasketPageViewModel"
-                             ItemsSource="{Binding ShoppingItems}"
+            <CollectionView  
+                             x:DataType="vm:ShoppingViewModel"
+                             ItemsSource="{Binding products}"
                              >
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:BasketItem">
+                    <DataTemplate x:DataType="model:Product">
                         <HorizontalStackLayout Padding="10" Spacing="10" >
                             <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
                                 <StackLayout>
                                     <Image Source="{Binding ImageUrl}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
                                     <HorizontalStackLayout Margin="0,12,0,0">
                                         <StackLayout>
-                                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold"/>
+                                            <Label Text="{Binding ProductName}" FontSize="20" FontAttributes="Bold"/>
                                             <Label Text="{Binding Description}" FontSize="14" TextColor="Gray"/>
                                         </StackLayout>
                                         <StackLayout Margin="35,20,0,0">

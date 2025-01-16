@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using MobileKoisk.Models;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Cms;
-
 namespace MobileKoisk.Services
 {
 	public class DatabaseService
@@ -17,9 +16,9 @@ namespace MobileKoisk.Services
 			_connectionString = $"Server={server};Database={database};User ID={userId};Password={password}";
 		}
 
-		public async Task<List<ShoppingItem>> GetShoppingItemsAsync()
+		public async Task<List<Product>> GetShoppingItemsAsync()
 		{
-			var shoppingItems = new List<ShoppingItem>();
+			var products = new List<Product>();
 
 			//connection with database 
 			using (var connection = new MySqlConnection(_connectionString))
@@ -27,7 +26,7 @@ namespace MobileKoisk.Services
 				await connection.OpenAsync();
 
 				//query to retrieve shopping items
-				string query = "SELECT Id, Name, Description, ImageUrl, Price FROM ShoppingItems";
+				string query = "SELECT ProductId, Name, Description, ImageUrl, Price FROM products";
 
 				using (var cmd = new MySqlCommand(query, connection))
 				{
@@ -35,10 +34,10 @@ namespace MobileKoisk.Services
 					{
 						while(await reader.ReadAsync())
 						{
-							shoppingItems.Add(new ShoppingItem
+							products.Add(new Product
 							{
-								Id = reader.GetInt32("Id"),
-								Name = reader.GetString("Name"),
+								ProductId = reader.GetInt32("ProductId"),
+								ProductName = reader.GetString("ProductName"),
 								Description = reader.GetString("Description"),
 								ImageUrl = reader.GetString("ImageUrl"),
 								Price = reader.GetDecimal("Price")
@@ -46,7 +45,7 @@ namespace MobileKoisk.Services
 						}
 					}
 				}
-				return shoppingItems;
+				return products;
 			}
 		}
 	}
