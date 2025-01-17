@@ -97,15 +97,12 @@
                                    VerticalOptions="Start"
                                    HorizontalOptions="Center">
                 <Button Text="Scan Barcode"
-                       BackgroundColor="Green"
-                        
+                        BackgroundColor="Green"
+               
                         FontFamily="PoppinsBold"
                         Command="{Binding StartScanningCommand}"
-                        IsEnabled="{Binding IsScanning, Converter={StaticResource InverseBoolConverter}}"
-                       
-                        HeightRequest="50"  
-                        
-                        
+                        IsEnabled="{Binding IsScanning, Converter={StaticResource InverseBoolConverter}}"                       
+                        HeightRequest="50"   
                         WidthRequest="150"/>
                 
                 

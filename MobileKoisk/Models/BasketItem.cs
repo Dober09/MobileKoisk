@@ -6,6 +6,7 @@ namespace MobileKoisk.Models
 	public class BasketItem : INotifyPropertyChanged
 	{
 		// Properties
+		public string Barcode { get; set; }
 		public string? ImageSource { get; set; }
 		public string? ProductName { get; set; }
 		public decimal Price { get; set; }
@@ -34,6 +35,20 @@ namespace MobileKoisk.Models
 		{
 			IncreaseQuantityCommand = new Command(() => IncreaseQuantity());
 			DecreaseQuantityCommand = new Command(() => DecreaseQuantity());
+		}
+
+		public static BasketItem FromProductItem(ProductItem product)
+		{
+			return new BasketItem
+			{
+				ProductName = product.item_description,
+				Price = (decimal)product.selling_price,
+				Quantity = 1,
+				ImageSource = "meat.png",
+				ProductSize = product.from_date,
+				Barcode = (string)product.barcode,
+				
+			};
 		}
 
 		// Methods

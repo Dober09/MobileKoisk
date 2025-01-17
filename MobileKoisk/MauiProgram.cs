@@ -7,6 +7,8 @@ using MobileKoisk.ViewModel;
 using MobileKoisk.View;
 using MobileKoisk.Services;
 
+
+
 namespace MobileKoisk
 {
     public static class MauiProgram
@@ -29,7 +31,15 @@ namespace MobileKoisk
                     fonts.AddFont("Poppins-Light.ttf", "PoppinsLight");
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
+                })
+                .ConfigureMauiHandlers(h=>
+                {
+#if ANDROID
+                    h.AddHandler<Shell, TabbarBadgeRenderer>();
+#endif
                 });
+
+
 
             // Register your services
             builder.Services.AddSingleton<ProductItemService>();
