@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileKoisk.View.ProductListPage"
+             xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
+             xmlns:model="clr-namespace:MobileKoisk.Models"
+             
+             
+             
+             Title="{Binding CategoryTitle}">
+    <Grid RowDefinitions="*,* ">
+        <HorizontalStackLayout  Grid.Row="0">
+        </HorizontalStackLayout>
+    <CollectionView ItemsSource="{Binding FilteredProducts}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Product">
+                <StackLayout>
+                    <Label Text="{Binding item_description }" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    </Grid>
+</ContentPage>

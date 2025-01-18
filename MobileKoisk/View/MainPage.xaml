@@ -8,12 +8,10 @@
              >
 
     <!--Layout -->
-    <Grid>
+    <Grid BackgroundColor="#fafafa">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="90"/>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
@@ -38,38 +36,64 @@
                 <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
             </Frame>
         </Grid>
+
         <!-- grocery category -->
-        <Grid Grid.Row="2">
-            <HorizontalStackLayout Spacing="10" Margin="0,20,0,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
-                <StackLayout>
-                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-                        <Image Source="fresh.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70"/>
-                    </Frame>
-                    <Label Text="Fresh" HorizontalOptions="Center" />
-                </StackLayout>
-                <StackLayout>
-                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-                        <Image Source="health.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70" />
-                    </Frame>
-                    <Label Text="Health" HorizontalOptions="Center" />
-                </StackLayout>
-                <StackLayout>
-                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-                        <Image Source="redmeat.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70" />
-                    </Frame>
-                    <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center"  />
-                </StackLayout>
-                <StackLayout>
-                    <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-                        <Image Source="backery.png" Aspect="AspectFill" WidthRequest="80" HeightRequest="80"/>
-                    </Frame>
-                    <Label Text="Bakery" HorizontalOptions="Center"  />
-                </StackLayout>
+       
+        <ScrollView Orientation="Vertical" Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            </HorizontalStackLayout>
-        </Grid>
+                <Grid Grid.Row="0">
+                    <HorizontalStackLayout Spacing="10" Margin="0,20,0,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                        <StackLayout>
+                            <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                                <Image Source="fresh.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Fresh" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                            <Label Text="Fresh" HorizontalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout>
+                            <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                                <Image Source="health.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Health" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                            <Label Text="Health" HorizontalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout>
+                            <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                                <Image Source="redmeat.png" Aspect="AspectFill" WidthRequest="70" HeightRequest="70">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Buchery" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                            <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </StackLayout>
+                        <StackLayout>
+                            <Frame HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                                <Image Source="backery.png" Aspect="AspectFill" WidthRequest="80" HeightRequest="80">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Bakery" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                            <Label Text="Bakery" HorizontalOptions="Center" />
+                        </StackLayout>
+                    </HorizontalStackLayout>
+                </Grid>
 
-        <Grid Grid.Row="3" RowDefinitions="*,auto" Margin="0,0,0,10" RowSpacing="10">
+
+                <Grid Grid.Row="3" RowDefinitions="*,auto" Margin="0,0,0,10" RowSpacing="10">
 
             <CarouselView x:Name="salesCarousel"
                           ItemsSource="{Binding SalesItems}"
@@ -101,39 +125,47 @@
 
         <!-- vertical scrolling menu -->
         <Grid Grid.Row="4">
-            <CollectionView  
-                             x:DataType="vm:ShoppingViewModel"
-                             ItemsSource="{Binding products}"
+                <CollectionView  
+                             x:DataType="vm:MainViewModel"
+                             ItemsSource="{Binding Products}"
                              >
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
-                </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Product">
-                        <HorizontalStackLayout Padding="10" Spacing="10" >
-                            <Frame BorderColor="Gray" CornerRadius="15" Padding="10" HeightRequest="180" WidthRequest="180" BackgroundColor="#FFFFFF">
-                                <StackLayout>
-                                    <Image Source="{Binding ImageUrl}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"/>
-                                    <HorizontalStackLayout Margin="0,12,0,0">
-                                        <StackLayout>
-                                            <Label Text="{Binding ProductName}" FontSize="20" FontAttributes="Bold"/>
-                                            <Label Text="{Binding Description}" FontSize="14" TextColor="Gray"/>
-                                        </StackLayout>
-                                        <StackLayout Margin="35,20,0,0">
-                                            <Label Text="{Binding Price, StringFormat='R {0}'}" FontSize="18" TextColor="Green" FontAttributes="Bold" HorizontalOptions="End"/>
-                                        </StackLayout>
-                                    </HorizontalStackLayout>
-                                </StackLayout>
-                            </Frame>
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
-           
-
-        </Grid>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Product">
+                            <HorizontalStackLayout Padding="10" Spacing="10" >
+                                <Frame BorderColor="Transparent" 
+                                       CornerRadius="15" 
+                                       Padding="10" 
+                                       HeightRequest="180" 
+                                       WidthRequest="180" 
+                                       BackgroundColor="#E7DECC">
+                                    <StackLayout>
+                                        <Image Source="https://www.shoprite.co.za/medias/checkers515Wx515H-10627849EA-add.webp?context=bWFzdGVyfGltYWdlc3w2NzA1NnxpbWFnZS93ZWJwfGltYWdlcy9oMGUvaGFhLzExNDAyNzcyODQwNDc4LndlYnB8OTExZjhiMTY1MWU1YjhmYTcxYjkxMjMzNjE3ZDFjYTg0NjE2ZDYxMDQzNmYwY2Q3NmIzZjdhYTMxMDdjNWI4Nw" 
+                                               HeightRequest="70" 
+                                               WidthRequest="70" 
+                                               Aspect="AspectFill"/>
+                                        <HorizontalStackLayout Margin="0,12,0,0">
+                                                <StackLayout >
+                                                    <Label Text="{Binding item_description}" FontSize="14" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding quantity, StringFormat='Quantity: {0}'}" FontSize="14" TextColor="Gray"/>
+                                                    <Label Text="{Binding selling_price, StringFormat='R {0}'}" 
+                                                           FontSize="16" TextColor="Green" 
+                                                           FontAttributes="Bold" 
+                                                           />
+                                                </StackLayout>
+                                            </HorizontalStackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            </Grid>
+            </ScrollView>
         
         
         

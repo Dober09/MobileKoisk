@@ -34,14 +34,7 @@ namespace MobileKoisk.Services
 					{
 						while(await reader.ReadAsync())
 						{
-							products.Add(new Product
-							{
-								ProductId = reader.GetInt32("ProductId"),
-								ProductName = reader.GetString("ProductName"),
-								Description = reader.GetString("Description"),
-								ImageUrl = reader.GetString("ImageUrl"),
-								Price = reader.GetDecimal("Price")
-							});
+							
 						}
 					}
 				}

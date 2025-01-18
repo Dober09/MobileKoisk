@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Text.Json.Serialization;
+
 
 namespace MobileKoisk.Models
 {
 	public class Product
 	{
-		public int ProductId { get; set; }
-		public string ProductName { get; set; }
-		public string Description { get; set; }
-		public decimal Price { get; set; }
-		public string ImageUrl { get; set; }
 
+		public string from_date { get; set; }	
+		public int section { get; set; }
+		public object barcode { get; set; }
+		public int item_num { get; set; }
+		public string item_description { get; set; }
+		public double selling_price { get; set; }
+		public double quantity { get; set; }
+		public string image_url { get; set; }
+		public string category {  get; set; }
+
+	}
+
+	[JsonSerializable(typeof(List<Product>))]
+	internal sealed partial class ProductItemContext : JsonSerializerContext
+	{
 	}
 }

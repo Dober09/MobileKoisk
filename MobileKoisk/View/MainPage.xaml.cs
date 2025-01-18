@@ -8,8 +8,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 
-		var dbService = new DatabaseService("localhost;Port=3360", "grocery_app", "aisha_seimela", "aisha@seimela2016");
-		BindingContext = new ShoppingViewModel(dbService);
+		BindingContext = new MainViewModel();
 		
 	}
 }
