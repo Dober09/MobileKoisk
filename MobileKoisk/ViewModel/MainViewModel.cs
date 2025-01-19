@@ -49,7 +49,8 @@ namespace MobileKoisk.ViewModel
 			{
 				var products = await _productItemService.LoadJsonDataAsync();
 
-				Products.Clear(); // Clear existing items
+				Products.Clear(); // Clear existing item'
+				
 				foreach (var product in products)
 				{
 					Products.Add(product);

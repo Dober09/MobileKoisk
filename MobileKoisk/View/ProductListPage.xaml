@@ -4,20 +4,64 @@
              x:Class="MobileKoisk.View.ProductListPage"
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              xmlns:model="clr-namespace:MobileKoisk.Models"
-             
-             
-             
              Title="{Binding CategoryTitle}">
-    <Grid RowDefinitions="*,* ">
-        <HorizontalStackLayout  Grid.Row="0">
-        </HorizontalStackLayout>
-    <CollectionView ItemsSource="{Binding FilteredProducts}">
-        <CollectionView.ItemTemplate>
+
+
+    <Grid>
+
+        <CollectionView ItemsSource="{Binding FilteredProducts}">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="model:Product">
-                <StackLayout>
-                    <Label Text="{Binding item_description }" />
-                </StackLayout>
-            </DataTemplate>
+                    <Frame BorderColor="Gray" 
+                           CornerRadius="15" 
+                           Margin="5,10,0,0"
+                           Padding="10" 
+                           HeightRequest="180" 
+                           WidthRequest="180" 
+                           >
+                        <StackLayout>
+                            <Image Source="https://www.shoprite.co.za/medias/checkers515Wx515H-10627849EA-add.webp?context=bWFzdGVyfGltYWdlc3w2NzA1NnxpbWFnZS93ZWJwfGltYWdlcy9oMGUvaGFhLzExNDAyNzcyODQwNDc4LndlYnB8OTExZjhiMTY1MWU1YjhmYTcxYjkxMjMzNjE3ZDFjYTg0NjE2ZDYxMDQzNmYwY2Q3NmIzZjdhYTMxMDdjNWI4Nw" 
+                                   HeightRequest="70" 
+                                   WidthRequest="70" 
+                                   Aspect="AspectFill"/>
+                            <HorizontalStackLayout Margin="0,12,0,0">
+                                <StackLayout >
+                                    <Label Text="{Binding item_description}" FontSize="14" FontAttributes="Bold"/>
+                                    <Label Text="{Binding quantity, StringFormat='Quantity: {0}'}" FontSize="14" TextColor="Gray"/>
+                                </StackLayout>
+                            </HorizontalStackLayout>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <!-- Label takes available space -->
+                                    <ColumnDefinition Width="Auto" />
+                                    <!-- Image fits its size -->
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Label aligned at the start -->
+                                <Label Grid.Column="0"
+                                       Text="{Binding selling_price, StringFormat='R {0}'}" 
+                                       FontSize="16" 
+                                       TextColor="Green" 
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center" />
+
+                                <!-- Image aligned at the end -->
+                                <Image Grid.Column="1"
+                                       Source="plus.png" 
+                                       Aspect="AspectFill" 
+                                       WidthRequest="30" 
+                                       HeightRequest="30"
+                                       VerticalOptions="Center" />
+                            </Grid>
+
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
     </Grid>
