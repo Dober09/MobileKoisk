@@ -180,7 +180,8 @@
                                                    Aspect="AspectFill" 
                                                    WidthRequest="30" 
                                                    HeightRequest="30"
-                                                   VerticalOptions="Center" />
+                                                   VerticalOptions="Center"
+                                                   />
                                         </Grid>
 
                                     </StackLayout>

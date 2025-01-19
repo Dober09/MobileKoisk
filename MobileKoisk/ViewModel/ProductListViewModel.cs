@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MobileKoisk.Services;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MobileKoisk.ViewModel
 {
@@ -14,12 +15,12 @@ namespace MobileKoisk.ViewModel
 		private readonly ProductItemService _productItemService;
 		public ObservableCollection<Product> FilteredProducts { get; private set; } = new ObservableCollection<Product>();
 		public ObservableCollection<Product> UnFilteredProducts { get; private set; } = new ObservableCollection<Product>();
+		public ObservableCollection<Product> WishList { get; private set; } = new ObservableCollection<Product>();
 		public string CategoryTitle { get; set; }
+		public Command<Product> AddProductsToWishListCommand { get; }
 
 		public ProductListViewModel(string category)
-		{
-			
-			
+		{ 
 
 			// Instantiate the service
 			_productItemService = new ProductItemService();
@@ -27,11 +28,15 @@ namespace MobileKoisk.ViewModel
 
 			LoadDataAsync(category);
 
+			AddProductsToWishListCommand = new Command<Product>(AddProductsToWishList);
+
+
 			//// Load and filter products
 			///
 			//LoadAndFilterProducts(category);
 
 		}
+	
 
 		private async Task LoadDataAsync(string category)
 		{
@@ -71,6 +76,15 @@ namespace MobileKoisk.ViewModel
 				Console.WriteLine($"Error loading products: {ex.Message}");
 			}
 			
+		}
+
+		public void AddProductsToWishList(Product product)
+		{
+			if (!WishList.Contains(product))
+			{
+				WishList.Add(product);
+				Console.WriteLine($"Product {product.item_description} added to wishlist");
+			}
 		}
 
 	}

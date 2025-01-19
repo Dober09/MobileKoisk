@@ -1,7 +1,6 @@
 namespace MobileKoisk.View;
 using MobileKoisk.Models;
 using MobileKoisk.ViewModel;
-using System.Collections.ObjectModel;
 
 public partial class ProductListPage : ContentPage
 {
@@ -11,6 +10,5 @@ public partial class ProductListPage : ContentPage
 		InitializeComponent();
 		var viewModel = new ProductListViewModel(category);
         BindingContext = viewModel;
-
 	}
 }

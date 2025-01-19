@@ -24,7 +24,7 @@
         <!--Sale Tab-->
         <Tab Title="WishList"
              Icon="clipboard.png">
-            <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:WishListPage}" />
         </Tab>  
         
 

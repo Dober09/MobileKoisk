@@ -8,7 +8,6 @@
 
 
     <Grid>
-
         <CollectionView ItemsSource="{Binding FilteredProducts}">
 
             <CollectionView.ItemsLayout>
@@ -56,7 +55,15 @@
                                        Aspect="AspectFill" 
                                        WidthRequest="30" 
                                        HeightRequest="30"
-                                       VerticalOptions="Center" />
+                                       VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding BindingContext.AddProductToWishlistCommand, Source={x:Reference Name=ProductListPage}}"
+                                            CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+
+                                </Image>
                             </Grid>
 
                         </StackLayout>
