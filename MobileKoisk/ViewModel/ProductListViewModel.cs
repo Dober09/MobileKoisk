@@ -83,7 +83,7 @@ namespace MobileKoisk.ViewModel
 			if (!WishList.Contains(product))
 			{
 				WishList.Add(product);
-				Console.WriteLine($"Product {product.item_description} added to wishlist");
+				System.Diagnostics.Debug.WriteLine($"Product {product.item_description} added to wishlist");
 			}
 		}
 

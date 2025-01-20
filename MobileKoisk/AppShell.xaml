@@ -11,41 +11,28 @@
 
     <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}"
               Route="introPage"/>
+
     <TabBar>
-      
-        <!--Home Tab-->
         <Tab Title="Home"
-             Icon="home.png">
+             Icon="home.png" >
             <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
                           Route="MainPage"/>
-        </Tab>    
-        
-   
-        <!--Sale Tab-->
+        </Tab>
         <Tab Title="WishList"
-             Icon="clipboard.png">
+             Icon="clipboard.png" >
             <ShellContent ContentTemplate="{DataTemplate view:WishListPage}" />
-        </Tab>  
-        
-
-        <!-- Tab-->
+        </Tab>
         <Tab Title="Scan"
-             Icon="scan.png">
+             Icon="scan.png" >
             <ShellContent ContentTemplate="{DataTemplate view:ScanningPage}" />
         </Tab>
-
-
-        <Tab Title="My Basket"
-             Icon="fruitsandvegetables.png">
-            <ShellContent ContentTemplate="{DataTemplate view:MyBasketPage}" />
-
+        <Tab Title="Basket"
+             Icon="fruitsandvegetables.png" >
+            <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
         </Tab>
-
-        <!--More Tab-->
         <Tab Title="More"
-             Icon="menu.png">
+             Icon="menu.png" >
             <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
         </Tab>
     </TabBar>
-
 </Shell>

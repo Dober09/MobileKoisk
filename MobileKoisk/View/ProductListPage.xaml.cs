@@ -11,4 +11,6 @@ public partial class ProductListPage : ContentPage
 		var viewModel = new ProductListViewModel(category);
         BindingContext = viewModel;
 	}
+
+
 }

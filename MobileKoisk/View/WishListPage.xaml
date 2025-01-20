@@ -4,7 +4,7 @@
              x:Class="MobileKoisk.View.WishListPage"
              Title="WishListPage">
 
-    <ListView ItemsSource="{Binding FilteredProducts}">
+    <ListView ItemsSource="{Binding WishList}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

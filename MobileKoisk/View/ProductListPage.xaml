@@ -50,20 +50,16 @@
                                        VerticalOptions="Center" />
 
                                 <!-- Image aligned at the end -->
-                                <Image Grid.Column="1"
+                                <ImageButton  Grid.Column="1"
                                        Source="plus.png" 
                                        Aspect="AspectFill" 
                                        WidthRequest="30" 
                                        HeightRequest="30"
-                                       VerticalOptions="Center">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                            Command="{Binding BindingContext.AddProductToWishlistCommand, Source={x:Reference Name=ProductListPage}}"
-                                            CommandParameter="{Binding .}">
-                                        </TapGestureRecognizer>
-                                    </Image.GestureRecognizers>
-
-                                </Image>
+                                       VerticalOptions="Center"
+                                       Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddProductsToWishListCommand}"
+                                       CommandParameter="{Binding .}"
+                                              >
+                                </ImageButton>
                             </Grid>
 
                         </StackLayout>

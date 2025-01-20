@@ -4,18 +4,20 @@
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              xmlns:model="clr-namespace:MobileKoisk.Models"
              x:Class="MobileKoisk.View.MainPage"
+             Shell.NavBarIsVisible="False"
              >
-
+    
     <!--Layout -->
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="90"/>
+            <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
     
         <!--Welcome Header-->
-        <Grid Grid.Row="0" >
+        <StackLayout Grid.Row="0"  Grid.ColumnSpan="2">
             <Frame Padding="10" BorderColor="Transparent">
                 <VerticalStackLayout HorizontalOptions="FillAndExpand" >
                     <Label Text="Welcome Ayisha" FontAttributes="Bold" FontSize="30" VerticalOptions="Start"/>
@@ -23,113 +25,117 @@
                     <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
                 </VerticalStackLayout>
             </Frame>
-        </Grid>
+        </StackLayout>
         <!-- search bar -->
         <Grid Grid.Row="1">
             <Frame BorderColor="Transparent" Background="#E1E1E1" Margin="20, 10, 20, 10" HasShadow="True">
                 <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
             </Frame>
         </Grid>
-
         <!-- grocery category -->
+        <Grid Grid.Row="2">
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout Spacing="10" Margin="0,20,10,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
+                            <Image Source="fruitsandvegetables.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Fresh" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                        <Label Text="Fresh" HorizontalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
+                            <Image Source="medicine.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Health" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                        <Label Text="Health" HorizontalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
+                            <Image Source="beef.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Buchery" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                        <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
+                            <Image Source="shampoo.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Beauty" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                        <Label Text="Beauty" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
+                            <Image Source="bakery.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Bakery" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+                        <Label Text="Bakery" HorizontalOptions="Center" />
+                    </StackLayout>
+                </HorizontalStackLayout>
+            </ScrollView>
+        </Grid>
 
-        <ScrollView Orientation="Vertical" Grid.Row="2">
-            <Grid>
+        
+
+        <ScrollView Orientation="Vertical" Grid.Row="3">
+            <Grid >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="140"/>
-                    <RowDefinition Height="200"/>
+                   
                     <RowDefinition Height="*"/>
+                  
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <ScrollView Orientation="Horizontal">
-                        <HorizontalStackLayout Spacing="10" Margin="0,20,10,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
-                            <StackLayout>
-                                <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-                                    <Image Source="fruitsandvegetables.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Fresh" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </Frame>
-                                <Label Text="Fresh" HorizontalOptions="Center" />
-                            </StackLayout>
-                            <StackLayout>
-                                <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
-                                    <Image Source="medicine.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Health" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </Frame>
-                                <Label Text="Health" HorizontalOptions="Center" />
-                            </StackLayout>
-                            <StackLayout>
-                                <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
-                                    <Image Source="beef.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Buchery" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </Frame>
-                                <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center" />
-                            </StackLayout>
-                            <StackLayout>
-                                <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
-                                    <Image Source="shampoo.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Beauty" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </Frame>
-                                <Label Text="Beauty" HorizontalOptions="Center" VerticalOptions="Center" />
-                            </StackLayout>
-                            <StackLayout>
-                                <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="0,0,0,0">
-                                    <Image Source="bakery.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Bakery" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
-                                </Frame>
-                                <Label Text="Bakery" HorizontalOptions="Center" />
-                            </StackLayout>
-                        </HorizontalStackLayout>
-                    </ScrollView>
-                </Grid>
+               <!--
+                <Grid Grid.Row="1"  Margin="0,0,0,10" RowSpacing="10">
 
-                <Grid Grid.Row="3" RowDefinitions="*,auto" Margin="0,0,0,10" RowSpacing="10">
+    <CarouselView x:Name="salesCarousel"
+          ItemsSource="{Binding SalesItems}"
+          IndicatorView="indicator"
+          x:DataType="vm:BasketPageViewModel"
+          >
+        <CarouselView.ItemTemplate>
+            <DataTemplate x:DataType="model:SaleItem">
+                <Frame Margin="25" BackgroundColor="{Binding Color}"  CornerRadius="20" WidthRequest="350" HeightRequest="160">
+                    <VerticalStackLayout Padding="10">
+                        <Label Text="{Binding saleDescription}" FontAttributes="Bold" TextColor="White" FontSize="30"/>
+                        <Label Text="{Binding saleName}" TextColor="White" FontSize="20"/>
+                        <Label Text="{Binding saleDate}" TextColor="White" Margin="0,20,0,0"/>
+                    </VerticalStackLayout>
+                </Frame>
 
-                    <CarouselView x:Name="salesCarousel"
-                          ItemsSource="{Binding SalesItems}"
-                          IndicatorView="indicator"
-                          x:DataType="vm:BasketPageViewModel"
-                          >
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate x:DataType="model:SaleItem">
-                                <Frame Margin="25" BackgroundColor="{Binding Color}"  CornerRadius="20" WidthRequest="350" HeightRequest="160">
-                                    <VerticalStackLayout Padding="10">
-                                        <Label Text="{Binding saleDescription}" FontAttributes="Bold" TextColor="White" FontSize="30"/>
-                                        <Label Text="{Binding saleName}" TextColor="White" FontSize="20"/>
-                                        <Label Text="{Binding saleDate}" TextColor="White" Margin="0,20,0,0"/>
-                                    </VerticalStackLayout>
-                                </Frame>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+    <IndicatorView x:Name="indicator" 
+           HorizontalOptions="Center"  
+           Grid.Row="1"  
+           IndicatorSize="12"
+           IndicatorsShape="Circle"
+           Margin="20,0,20,0"
+           IndicatorColor="{StaticResource Primary}"
+           SelectedIndicatorColor="{StaticResource PrimaryDarkText}"/>
+</Grid>
+                -->
 
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
-                    <IndicatorView x:Name="indicator" 
-                           HorizontalOptions="Center"  
-                           Grid.Row="1"  
-                           IndicatorSize="12"
-                           IndicatorsShape="Circle"
-                           Margin="20,0,20,0"
-                           IndicatorColor="{StaticResource Primary}"
-                           SelectedIndicatorColor="{StaticResource PrimaryDarkText}"/>
-                </Grid>
+                
 
                 <!-- vertical scrolling menu -->
-                <Grid Grid.Row="4">
+                <Grid Grid.Row="0">
                     <CollectionView  
                              x:DataType="vm:MainViewModel"
                              ItemsSource="{Binding Products}"
@@ -175,13 +181,16 @@
                                                    VerticalOptions="Center" />
 
                                             <!-- Image aligned at the end -->
-                                            <Image Grid.Column="1"
-                                                   Source="plus.png" 
-                                                   Aspect="AspectFill" 
-                                                   WidthRequest="30" 
-                                                   HeightRequest="30"
-                                                   VerticalOptions="Center"
-                                                   />
+                                            <ImageButton  Grid.Column="1"
+                                                          Source="plus.png" 
+                                                          Aspect="AspectFill" 
+                                                          WidthRequest="30" 
+                                                          HeightRequest="30"
+                                                          VerticalOptions="Center"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddProductsToWishListCommand}"
+                                                          CommandParameter="{Binding .}"
+              >
+                                            </ImageButton>
                                         </Grid>
 
                                     </StackLayout>
