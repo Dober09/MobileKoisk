@@ -4,6 +4,6 @@ namespace MobileKoisk.Services
 {
     public interface IProductItem
     {
-        Task<List<ProductItem>> LoadJsonDataAsync();
+        Task<List<Product>> LoadJsonDataAsync();
     }
 }

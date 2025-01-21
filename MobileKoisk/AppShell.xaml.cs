@@ -8,11 +8,11 @@ namespace MobileKoisk
         public AppShell()
         {
             InitializeComponent();
-            // Registering the pages
+			// Registering the pages
 
-            Routing.RegisterRoute("profilepage", typeof(ProfilePage));
-
-            Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
+			Routing.RegisterRoute("WishListPage", typeof(WishListPage));
+			Routing.RegisterRoute("MainPage", typeof(MainPage));
+			Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
             Routing.RegisterRoute("reciptpage", typeof(ReceiptPage));
             Routing.RegisterRoute("morepage", typeof(MorePage));
 

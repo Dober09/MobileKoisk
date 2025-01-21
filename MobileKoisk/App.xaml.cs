@@ -5,8 +5,9 @@ namespace MobileKoisk
     {
         public App()
         {
-            InitializeComponent();
+			InitializeComponent();
             MainPage = new AppShell();
+
         }
     }
 }
