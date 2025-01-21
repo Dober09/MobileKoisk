@@ -28,7 +28,7 @@
         </Tab>
         <Tab Title="Basket"
              Icon="fruitsandvegetables.png" >
-            <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
+            <ShellContent ContentTemplate="{DataTemplate view:MyBasketPage}" />
         </Tab>
         <Tab Title="More"
              Icon="menu.png" >
