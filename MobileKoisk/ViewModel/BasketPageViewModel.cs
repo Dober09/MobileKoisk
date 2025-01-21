@@ -2,6 +2,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using MobileKoisk.Helper;
 using MobileKoisk.Models;
 
 namespace MobileKoisk.ViewModel
@@ -119,14 +121,13 @@ namespace MobileKoisk.ViewModel
 
 		public BasketPageViewModel()
 		{
-			
+
 			// Initialize the basket items
-			BasketItems = new ObservableCollection<BasketItem>
-			{
-				new BasketItem { ImageSource = "coffee.png", ProductName = "Coffee", Quantity = 1, Price = 19.99M, ProductSize = "750 ml" },
-				new BasketItem { ImageSource = "selatisugar.png", ProductName = "Sugar", Quantity = 1, Price = 9.99M, ProductSize = "1 kg" },
-				new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M, ProductSize = "500 ml" }
-			};
+			BasketItems = new ObservableCollection<BasketItem>();
+
+			WeakReferenceMessenger.Default.Register<AddToBasketMessage>(this, (r, m) => { 
+				
+			});
 
 			// Attach property change notifications for basket items
 			foreach (var item in BasketItems)
@@ -149,6 +150,32 @@ namespace MobileKoisk.ViewModel
 		
 		}
 
+
+		//
+
+		private void AddProductToBasket(ProductItem productItem)
+		{
+			MainThread.BeginInvokeOnMainThread(() =>
+			{
+
+				var existingItem = BasketItems.FirstOrDefault((item) => productItem.barcode == item.Barcode);
+				if (existingItem != null)
+				{
+					// If item exist, increment quantity
+					existingItem.Quantity++;
+				}
+				else
+				{
+					//If item doesn't exist, add new BasketItem
+					var newItem = BasketItem.FromProductItem(productItem);
+					BasketItems.Add(newItem);
+					newItem.PropertyChanged += OnBasketItemChanged;
+				}
+
+				//Update totals
+				UpdateTotalPrice();
+			});
+		}
 
 		private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
 		{

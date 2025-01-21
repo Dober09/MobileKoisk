@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileKoisk.View.ProfilePage"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             Title="ProfilePage">
+
+    <!--Layout-->
+    <Grid  RowDefinitions="auto,.9*">
+       
+        <!--Header Title-->
+
+        <StackLayout  Grid.Row="0" 
+                  
+            >
+
+            <Frame BackgroundColor="{StaticResource yellow}"
+                 HasShadow="True"
+                 HeightRequest="70"
+                 BorderColor="{StaticResource yellow}"
+                 CornerRadius="0"
+             >
+
+                <HorizontalStackLayout   HeightRequest="40"
+                                         Spacing="120"
+                                         VerticalOptions="Center"
+                                       >
+                    <ImageButton WidthRequest="19" Source="back.png"  HorizontalOptions="Start" Clicked="GoToPrevPage"/>
+                    <Label Text="Profile"
+                        Style="{StaticResource largeText}"
+                        TextColor="{StaticResource White}"
+                  />
+                </HorizontalStackLayout>
+            </Frame>
+        </StackLayout>
+        <!--The body-->
+        <Grid  Grid.Row="1"
+               Margin="15,5" 
+               RowSpacing="60"
+               RowDefinitions="auto,auto,*">
+            <FlexLayout Direction="Column"
+                       
+                        VerticalOptions="Center"
+                        AlignItems="Center"
+                        Grid.Row="0">
+                <Border  StrokeShape="RoundRectangle 10"
+                         StrokeThickness="4"
+                         Stroke="{StaticResource Primary}"
+                         WidthRequest="100"
+                         Padding="10"
+                         >
+                    
+                <Image Source="user.png" 
+                       Aspect="AspectFill"
+                       HeightRequest="70"
+                       WidthRequest="70"/>
+                </Border>
+
+
+
+                <Label Text="Ayisha"
+                       Style="{StaticResource largeText}"
+                       TextColor="{StaticResource PrimaryDarkText}"
+                       Margin="0,0,0,-4"
+                       />
+                <Label Text="ayisha@gmail.com" Style="{StaticResource tinyText}" TextColor="{StaticResource PrimaryDarkText}"/>
+               
+            </FlexLayout>
+
+           
+                
+            <FlexLayout Direction="Row" Grid.Row="1"  JustifyContent="SpaceBetween" >
+
+
+                <VerticalStackLayout>
+                    
+                    <Border StrokeShape="RoundRectangle 40"
+                            StrokeThickness="3"
+                            HeightRequest="50"
+                            WidthRequest="100"
+                            
+                            Stroke="{StaticResource PrimaryDark}">
+                        <Image Source="coupons.png" Aspect="AspectFill" WidthRequest="40"/>
+                    </Border>
+                    <Label Text="Coupons" Style="{StaticResource mediumText}" FontSize="18" />
+                    <Label Text="Coupons" Style="{StaticResource tinyText}" FontSize="15" />
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout >
+                    
+                    <Border StrokeShape="RoundRectangle 40"
+                            StrokeThickness="3"
+                            HeightRequest="50"
+                            WidthRequest="100"
+                            
+                            Stroke="{StaticResource PrimaryDark}">
+                        <Image Source="sale.png" Aspect="AspectFit" WidthRequest="40"/>
+                    </Border>
+                    <Label Text="Sales" Style="{StaticResource mediumText}" FontSize="18" />
+                    <Label Text="R 300.00" Style="{StaticResource tinyText}" FontSize="15" />
+                </VerticalStackLayout>              
+                
+                <VerticalStackLayout>
+                    
+                    <Border StrokeShape="RoundRectangle 40"
+                            StrokeThickness="3"
+                            HeightRequest="50"
+                            WidthRequest="100"
+                            
+                            Stroke="{StaticResource PrimaryDark}">
+                        <Image Source="shopcard.png" Aspect="AspectFit" WidthRequest="40"/>
+                    </Border>
+                    <Label Text="SmartCard" Style="{StaticResource mediumText}" FontSize="18" />
+                    <Label Text="A20c0244" Style="{StaticResource tinyText}" FontSize="15" />
+                </VerticalStackLayout>
+                
+                
+                          
+             </FlexLayout>
+
+
+            <VerticalStackLayout Grid.Row="2"
+                                 Spacing="10">
+                <CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate >
+                            
+                        
+                    
+                            <VerticalStackLayout >
+                                <FlexLayout Direction="Column" 
+                                            JustifyContent="SpaceBetween">
+                        
+                                    <Label Text="Personal Details"
+                                           Style="{StaticResource tinyText}"
+                                           TextColor="{StaticResource PrimaryDarkText}"/>
+                                    <ImageButton Source="next.png" WidthRequest="20"/>
+                                </FlexLayout>
+                                <BoxView Color="{StaticResource PrimaryDark}"
+                                         HeightRequest="2"
+                                         HorizontalOptions="Fill" />
+                   
+                    
+                            </VerticalStackLayout>  
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <VerticalStackLayout>
+                    <Label Text="Password"
+                           Style="{StaticResource tinyText}"
+                           TextColor="{StaticResource PrimaryDarkText}"/>
+                    <BoxView Color="{StaticResource PrimaryDark}"
+                    HeightRequest="2"
+                    HorizontalOptions="Fill" />
+
+                </VerticalStackLayout> 
+                <VerticalStackLayout>
+                    <Label Text="Email Address"
+                           Style="{StaticResource tinyText}"
+                           TextColor="{StaticResource PrimaryDarkText}"/>
+                    <BoxView Color="{StaticResource PrimaryDark}"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+                   
+                    
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Support"
+                           Style="{StaticResource tinyText}"
+                          TextColor="{StaticResource PrimaryDarkText}"/>
+                    <BoxView Color="{StaticResource PrimaryDark}"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    
+                    <Label Text="Logout"
+                           Style="{StaticResource tinyText}"
+                           TextColor="{StaticResource PrimaryDarkText}"/>
+                    <BoxView Color="{StaticResource PrimaryDark}"
+                    HeightRequest="2"
+                    HorizontalOptions="Fill" />
+                   
+                    
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

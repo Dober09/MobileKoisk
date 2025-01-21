@@ -43,6 +43,7 @@
                         x:DataType="vm:BasketPageViewModel"
                         ItemsSource="{Binding BasketItems}" 
                         VerticalOptions="Start"
+                        EmptyView="No items to display"
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:BasketItem">

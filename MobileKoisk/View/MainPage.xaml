@@ -29,7 +29,7 @@
         <!-- search bar -->
         <Grid Grid.Row="1">
             <Frame BorderColor="Transparent" Background="#E1E1E1" Margin="20, 10, 20, 10" HasShadow="True">
-                <SearchBar Placeholder="Search anything here"   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
+                <SearchBar Placeholder="Search items ..."   FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"   />
             </Frame>
         </Grid>
         <!-- grocery category -->

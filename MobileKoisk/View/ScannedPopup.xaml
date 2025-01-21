@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
+               x:DataType="vm:ScanningViewModel"
+               x:Class="MobileKoisk.View.ScannedPopup">
+    <Grid RowDefinitions="*,*"
+          RowSpacing="70"
+          WidthRequest="310" 
+          HeightRequest="200"
+          Padding="10"
+          BackgroundColor="{StaticResource SecondaryDarkText}"
+          >
+
+        <FlexLayout Grid.Row="0"
+                    JustifyContent="SpaceBetween"
+                    AlignItems="Center"
+                    
+                    Margin="0,20,0,0"
+     
+                    Direction="Row" >
+            <HorizontalStackLayout>
+                <Image Source="meat.png"
+                   WidthRequest="100"
+                   HeightRequest="100"/>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout>
+                <Label Text="" x:Name="ProductName"/>
+                <Label Text="R 20.00" x:Name="Price" HorizontalTextAlignment="End"/>
+                <Label x:Name="ItemLeft" HorizontalTextAlignment="End"/>
+
+            </VerticalStackLayout>
+            
+        </FlexLayout>
+
+        
+            <HorizontalStackLayout HeightRequest="50" 
+                                   Grid.Row="1"
+                                   HorizontalOptions="Center"
+                                   
+                                   Spacing="40">
+                <Button Text="Remove"/>
+                <Button Text="Add to Monkey"
+                        Clicked="AddToMonkey"/>
+            </HorizontalStackLayout>
+            
+        
+        
+    </Grid>
+</toolkit:Popup>

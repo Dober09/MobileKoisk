@@ -13,4 +13,9 @@ public partial class MorePage : ContentPage
     {
         await Shell.Current.GoToAsync("paymentpage");
     }
+
+    private async void GoToProfile(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("profilepage");
+    }
 }
