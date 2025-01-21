@@ -153,7 +153,7 @@ namespace MobileKoisk.ViewModel
 
 		//
 
-		private void AddProductToBasket(ProductItem productItem)
+		private void AddProductToBasket(Product productItem)
 		{
 			MainThread.BeginInvokeOnMainThread(() =>
 			{

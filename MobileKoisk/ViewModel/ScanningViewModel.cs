@@ -19,13 +19,13 @@ namespace MobileKoisk.ViewModel
         private string scanResult;
 
         [ObservableProperty]
-        private ProductItem scannedProduct;
+        private Product scannedProduct;
 
         [ObservableProperty]
         private BarcodeReaderOptions readerOptions;
 
 
-        public ObservableCollection<ProductItem> ScannedItems { get; set; }
+        public ObservableCollection<Product> ScannedItems { get; set; }
 
         private bool isProcessingBarcode = false;
 

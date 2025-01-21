@@ -37,7 +37,7 @@ namespace MobileKoisk.Models
 			DecreaseQuantityCommand = new Command(() => DecreaseQuantity());
 		}
 
-		public static BasketItem FromProductItem(ProductItem product)
+		public static BasketItem FromProductItem(Product product)
 		{
 			return new BasketItem
 			{

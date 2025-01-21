@@ -8,10 +8,11 @@ namespace MobileKoisk.View;
 public partial class ScannedPopup : Popup
 {
 
-	private readonly ProductItem _productItem;
-	public ScannedPopup(ProductItem productItem)
+	private readonly Product _productItem;
+	public ScannedPopup(Product productItem)
 	{
 		
+		_productItem = productItem;
 		InitializeComponent();
 
 		ProductName.Text = productItem.item_description;

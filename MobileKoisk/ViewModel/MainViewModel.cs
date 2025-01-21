@@ -26,7 +26,8 @@ namespace MobileKoisk.ViewModel
 			set
 			{
 				_isLoading = value;
-				OnPropertyChanged(); // Notify UI of changes
+				// Notify UI of changes
+				//OnPropertyChanged();
 			}
 		}
 

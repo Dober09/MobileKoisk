@@ -4,9 +4,9 @@ namespace MobileKoisk.Helper
 {
     public class AddToBasketMessage
     {
-        public ProductItem ProductItem { get; }
+        public Product ProductItem { get; }
 
-        public AddToBasketMessage(ProductItem productItem)
+        public AddToBasketMessage(Product productItem)
         {
             ProductItem = productItem;
         }
