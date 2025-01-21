@@ -1,39 +1,7 @@
 [
   {
     "from_date": "20-Feb",
-    "section": 32,
-    "barcode": 6009681824701,
-    "item_num": 376,
-    "item_description": "Sasko bread",
-    "selling_price": 15.49,
-    "quantity": 5,
-    "category": "Bakery",
-    "image_Url": "https://w7.pngwing.com/pngs/954/1001/png-transparent-white-bread-bread-baked-goods-food-whole-grain-thumbnail.png"
-  },
-  {
-    "from_date": "20-Feb",
-    "section": 32,
-    "barcode": 6009681824701,
-    "item_num": 376,
-    "item_description": "Queens Cake 10 ",
-    "selling_price": 32.49,
-    "quantity": 15,
-    "category": "Bakery",
-    "image_Url": "https://www.shoprite.co.za/medias/10125005PK1v2-checkers515Wx515H.webp?context=bWFzdGVyfGltYWdlc3wzODM1MHxpbWFnZS93ZWJwfGltYWdlcy9oZTUvaDc2LzkwNjMxMTg1MDM5NjYud2VicHwwYTNjODNhZjQ5OWI0NmZjODE5YTJmN2Y4ZjRkYjZjOTU0OTg3ZjRiN2E2OWU5ODAyODA4ZmQ2ZjAxZDVhNjYy"
-  },
-  {
-    "from_date": "20-Feb",
-    "section": 32,
-    "barcode": 6009681824701,
-    "item_num": 376,
-    "item_description": "BlueRibbon White Bread",
-    "selling_price": 18.99,
-    "quantity": 25,
-    "category": "Bakery",
-    "image_Url": "https://www.shoprite.co.za/medias/10456482EA-checkers515Wx515H.webp?context=bWFzdGVyfGltYWdlc3wyMTQ3MnxpbWFnZS93ZWJwfGltYWdlcy9oMWYvaDJiLzEwMDQ3MTkwNDY2NTkwLndlYnB8YTQxMWMxYWQxMmUzZTU4NjM1M2YyOTA0MWFmN2QwZWI4Y2Y4MGFiNTc0OGQ0NWE3YmNkMDlmNWZhMmQxZTU0Ng"
-  },
-  {
-    "from_date": "20-Feb",
+    "department": 12,
     "section": 32,
     "barcode": 6009681824701,
     "item_num": 376,

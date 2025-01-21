@@ -15,6 +15,8 @@ public partial class PaymentPage : ContentPage
 		await Shell.Current.GoToAsync("reciptpage");
 	}
 
-
-
+    private async void GoToPrevPage(object sender, EventArgs e)
+    {
+		await Shell.Current.GoToAsync("..");
+    }
 }
