@@ -125,9 +125,8 @@ namespace MobileKoisk.ViewModel
 			// Initialize the basket items
 			BasketItems = new ObservableCollection<BasketItem>();
 
-			WeakReferenceMessenger.Default.Register<AddToBasketMessage>(this, (r, m) => { 
-				
-			});
+
+			WeakReferenceMessenger.Default.Register<AddToBasketMessage>(this, HandleAddToBasketMessage);
 
 			// Attach property change notifications for basket items
 			foreach (var item in BasketItems)
@@ -153,31 +152,68 @@ namespace MobileKoisk.ViewModel
 
 		//
 
-		private void AddProductToBasket(Product productItem)
+		private void HandleAddToBasketMessage(object recipient, AddToBasketMessage message)
 		{
+			if (message?.ProductItem == null) return;
+
 			MainThread.BeginInvokeOnMainThread(() =>
 			{
-
-				var existingItem = BasketItems.FirstOrDefault((item) => productItem.barcode == item.Barcode);
-				if (existingItem != null)
+				try
 				{
-					// If item exist, increment quantity
-					existingItem.Quantity++;
-				}
-				else
-				{
-					//If item doesn't exist, add new BasketItem
-					var newItem = BasketItem.FromProductItem(productItem);
-					BasketItems.Add(newItem);
-					newItem.PropertyChanged += OnBasketItemChanged;
-				}
+					//check if item already exists
+					var existingItem = BasketItems.FirstOrDefault(item => item.ProductName == message.ProductItem.item_description);
+					if (existingItem != null)
+					{
+						existingItem.Quantity++;
+					}
+					else
+					{
+						var newItem = new BasketItem
+						{
+							ProductName = message.ProductItem.item_description,
+							Price = (decimal)message.ProductItem.selling_price,
+							Quantity = 1,
 
-				//Update totals
-				UpdateTotalPrice();
+
+
+						};
+						BasketItems.Add(newItem);
+					}
+					UpdateTotalPrice();
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine($"Error adding to basket: {ex.Message}");
+				}
 			});
+
 		}
 
-		private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
+        //private void AddProductToBasket(ProductItem productItem)
+        //{
+        //	MainThread.BeginInvokeOnMainThread(() =>
+        //	{
+
+        //		var existingItem = BasketItems.FirstOrDefault((item) => productItem.barcode == item.Barcode);
+        //		if (existingItem != null)
+        //		{
+        //			// If item exist, increment quantity
+        //			existingItem.Quantity++;
+        //		}
+        //		else
+        //		{
+        //			//If item doesn't exist, add new BasketItem
+        //			var newItem = BasketItem.FromProductItem(productItem);
+        //			BasketItems.Add(newItem);
+        //			newItem.PropertyChanged += OnBasketItemChanged;
+        //		}
+
+        //		//Update totals
+        //		UpdateTotalPrice();
+        //	});
+        //}
+
+        private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(BasketItem.Quantity))
 			{

@@ -41,6 +41,8 @@ namespace MobileKoisk.ViewModel
                 Multiple = true,
             };
             isScanning = true;
+
+
         }
 
 
@@ -63,7 +65,7 @@ namespace MobileKoisk.ViewModel
                     return;
                 }
 
-                isScanning = false;
+                IsScanning = false;
                 System.Diagnostics.Debug.WriteLine($"Detected barcode: {result.Value}");
                 ScanResult = result.Value;
                 var productResults = await productItemService.LoadJsonDataAsync();
@@ -99,7 +101,7 @@ namespace MobileKoisk.ViewModel
                     finally
                     {
                         // Resume scanning
-                        isScanning = true;
+                        IsScanning = true;
                     }
                 });
             }
@@ -134,7 +136,7 @@ namespace MobileKoisk.ViewModel
         {
             try { 
                 isProcessingBarcode = false;
-                isScanning = true;
+                IsScanning = true;
                 
 
             } catch (Exception ex) {
@@ -144,6 +146,23 @@ namespace MobileKoisk.ViewModel
         }
 
         [RelayCommand]
-        public void StopScanning() { isScanning = false; }
+        public async void StopScanning() { IsScanning = false; }
+
+        //Add a method to handle page appearing
+        [RelayCommand]
+        public async void OnPageAppearing()
+        {
+            try
+            {
+                isProcessingBarcode = false;
+                IsScanning = true;  // Reset scanning state
+                System.Diagnostics.Debug.WriteLine("Camera resumed on page appearing");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in OnPageAppearing: {ex}");
+            }
+        }
+
     }
 }

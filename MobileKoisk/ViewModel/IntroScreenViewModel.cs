@@ -29,7 +29,7 @@ namespace MobileKoisk.ViewModel
             {
                 if (SetProperty(ref position, value))
                 {
-                    OnPropertyChanged(ButtonText);
+                    OnPropertyChanged(nameof(ButtonText));
                     Debug.WriteLine($"Position changed to: {value}");
                 }
             }
@@ -72,7 +72,7 @@ namespace MobileKoisk.ViewModel
 
             try
             {
-                if (Position <= IntroScreens.Count - 1)
+                if (Position < IntroScreens.Count - 1)
                 {
                     Position++; // Increment Position
                 }

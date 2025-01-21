@@ -5,7 +5,9 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="MobileKoisk.View.ScanningPage"
              x:DataType="viewmodel:ScanningViewModel"
+           
             >
+    
     <!--Layout-->
     <Grid RowDefinitions="auto, *"  ColumnDefinitions="*,*" >
 
@@ -78,15 +80,13 @@
                 <Grid>
                     
                 <!-- cameras -->
-                <zxing:CameraBarcodeReaderView  HorizontalOptions="Fill"
+                    <zxing:CameraBarcodeReaderView  HorizontalOptions="Fill"
                                 VerticalOptions="Fill"
                                 x:Name="cameraBarcodeReaderView"
-                                 IsTorchOn="False" 
-                                
-                                IsDetecting="True"
+            
+                                IsDetecting="{Binding IsScanning, Converter={StaticResource InverseBoolConverter}}"
                                 Options="{Binding ReaderOptions}"
                                 BarcodesDetected="OnBarcodeDetected" />
-
                 </Grid>
             </Border>
 
@@ -97,7 +97,7 @@
                                    VerticalOptions="Start"
                                    HorizontalOptions="Center">
                 <Button Text="Scan Barcode"
-                        BackgroundColor="Green"
+                        
                
                         FontFamily="PoppinsBold"
                         Command="{Binding StartScanningCommand}"

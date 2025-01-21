@@ -21,6 +21,8 @@ public partial class ScanningPage : ContentPage
         if (BindingContext is ScanningViewModel vm) {
          
             vm.StartScanningCommand.Execute(null);
+            
+            
         }
     }
 

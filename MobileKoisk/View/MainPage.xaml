@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              xmlns:model="clr-namespace:MobileKoisk.Models"
+            Shell.NavBarIsVisible="False"
+    
              x:Class="MobileKoisk.View.MainPage"
              Shell.NavBarIsVisible="False"
              >
