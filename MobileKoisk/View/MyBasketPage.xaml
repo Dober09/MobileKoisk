@@ -6,12 +6,13 @@
              xmlns:model="clr-namespace:MobileKoisk.Models"
              Shell.NavBarHasShadow="False"
              NavigationPage.HasNavigationBar="False"
-             
              >
+    
     <Grid BackgroundColor="#F1F1F1" >
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
+           
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--Header Title-->
@@ -25,15 +26,22 @@
                 BorderColor="{StaticResource yellow}"
                 CornerRadius="0"
             >
-
-                <HorizontalStackLayout   HeightRequest="40"
-                                     VerticalOptions="Center"
-                                     HorizontalOptions="Center" >
-                    <Label Text="My Basket"
-                       Style="{StaticResource largeText}"
-                       TextColor="{StaticResource White}"
-                 />
-                </HorizontalStackLayout>
+              
+                    <HorizontalStackLayout   HeightRequest="40"
+                                         
+                                            VerticalOptions="Center"
+                                         HorizontalOptions="Center"
+                                         
+                                             >
+                        <Label Text="My Basket"
+                           Style="{StaticResource largeText}"
+                           TextColor="{StaticResource White}"
+                     />
+                       
+                  
+                    </HorizontalStackLayout>
+                    
+                
             </Frame>
         </StackLayout>
         <!--The body-->
@@ -41,10 +49,25 @@
 
         <!-- CollectionView for Items in Basket -->
         <CollectionView x:Name="BasketCollectionView" 
-                        
+                        x:DataType="vm:BasketPageViewModel"
                         ItemsSource="{Binding BasketItems}" 
                         VerticalOptions="Start"
+                        
                         Grid.Row="1">
+
+            <CollectionView.EmptyView>
+                
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+                        <Image  Source="emptybasket.png"
+                           HeightRequest="100"
+                           WidthRequest="100"/>
+                        <Label Text="Your monkey is empty"
+                               Style="{StaticResource mediumText}"
+                               TextColor="{StaticResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+                
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:BasketItem">
                     <!-- Item Container Frame -->
@@ -141,14 +164,14 @@
 
                 <!-- Confirm Button -->
             <Button Text="Go to Payment" 
-                   
+                    x:DataType="vm:BasketPageViewModel"
                     WidthRequest="180"
-                    Command="{Binding GoToPayemt}"
+                    Clicked="GoToPayment"
                     FontSize="18"
                     FontAttributes="Bold"
                     TextColor="White" 
                     BackgroundColor="green" 
-                    CornerRadius="30" 
+                     
                     Padding="10"
                     Margin="0,0,0,0"
                     HorizontalOptions="Center"

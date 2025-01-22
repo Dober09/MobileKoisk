@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.OS;
 using Android.Runtime;
 
 namespace MobileKoisk
@@ -10,6 +11,8 @@ namespace MobileKoisk
             : base(handle, ownership)
         {
         }
+
+ 
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }

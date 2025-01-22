@@ -1,9 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 
-using Camera.MAUI;
-using MobileKiosk.ViewModel;
+using ZXing.Net.Maui.Controls;
+using MobileKoisk.ViewModel;
 using MobileKoisk.View;
+using MobileKoisk.Services;
+
+
 
 namespace MobileKoisk
 {
@@ -17,8 +21,10 @@ namespace MobileKoisk
                 //cameraview
             builder
                 .UseMauiApp<App>()
-				
-                .UseMauiCameraView()
+				.UseMauiCommunityToolkit()
+                //cameraview
+                
+                .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {
                     //This is our new primary fonts
@@ -26,12 +32,22 @@ namespace MobileKoisk
                     fonts.AddFont("Poppins-Light.ttf", "PoppinsLight");
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("Poppins-Thin.ttf", "PoppinsThin");
+                })
+                .ConfigureMauiHandlers(h=>
+                {
+#if ANDROID
+                    h.AddHandler<Shell, TabbarBadgeRenderer>();
+#endif
                 });
-            // Register ViewModels and Views
-                  builder.Services.AddTransient<LoginRegisterViewModel>();
-                  builder.Services.AddTransient<LoginRegisterPage>();
-                  builder.Services.AddTransient<MainPage>();
-                  builder.Services.AddSingleton<AppShell>();
+
+
+
+            // Register your services
+            builder.Services.AddSingleton<ProductItemService>();
+
+            builder.Services.AddTransient<ScanningViewModel>();
+            builder.Services.AddTransient<ScanningPage>(); 
+
 #if DEBUG
 			builder.Logging.AddDebug();
 #endif

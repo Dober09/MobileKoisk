@@ -17,16 +17,12 @@ namespace MobileKoisk.ViewModel
         }
 
         #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void OnPropertyChanged( string propertyName)
         {
-            var changing = PropertyChanged;
-            if (changing != null)
-            {
-                return;
-            }
-            changing?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

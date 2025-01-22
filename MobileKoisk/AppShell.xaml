@@ -1,56 +1,38 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:view="clr-namespace:MobileKoisk.View"
-       xmlns:viewModel="clr-namespace:MobileKoisk.ViewModel;assembly=MobileKoisk"
-       x:Class="MobileKoisk.AppShell">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MobileKoisk.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MobileKoisk"
+    xmlns:view="clr-namespace:MobileKoisk.View"
+  
+    Shell.FlyoutBehavior="Disabled"
+    Title="MobileKoisk">
 
 
-   
-      
-    <!-- introPage-->
-    <ShellContent
-       Route="IntroPage"
-        ContentTemplate="{DataTemplate view:IntroScreenPage}" /> 
-    
-    <!-- Login/Register -->
-    <ShellContent
-        Route="LoginRegisterPage"
-        ContentTemplate="{DataTemplate view:LoginRegisterPage}" />
-    
-    
+    <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}"
+              Route="introPage"/>
+
     <TabBar>
-        <!--Home Tab-->
         <Tab Title="Home"
-             Icon="home.png">
+             Icon="home.png" >
             <ShellContent ContentTemplate="{DataTemplate view:MainPage}"
                           Route="MainPage"/>
-        </Tab>    
-        
-   
-        <!--Sale Tab-->
+        </Tab>
         <Tab Title="WishList"
-             Icon="clipboard.png">
-            <ShellContent ContentTemplate="{DataTemplate view:SalePage}" />
-        </Tab>  
-        
-
-        <!-- Tab-->
+             Icon="clipboard.png" >
+            <ShellContent ContentTemplate="{DataTemplate view:WishListPage}" />
+        </Tab>
         <Tab Title="Scan"
-             Icon="scan.png">
+             Icon="scan.png" >
             <ShellContent ContentTemplate="{DataTemplate view:ScanningPage}" />
         </Tab>
-
-
-        <Tab Title="My Basket"
-             Icon="fruitsandvegetables.png">
+        <Tab Title="Basket"
+             Icon="fruitsandvegetables.png" >
             <ShellContent ContentTemplate="{DataTemplate view:MyBasketPage}" />
-
         </Tab>
-
-        <!--More Tab-->
         <Tab Title="More"
-             Icon="menu.png">
+             Icon="menu.png" >
             <ShellContent ContentTemplate="{DataTemplate view:MorePage}" />
         </Tab>
     </TabBar>

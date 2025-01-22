@@ -6,11 +6,8 @@ namespace MobileKoisk
     {
         public App()
         {
-            InitializeComponent();
-
-
-            Application.Current.MainPage = new AppShell();  // Set this in App.xaml.cs if not already done
-
+			InitializeComponent();
+            MainPage = new AppShell();
 
         }
     }

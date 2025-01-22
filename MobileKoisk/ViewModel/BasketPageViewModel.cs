@@ -2,21 +2,48 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using MobileKoisk.Helper;
 using MobileKoisk.Models;
 
 namespace MobileKoisk.ViewModel
 {
-	public class BasketPageViewModel : BaseViewModel
+	public class BasketPageViewModel : INotifyPropertyChanged
 	{
+		public decimal _vatRate = 0.15m;
+		private decimal _vatAmount;
+		private decimal _totalAmount;
+
+		public decimal VatAmount
+		{
+			get => _vatAmount;
+			set
+			{
+				if (_vatAmount != value)
+				{
+					_vatAmount = value;
+					OnPropertyChanged(nameof(VatAmount));	
+				}
+			}
+		}
 
 		private decimal _totalPrice;
-
-		public ICommand GoToPayemt { get; }
+		public decimal TotalAmount
+		{
+			get => _totalAmount;
+			set
+			{
+				if (_totalAmount != value)
+				{
+					_totalAmount = value;
+					OnPropertyChanged(nameof(TotalAmount));
+				}
+			}
+		}
 
 
 		//basket items list
 		public ObservableCollection<BasketItem> BasketItems { get; set; }
-
 
 		//sales list
 		private ObservableCollection<SaleItem> _salesItem;
@@ -34,8 +61,6 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 			
-
-
 		public decimal TotalPrice
 		{
 			get => _totalPrice;
@@ -49,16 +74,59 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 
+		// Indicates whether the credit card option is currently selected
+		private bool _isCreditCardSelected;
+
+		// Indicates whether the credit card button is toggled on
+		private bool _isCreditCardButtonSelected;
+
+		// Public property to access and modify the credit card selection state
+		public bool IsCreditCardSelected
+		{
+			get => _isCreditCardSelected;
+			set
+			{
+				// Update the property value and notify listeners if it changes
+				if (_isCreditCardSelected != value)
+				{
+					_isCreditCardSelected = value;
+					OnPropertyChanged(nameof(IsCreditCardSelected));
+				}
+			}
+		}
+
+		// Public property to access and modify the credit card button selection state
+		public bool IsCreditCardButtonSelected
+		{
+			get => _isCreditCardButtonSelected;
+			set
+			{
+				// Update the property value and notify listeners if it changes
+				if (_isCreditCardButtonSelected != value)
+				{
+					_isCreditCardButtonSelected = value;
+					OnPropertyChanged(nameof(IsCreditCardButtonSelected));
+				}
+			}
+		}
+
+		// Command to toggle the selection state of the credit card button and visibility
+		public ICommand SelectCreditCardCommand => new Command(() =>
+		{
+			// Toggle the button's selected state
+			IsCreditCardButtonSelected = !IsCreditCardButtonSelected;
+			// Toggle the visibility of the credit card option
+			IsCreditCardSelected = !IsCreditCardSelected;
+		});
+
 		public BasketPageViewModel()
 		{
-			GoToPayemt = new Command(async () => await Shell.Current.GoToAsync("paymentpage"));
+
 			// Initialize the basket items
-			BasketItems = new ObservableCollection<BasketItem>
-			{
-				new BasketItem { ImageSource = "coffee.png", ProductName = "Coffee", Quantity = 1, Price = 19.99M, ProductSize = "750 ml" },
-				new BasketItem { ImageSource = "selatisugar.png", ProductName = "Sugar", Quantity = 1, Price = 9.99M, ProductSize = "1 kg" },
-				new BasketItem { ImageSource = "cremora.png", ProductName = "Milk", Quantity = 2, Price = 29.99M, ProductSize = "500 ml" }
-			};
+			BasketItems = new ObservableCollection<BasketItem>();
+
+
+			WeakReferenceMessenger.Default.Register<AddToBasketMessage>(this, HandleAddToBasketMessage);
 
 			// Attach property change notifications for basket items
 			foreach (var item in BasketItems)
@@ -68,6 +136,8 @@ namespace MobileKoisk.ViewModel
 
 			// Update the total price
 			UpdateTotalPrice();
+
+		
 
 			//basket items list
 			SalesItems = new ObservableCollection<SaleItem>
@@ -80,7 +150,70 @@ namespace MobileKoisk.ViewModel
 		}
 
 
-		private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
+		//
+
+		private void HandleAddToBasketMessage(object recipient, AddToBasketMessage message)
+		{
+			if (message?.ProductItem == null) return;
+
+			MainThread.BeginInvokeOnMainThread(() =>
+			{
+				try
+				{
+					//check if item already exists
+					var existingItem = BasketItems.FirstOrDefault(item => item.ProductName == message.ProductItem.item_description);
+					if (existingItem != null)
+					{
+						existingItem.Quantity++;
+					}
+					else
+					{
+						var newItem = new BasketItem
+						{
+							ProductName = message.ProductItem.item_description,
+							Price = (decimal)message.ProductItem.selling_price,
+							Quantity = 1,
+
+
+
+						};
+						BasketItems.Add(newItem);
+					}
+					UpdateTotalPrice();
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine($"Error adding to basket: {ex.Message}");
+				}
+			});
+
+		}
+
+        //private void AddProductToBasket(ProductItem productItem)
+        //{
+        //	MainThread.BeginInvokeOnMainThread(() =>
+        //	{
+
+        //		var existingItem = BasketItems.FirstOrDefault((item) => productItem.barcode == item.Barcode);
+        //		if (existingItem != null)
+        //		{
+        //			// If item exist, increment quantity
+        //			existingItem.Quantity++;
+        //		}
+        //		else
+        //		{
+        //			//If item doesn't exist, add new BasketItem
+        //			var newItem = BasketItem.FromProductItem(productItem);
+        //			BasketItems.Add(newItem);
+        //			newItem.PropertyChanged += OnBasketItemChanged;
+        //		}
+
+        //		//Update totals
+        //		UpdateTotalPrice();
+        //	});
+        //}
+
+        private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == nameof(BasketItem.Quantity))
 			{
@@ -92,9 +225,25 @@ namespace MobileKoisk.ViewModel
 		{
 			// Calculate the total price by summing up the price of each item multiplied by its quantity
 			TotalPrice = BasketItems.Sum(item => item.Price * item.Quantity);
+
+			//calculate vat
+			VatAmount = TotalPrice * _vatRate /(1 + _vatRate);
+
+			////Calculate Total Amount including vat
+			TotalAmount = TotalPrice;
+
+			// Notify that VAT-related properties have changed
+			OnPropertyChanged(nameof(VatAmount));
+			OnPropertyChanged(nameof(TotalAmount));
 		}
 
-		
+		public event PropertyChangedEventHandler? PropertyChanged;
+		protected void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 
 	}
-}
+
+	
+	}
