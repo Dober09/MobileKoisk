@@ -1,4 +1,5 @@
 ﻿using MobileKoisk.View;
+
 namespace MobileKoisk
 {
     public partial class App : Application

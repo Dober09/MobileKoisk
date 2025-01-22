@@ -56,31 +56,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-
-	  <AndroidResource Remove="NewFolder1\**" />
-	  <AndroidResource Remove="NewFolder\**" />
-	  <AndroidResource Remove="utilities\**" />
-	  <Compile Remove="NewFolder1\**" />
-	  <Compile Remove="NewFolder\**" />
-	  <Compile Remove="utilities\**" />
-	  <EmbeddedResource Remove="NewFolder1\**" />
-	  <EmbeddedResource Remove="NewFolder\**" />
-	  <EmbeddedResource Remove="utilities\**" />
-	  <MauiCss Remove="NewFolder1\**" />
-	  <MauiCss Remove="NewFolder\**" />
-	  <MauiCss Remove="utilities\**" />
-	  <MauiXaml Remove="NewFolder1\**" />
-	  <MauiXaml Remove="NewFolder\**" />
-	  <MauiXaml Remove="utilities\**" />
-	  <None Remove="NewFolder1\**" />
-	  <None Remove="NewFolder\**" />
-
 	  <AndroidResource Remove="utilities\**" />
 	  <Compile Remove="utilities\**" />
 	  <EmbeddedResource Remove="utilities\**" />
 	  <MauiCss Remove="utilities\**" />
 	  <MauiXaml Remove="utilities\**" />
-
 	  <None Remove="utilities\**" />
 	</ItemGroup>
 
@@ -144,8 +124,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  
+	  <MauiXaml Update="View\Auth\LoginPage1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Auth\RegisterPage1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\IntroScreenPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\LoginRegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\MainPage.xaml">
@@ -154,7 +142,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\Auth\LoginPage.xaml">
+
+	  <MauiXaml Update="View\CheckoutPage.xaml">
+
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\MorePage.xaml">

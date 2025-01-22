@@ -9,6 +9,7 @@ using MobileKoisk.Services;
 
 
 
+
 namespace MobileKoisk
 {
     public static class MauiProgram
@@ -18,6 +19,7 @@ namespace MobileKoisk
 			
 			var builder = MauiApp.CreateBuilder();
 
+                //cameraview
             builder
                 .UseMauiApp<App>()
 				.UseMauiCommunityToolkit()
@@ -42,6 +44,10 @@ namespace MobileKoisk
 
 
             // Register your services
+
+            builder.Services.AddSingleton<LoginRegisterPage>();
+            builder.Services.AddSingleton<LoginRegisterViewModel>();
+
             builder.Services.AddSingleton<ProductItemService>();
 
             builder.Services.AddTransient<ScanningViewModel>();
