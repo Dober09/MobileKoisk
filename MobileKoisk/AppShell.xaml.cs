@@ -22,8 +22,8 @@ namespace MobileKoisk
         // Register routes
         private void RegisterRoutes()
         {
-            Routing.RegisterRoute("LoginRegisterPage", typeof(LoginRegisterPage));
             Routing.RegisterRoute("IntroPage", typeof(IntroScreenPage));
+            Routing.RegisterRoute("LoginRegisterPage", typeof(LoginRegisterPage));
             Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
             Routing.RegisterRoute("SalePage", typeof(SalePage));
             Routing.RegisterRoute("ScanningPage", typeof(ScanningPage));

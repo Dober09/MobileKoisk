@@ -98,7 +98,7 @@ namespace MobileKoisk.ViewModel
 
                 Preferences.Set("OnboandingComplete", true);
 
-                await Shell.Current.GoToAsync("//LoginRegisterPage");
+                await Shell.Current.GoToAsync("LoginRegisterPage");
             }
             catch (Exception ex)
             {

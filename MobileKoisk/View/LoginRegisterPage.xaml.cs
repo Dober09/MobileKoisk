@@ -23,4 +23,9 @@ public partial class LoginRegisterPage : ContentPage
             ViewModel.UserType = radioButton.Content?.ToString();
         }
     }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
+    }
 }

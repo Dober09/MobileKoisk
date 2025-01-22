@@ -163,6 +163,18 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                
+            <Button Text="Join in as Guest"
+                    TextColor="{StaticResource PrimaryDarkText}"
+                    Clicked="Button_Clicked"
+                    FontSize="23"
+                    FontAttributes="Bold"
+                    BackgroundColor="Transparent"
+                    
+                    
+                    />
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

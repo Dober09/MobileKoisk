@@ -6,6 +6,7 @@ using ZXing.Net.Maui.Controls;
 using MobileKoisk.ViewModel;
 using MobileKoisk.View;
 using MobileKoisk.Services;
+using MobileKiosk.ViewModel;
 
 
 
@@ -43,6 +44,8 @@ namespace MobileKoisk
 
 
             // Register your services
+            builder.Services.AddSingleton<LoginRegisterPage>();
+            builder.Services.AddSingleton<LoginRegisterViewModel>();
             builder.Services.AddSingleton<ProductItemService>();
 
             builder.Services.AddTransient<ScanningViewModel>();

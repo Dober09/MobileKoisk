@@ -11,7 +11,7 @@
 
 
     <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}"
-              Route="introPage"/>
+              Route="IntroPage"/>
 
     <TabBar>
         <Tab Title="Home"
