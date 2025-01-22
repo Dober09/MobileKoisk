@@ -6,7 +6,9 @@ namespace MobileKoisk.Helper
     {
         public Product ProductItem { get; }
 
+
         public AddToBasketMessage(Product product)
+
         {
             ProductItem = product ??  throw new ArgumentNullException(nameof(product));
         }

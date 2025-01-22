@@ -142,7 +142,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+
 	  <MauiXaml Update="View\CheckoutPage.xaml">
+
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\MorePage.xaml">

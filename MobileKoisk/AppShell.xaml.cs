@@ -8,7 +8,10 @@ namespace MobileKoisk
         public AppShell()
         {
             InitializeComponent();
+
             RegisterRoutes();
+
+		
 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
             {
