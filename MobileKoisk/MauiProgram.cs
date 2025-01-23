@@ -6,6 +6,7 @@ using ZXing.Net.Maui.Controls;
 using MobileKoisk.ViewModel;
 using MobileKoisk.View;
 using MobileKoisk.Services;
+using MobileKiosk.ViewModel;
 
 
 

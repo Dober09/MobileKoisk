@@ -8,7 +8,7 @@
              Shell.TabBarIsVisible="True"
 
              x:Class="MobileKoisk.View.MainPage"
-             Shell.NavBarIsVisible="False"
+     
              >
     
     <!--Layout -->
