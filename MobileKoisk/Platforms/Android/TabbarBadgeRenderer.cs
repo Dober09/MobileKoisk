@@ -22,6 +22,7 @@ namespace MobileKoisk
     class BadgeShellBottomNavViewAppearanceTracker : ShellBottomNavViewAppearanceTracker
     {
         private BadgeDrawable? badgeDrawable;
+        private BadgeDrawable? wishBadge;
         public BadgeShellBottomNavViewAppearanceTracker(IShellContext shellContext, ShellItem shellItem) : base(shellContext, shellItem)
         {
         }
@@ -39,19 +40,25 @@ namespace MobileKoisk
                 UpdateBadge(0);
                 BadgeCounterService.CountChanged += OnCountChanged;
 
-              ;
+
             }
 
-            const int wishIdx = 1;
-           var badgeDrawable2 = bottomView.GetOrCreateBadge(wishIdx);
-           badgeDrawable2.Number = 5;
-           badgeDrawable2.BackgroundColor = Colors.Red.ToPlatform();
-           badgeDrawable2.BadgeTextColor = Colors.White.ToPlatform();
+            if (wishBadge is null)
+            {
+
+                const int wishIdx = 1;
+                 wishBadge = bottomView.GetOrCreateBadge(wishIdx);
+                UpdateBadge(0);
+               
+				BadgeCounterService.CountChanged += OnCountChanged;
+			}
 
             
         }
 
-        private void OnCountChanged(object? sender,int newCount)
+		
+
+		private void OnCountChanged(object? sender,int newCount)
         {
            UpdateBadge(newCount);
         }
@@ -70,7 +77,22 @@ namespace MobileKoisk
                     badgeDrawable.BadgeTextColor = Colors.White.ToPlatform();
                     badgeDrawable.SetVisible(true);
                 }
+            } 
+            if (wishBadge is not null)
+            {
+                if (count <= 0)
+                {
+                    wishBadge.SetVisible(false);
+                }
+                else {
+                    wishBadge.Number = count;
+                    wishBadge.BackgroundColor = Colors.Red.ToPlatform();
+                    wishBadge.BadgeTextColor = Colors.White.ToPlatform();
+                    wishBadge.SetVisible(true);
+                }
             }
+            
+           
         }
 
         protected override void Dispose(bool disposing)

@@ -8,16 +8,7 @@
              BackgroundColor="{StaticResource White}">
     
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:BoolToTextConverter x:Key="BoolToTextConverter"/>
-            <converters:BoolToButtonTextConverter x:Key="BoolToButtonTextConverter"/>
-            <converters:PasswordVisibilityConverter x:Key="PasswordVisibilityConverter"/>
-            <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
-            <converters:StringToRadioConverter x:Key="StringToRadioConverter"/>
-            <converters:LoginRegisterToggleTextConverter x:Key="LoginRegisterToggleTextConverter"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    
 
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center">

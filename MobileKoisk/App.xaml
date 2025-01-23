@@ -2,7 +2,9 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileKoisk"
-             xmlns:converters="clr-namespace:MobileKoisk.Helper"
+             xmlns:converter="clr-namespace:MobileKoisk.Helper"
+             xmlns:converters="clr-namespace:MobileKoisk.Converters"
+             
             
              x:Class="MobileKoisk.App">
     <Application.Resources>
@@ -11,8 +13,15 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <!-- Converter -->
 
-            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:BoolToTextConverter x:Key="BoolToTextConverter"/>
+            <converters:BoolToButtonTextConverter x:Key="BoolToButtonTextConverter"/>
+            <converters:PasswordVisibilityConverter x:Key="PasswordVisibilityConverter"/>
+            <!--converter:InverseBoolConverter x:Key="InverseBoolConverters"/-->
+            <converters:StringToRadioConverter x:Key="StringToRadioConverter"/>
+            <converters:LoginRegisterToggleTextConverter x:Key="LoginRegisterToggleTextConverter"/>
 
             <!--Additional styles -->
             <!--Large Text-->

@@ -46,26 +46,7 @@ namespace MobileKoisk.Converters
     }
 
 
-    public class InverseBoolConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is bool b)
-            {
-                return !b;
-            }
-            return value; // Or handle the case when value is not a boolean
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is bool b)
-            {
-                return !b;
-            }
-            return value; // Or handle the case when value is not a boolean
-        }
-    }
+   
 
 
     // Convert string to radio button checked state
@@ -107,4 +88,26 @@ namespace MobileKoisk.Converters
             throw new NotImplementedException();
         }
     }
+
+	public class NullOrEmptyToBoolConverter : IValueConverter
+	{
+		// Convert: From string to bool
+		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			// Check if the value is null or an empty string
+			if (value is string str)
+			{
+				return string.IsNullOrEmpty(str);
+			}
+
+			// If the value is not a string, treat it as null/empty
+			return true;
+		}
+
+		// ConvertBack: Not needed for this converter
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

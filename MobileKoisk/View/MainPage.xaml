@@ -158,10 +158,18 @@
                                        WidthRequest="180" 
         >
                                     <StackLayout>
-                                        <Image Source="https://www.shoprite.co.za/medias/checkers515Wx515H-10627849EA-add.webp?context=bWFzdGVyfGltYWdlc3w2NzA1NnxpbWFnZS93ZWJwfGltYWdlcy9oMGUvaGFhLzExNDAyNzcyODQwNDc4LndlYnB8OTExZjhiMTY1MWU1YjhmYTcxYjkxMjMzNjE3ZDFjYTg0NjE2ZDYxMDQzNmYwY2Q3NmIzZjdhYTMxMDdjNWI4Nw" 
+                                        <Image Source="{Binding image_url}" 
                                                HeightRequest="70" 
                                                WidthRequest="70" 
-                                               Aspect="AspectFill"/>
+                                               Aspect="AspectFill">
+                                            <Image.Triggers>
+                                                <DataTrigger TargetType="Image"
+                                                             Binding="{Binding image_url, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                                                             Value="True">
+                                                    <Setter Property="Source" Value="placeholder.png" />
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
                                         <HorizontalStackLayout Margin="0,12,0,0">
                                             <StackLayout >
                                                 <Label Text="{Binding item_description}" FontSize="14" FontAttributes="Bold"/>

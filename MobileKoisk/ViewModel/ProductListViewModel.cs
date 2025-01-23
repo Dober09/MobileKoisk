@@ -1,42 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MobileKoisk.Models;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using MobileKoisk.Models;
 using MobileKoisk.Services;
-using System.Security.Cryptography.X509Certificates;
 
 namespace MobileKoisk.ViewModel
 {
-	public class ProductListViewModel :BaseViewModel
+	public class ProductListViewModel : BaseViewModel
 	{
 		private readonly ProductItemService _productItemService;
+		private readonly WishListServices _wishListServices;
+
+		// Declare FilteredProducts
 		public ObservableCollection<Product> FilteredProducts { get; private set; } = new ObservableCollection<Product>();
+
 		public ObservableCollection<Product> UnFilteredProducts { get; private set; } = new ObservableCollection<Product>();
 		public ObservableCollection<Product> WishList { get; private set; } = new ObservableCollection<Product>();
 		public string CategoryTitle { get; set; }
 		public Command<Product> AddProductsToWishListCommand { get; }
 
-		public ProductListViewModel(string category)
-		{ 
-
-			// Instantiate the service
+		public ProductListViewModel(WishListServices wishListServices, string category)
+		{
+			_wishListServices = wishListServices;
 			_productItemService = new ProductItemService();
+			
 			CategoryTitle = category;
 
 			LoadDataAsync(category);
 
 			AddProductsToWishListCommand = new Command<Product>(AddProductsToWishList);
-
-
-			//// Load and filter products
-			///
-			//LoadAndFilterProducts(category);
-
 		}
-	
 
 		private async Task LoadDataAsync(string category)
 		{
@@ -44,11 +39,9 @@ namespace MobileKoisk.ViewModel
 			LoadAndFilterProducts(category);
 		}
 
-
 		private void LoadAndFilterProducts(string category)
 		{
 			// Fetch products from the service
-
 			var filtered = UnFilteredProducts.Where(p => p.category.Equals(category, StringComparison.OrdinalIgnoreCase));
 			foreach (var product in filtered)
 			{
@@ -58,8 +51,6 @@ namespace MobileKoisk.ViewModel
 
 		public async Task LoadProductsAsync()
 		{
-			
-
 			try
 			{
 				var products = await _productItemService.LoadJsonDataAsync();
@@ -75,17 +66,13 @@ namespace MobileKoisk.ViewModel
 				// Handle exception (e.g., log it or show a message to the user)
 				Console.WriteLine($"Error loading products: {ex.Message}");
 			}
-			
 		}
 
 		public void AddProductsToWishList(Product product)
 		{
-			if (!WishList.Contains(product))
-			{
-				WishList.Add(product);
-				System.Diagnostics.Debug.WriteLine($"Product {product.item_description} added to wishlist");
-			}
+			_wishListServices.AddToWishList(product);
+			BadgeCounterService.SetCount(BadgeCounterService.Count + 1);
+			System.Diagnostics.Debug.WriteLine($"Product {product.item_description} added to wishlist");
 		}
-
 	}
 }
