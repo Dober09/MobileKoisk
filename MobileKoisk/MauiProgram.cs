@@ -55,6 +55,9 @@ namespace MobileKoisk
             builder.Services.AddTransient<ScanningViewModel>();
             builder.Services.AddTransient<ScanningPage>();
 
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
+
 			builder.Services.AddTransient<WishListPage>(serviceProvider =>
 			new WishListPage(serviceProvider.GetRequiredService<WishListServices>()));
 

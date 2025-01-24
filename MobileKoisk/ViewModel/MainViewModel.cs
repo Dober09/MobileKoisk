@@ -15,8 +15,15 @@ namespace MobileKoisk.ViewModel
 	{
 		private readonly ProductItemService _productItemService;
 
+		private readonly SalesService _salesService;
+
+		private readonly WishListServices _wishListServices;
 		public ObservableCollection<Product> Products { get; } = new ObservableCollection<Product>();
+		public ObservableCollection<SaleItem> SaleItems { get; } = new ObservableCollection<SaleItem>();
 		public ObservableCollection<Product> FilteredProducts { get; set; } = new ObservableCollection<Product>();
+
+
+		public ICommand AddToWishListCommand { get; }	
 		public ICommand CategoryTappedCommand { get; }
 
 		private bool _isLoading;
@@ -31,11 +38,14 @@ namespace MobileKoisk.ViewModel
 			}
 		}
 
-		public MainViewModel()
+		public MainViewModel( ProductItemService productItemService, WishListServices wishListServices)
 		{
 			_productItemService = new ProductItemService();
+			_wishListServices = wishListServices;
 			LoadProductsAsync();
+			LoadSalesAsync();	
 			CategoryTappedCommand = new Command<string>(OnCategoryTapped);
+			AddToWishListCommand = new Command<Product>(AddToWishList);
 			
 
 		}
@@ -55,6 +65,34 @@ namespace MobileKoisk.ViewModel
 				foreach (var product in products)
 				{
 					Products.Add(product);
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle exception (e.g., log it or show a message to the user)
+				Console.WriteLine($"Error loading products: {ex.Message}");
+			}
+			finally
+			{
+				IsLoading = false;
+			}
+		}
+
+		public async Task LoadSalesAsync()
+		{
+			if (IsLoading) return;
+
+			IsLoading = true;
+
+			try
+			{
+				var saleitems = await _salesService.LoadJsonDataAsync();
+
+				Products.Clear(); // Clear existing item'
+
+				foreach (var saleitem in saleitems)
+				{
+					SaleItems.Add(saleitem);
 				}
 			}
 			catch (Exception ex)
@@ -96,6 +134,11 @@ namespace MobileKoisk.ViewModel
 		{
 			var productsPage = new ProductListPage(category);
 			Application.Current.MainPage.Navigation.PushAsync(productsPage);
+		}
+
+		private void AddToWishList(Product product)
+		{
+			_wishListServices.AddToWishList(product);
 		}
 
 	}

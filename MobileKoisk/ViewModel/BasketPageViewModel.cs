@@ -136,16 +136,6 @@ namespace MobileKoisk.ViewModel
 
 			// Update the total price
 			UpdateTotalPrice();
-
-		
-
-			//basket items list
-			SalesItems = new ObservableCollection<SaleItem>
-			{
-				new SaleItem { saleName = "Red Friday Sales", saleDescription = "Save Up to 50%", saleDate = "Fri 09 - Sun 11 November",Color = "#938059" },
-				new SaleItem { saleName = "Fresh Wednesdays", saleDescription = "R10 Wednesday", saleDate = "Wednesdays", Color = "#618943" },
-				new SaleItem { saleName = "Rush Hour Monday", saleDescription = "Exclusive Deals", saleDate = "Monday 17h00 to 18h00", Color = "#C5D86D" }
-			};
 		
 		}
 

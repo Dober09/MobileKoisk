@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Text.Json.Serialization;
+
 
 namespace MobileKoisk.Models
 {
     public class SaleItem
     {
-		public string saleName { get; set; }
-		public string saleDescription { get; set; }
-		public string saleDate { get; set; }
+		public string sale_name { get; set; }
+		public string sale_description { get; set; }
+		public string sale_date { get; set; }
+	}
 
-		public string Color { get; set;}
+	[JsonSerializable(typeof(List<SaleItem>))]
+	internal sealed partial class SaleItemContext : JsonSerializerContext
+	{
 	}
 }
