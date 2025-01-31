@@ -5,11 +5,16 @@ namespace MobileKoisk.Services
 {
 	public class WishListServices
 	{
-		private static WishListServices _instance;
+		private readonly ObservableCollection<Product> _wishlist = new ObservableCollection<Product>();	
 
-		public static WishListServices Instance	=> _instance ?? new WishListServices();
-		public ObservableCollection<ProductItemService> WishList { get; } = new ObservableCollection<ProductItemService>();
-	
-		private WishListServices() { }	
+		public ObservableCollection<Product> WishList => _wishlist;
+
+		public void  AddToWishList(Product product)
+		{
+			if(!_wishlist.Contains(product))
+			{
+				_wishlist.Add(product);
+			}
+		}
 	}
 }

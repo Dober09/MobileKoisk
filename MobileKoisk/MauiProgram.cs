@@ -44,15 +44,22 @@ namespace MobileKoisk
 
 
 
-            // Register your services
+            // Register your servicesa
 
             builder.Services.AddSingleton<LoginRegisterPage>();
             builder.Services.AddSingleton<LoginRegisterViewModel>();
 
             builder.Services.AddSingleton<ProductItemService>();
+			builder.Services.AddSingleton<WishListServices>();
 
             builder.Services.AddTransient<ScanningViewModel>();
-            builder.Services.AddTransient<ScanningPage>(); 
+            builder.Services.AddTransient<ScanningPage>();
+
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
+
+			builder.Services.AddTransient<WishListPage>(serviceProvider =>
+			new WishListPage(serviceProvider.GetRequiredService<WishListServices>()));
 
 #if DEBUG
 			builder.Logging.AddDebug();

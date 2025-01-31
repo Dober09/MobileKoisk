@@ -4,9 +4,12 @@ namespace MobileKoisk
 {
     public partial class App : Application
     {
-        public App()
+        public IServiceProvider Services { get; set; }
+        public App(IServiceProvider service)
         {
-			InitializeComponent();
+            Services = service;
+            //Services
+            InitializeComponent();
             MainPage = new AppShell();
 
         }
