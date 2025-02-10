@@ -28,7 +28,8 @@ namespace MobileKoisk
         {
             Routing.RegisterRoute("IntroPage", typeof(IntroScreenPage));
             Routing.RegisterRoute("LoginRegisterPage", typeof(LoginRegisterPage));
-            Routing.RegisterRoute("paymentpage", typeof(PaymentPage));
+            Routing.RegisterRoute("PaymentPage", typeof(PaymentPage));
+            Routing.RegisterRoute("ProfilePage", typeof(ProfilePage));
             Routing.RegisterRoute("SalePage", typeof(SalePage));
             Routing.RegisterRoute("ScanningPage", typeof(ScanningPage));
             Routing.RegisterRoute("MyBasketPage", typeof(MyBasketPage));

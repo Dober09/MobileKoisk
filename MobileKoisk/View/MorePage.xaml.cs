@@ -11,11 +11,11 @@ public partial class MorePage : ContentPage
 
     private async void onTappedButton(object sender, TappedEventArgs e)
     {
-        await Shell.Current.GoToAsync("paymentpage");
+        await Shell.Current.GoToAsync("PaymentPage");
     }
 
     private async void GoToProfile(object sender, TappedEventArgs e)
     {
-        await Shell.Current.GoToAsync("profilepage");
+        await Shell.Current.GoToAsync("ProfilePage");
     }
 }

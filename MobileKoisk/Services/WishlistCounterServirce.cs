@@ -1,8 +1,9 @@
-﻿namespace MobileKoisk.Services
-{
-     public class BadgeCounterService
-    {
+﻿
 
+namespace MobileKoisk.Services
+{
+    public class WishlistCounterServirce
+    {
         private static int _count;
         public static event EventHandler<int>? CountChanged;
 
@@ -38,20 +39,5 @@
         {
             CountChanged?.Invoke(null, newCount);
         }
-        //private static int _count;
-        //public static int Count
-        //{
-        //    get => _count;
-
-        //    private set
-        //    {
-        //        _count = value;
-        //        CountChanged?.Invoke(null, _count);
-        //    }
-        //}
-
-        //public static void SetCount(int count) => Count = count;
-
-        //public static event EventHandler<int> CountChanged;
     }
 }

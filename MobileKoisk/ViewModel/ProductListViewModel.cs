@@ -71,8 +71,10 @@ namespace MobileKoisk.ViewModel
 		public void AddProductsToWishList(Product product)
 		{
 			_wishListServices.AddToWishList(product);
-			BadgeCounterService.SetCount(BadgeCounterService.Count + 1);
+			WishlistCounterServirce.SetCount(WishlistCounterServirce.Count + 1);
 			System.Diagnostics.Debug.WriteLine($"Product {product.item_description} added to wishlist");
 		}
 	}
+
+	
 }

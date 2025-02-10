@@ -21,7 +21,7 @@ namespace MobileKoisk
 
     class BadgeShellBottomNavViewAppearanceTracker : ShellBottomNavViewAppearanceTracker
     {
-        private BadgeDrawable? badgeDrawable;
+        private BadgeDrawable? basketBadgeDrawable;
         private BadgeDrawable? wishBadge;
         public BadgeShellBottomNavViewAppearanceTracker(IShellContext shellContext, ShellItem shellItem) : base(shellContext, shellItem)
         {
@@ -30,75 +30,83 @@ namespace MobileKoisk
         public override void SetAppearance(BottomNavigationView bottomView, IShellAppearanceElement appearance)
         {
             base.SetAppearance(bottomView, appearance);
-            if (badgeDrawable is null)
+            // Basket Badge
+            if (basketBadgeDrawable is null)
             {
-
                 const int basketIdx = 3;
-
-                badgeDrawable = bottomView.GetOrCreateBadge(basketIdx);
-
-                UpdateBadge(0);
-                BadgeCounterService.CountChanged += OnCountChanged;
-
-
+                basketBadgeDrawable = bottomView.GetOrCreateBadge(basketIdx);
+                UpdateBasketBadge(BadgeCounterService.Count);
+                BadgeCounterService.CountChanged += OnBasketCountChanged;
             }
 
+            // Wishlist Badge
             if (wishBadge is null)
             {
-
                 const int wishIdx = 1;
-                 wishBadge = bottomView.GetOrCreateBadge(wishIdx);
-                UpdateBadge(0);
-               
-				BadgeCounterService.CountChanged += OnCountChanged;
-			}
+                wishBadge = bottomView.GetOrCreateBadge(wishIdx);
+                UpdateWishlistBadge(WishlistCounterServirce.Count);
+                WishlistCounterServirce.CountChanged += OnWishlistCountChanged;
+            }
 
-            
+
         }
 
-		
-
-		private void OnCountChanged(object? sender,int newCount)
+        private void OnBasketCountChanged(object? sender, int newCount)
         {
-           UpdateBadge(newCount);
+            UpdateBasketBadge(newCount);
         }
 
-        private void UpdateBadge(int count)
+        private void OnWishlistCountChanged(object? sender, int newCount)
         {
-            if (badgeDrawable is not null)
+            UpdateWishlistBadge(newCount);
+        }
+
+        private void UpdateBasketBadge(int count)
+        {
+            if (basketBadgeDrawable is not null)
             {
                 if (count <= 0)
                 {
-                    badgeDrawable.SetVisible(false);
+                    basketBadgeDrawable.SetVisible(false);
                 }
-                else {
-                    badgeDrawable.Number = count;
-                    badgeDrawable.BackgroundColor = Colors.Red.ToPlatform();
-                    badgeDrawable.BadgeTextColor = Colors.White.ToPlatform();
-                    badgeDrawable.SetVisible(true);
+                else
+                {
+                    basketBadgeDrawable.Number = count;
+                    basketBadgeDrawable.BackgroundColor = Colors.Red.ToPlatform();
+                    basketBadgeDrawable.BadgeTextColor = Colors.White.ToPlatform();
+                    basketBadgeDrawable.SetVisible(true);
                 }
-            } 
+            }
+        }
+
+        private void UpdateWishlistBadge(int count)
+        {
             if (wishBadge is not null)
             {
                 if (count <= 0)
                 {
                     wishBadge.SetVisible(false);
                 }
-                else {
+                else
+                {
                     wishBadge.Number = count;
                     wishBadge.BackgroundColor = Colors.Red.ToPlatform();
                     wishBadge.BadgeTextColor = Colors.White.ToPlatform();
                     wishBadge.SetVisible(true);
                 }
             }
-            
-           
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            BadgeCounterService.CountChanged -= OnCountChanged;
+            BadgeCounterService.CountChanged -= OnBasketCountChanged;
+            WishlistCounterServirce.CountChanged -= OnWishlistCountChanged;
         }
     }
+
+ 
 }
+
