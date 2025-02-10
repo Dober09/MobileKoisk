@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MobileKoisk.ViewModel"
              xmlns:converters="clr-namespace:MobileKoisk.Converters"
+             xmlns:entry="clr-namespace:MobileKoisk"
              x:Class="MobileKoisk.View.LoginRegisterPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="{StaticResource White}">
@@ -26,7 +27,7 @@
                     BackgroundColor="Transparent"
                     Padding="10"
                     IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}">
-                <Entry 
+                <entry:BorderlessEntry 
                     Placeholder="Name"
                     Text="{Binding Name}"
                     TextColor="{StaticResource Black}"
@@ -39,7 +40,7 @@
                     BackgroundColor="Transparent"
                     Padding="10"
                     IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}">
-                <Entry 
+                <entry:BorderlessEntry 
                     Placeholder="Surname"
                     Text="{Binding Surname}"
                     TextColor="{StaticResource Black}"
@@ -50,9 +51,11 @@
             <Border Stroke="{StaticResource Primary}"
                     StrokeThickness="1"
                     BackgroundColor="Transparent"
+                    
                     Padding="10">
                 <Grid ColumnDefinitions="*, Auto">
-                    <Entry 
+                    <entry:BorderlessEntry 
+                        Background="White"
                         Grid.Column="0"
                         Placeholder="Email"
                         Text="{Binding Email}"
@@ -70,8 +73,9 @@
                     BackgroundColor="Transparent"
                     Padding="10">
                 <Grid ColumnDefinitions="*, Auto">
-                    <Entry 
+                    <entry:BorderlessEntry
                         Grid.Column="0"
+                        Background="Transparent"
                         Placeholder="Password"
                         Text="{Binding Password}"
                         IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBoolConverter}}"

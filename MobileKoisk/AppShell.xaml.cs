@@ -1,4 +1,4 @@
-using Microsoft.Maui.Controls;
+
 using MobileKoisk.View;
 
 namespace MobileKoisk
@@ -15,8 +15,9 @@ namespace MobileKoisk
 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
             {
-#if __ANDROID__
+#if ANDROID
                 handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.AntiqueWhite);
+                handler.PlatformView.Background = null;
 #endif
             });
 

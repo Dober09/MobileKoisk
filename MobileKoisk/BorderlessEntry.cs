@@ -8,5 +8,9 @@ namespace MobileKoisk
 {
 	public class BorderlessEntry : Entry
 	{
+		public BorderlessEntry()
+		{
+			Background = Colors.Transparent;
+		}
 	}
 }
