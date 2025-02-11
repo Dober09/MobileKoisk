@@ -13,133 +13,68 @@ namespace MobileKoisk.ViewModel
 {
 	public class MainViewModel : BaseViewModel
 	{
+		private readonly SalesService _salesService;
+	 
 		private readonly ProductItemService _productItemService;
 
-		private readonly SalesService _salesService;
+		public ObservableCollection <Product> Products { get; set; }
 
-		private readonly WishListServices _wishListServices;
-		public ObservableCollection<Product> Products { get; } = new ObservableCollection<Product>();
-		public ObservableCollection<SaleItem> SaleItems { get; } = new ObservableCollection<SaleItem>();
-		public ObservableCollection<Product> FilteredProducts { get; set; } = new ObservableCollection<Product>();
+		public ObservableCollection<SaleItem> SalesItems { get; set; }
+
+		public MainViewModel(ProductItemService productItemService, SalesService  salesService) { 
+		
+			_productItemService = productItemService;
+			_salesService = salesService;
+			Products = new ObservableCollection<Product>();
+			SalesItems = new ObservableCollection<SaleItem>(); 
 
 
-		public ICommand AddToWishListCommand { get; }	
-		public ICommand CategoryTappedCommand { get; }
 
-		private bool _isLoading;
-		public bool IsLoading
-		{
-			get => _isLoading;
-			set
-			{
-				_isLoading = value;
-				// Notify UI of changes
-				//OnPropertyChanged();
-			}
+			LoadProductItems();
+			//LoadSalesItem();
 		}
 
-		public MainViewModel( ProductItemService productItemService, WishListServices wishListServices)
+
+		private async void LoadProductItems()
 		{
-			_productItemService = new ProductItemService();
-			_wishListServices = wishListServices;
-			LoadProductsAsync();
-			LoadSalesAsync();	
-			CategoryTappedCommand = new Command<string>(OnCategoryTapped);
-			AddToWishListCommand = new Command<Product>(AddToWishList);
-			
-
-		}
-
-		public async Task LoadProductsAsync()
-		{
-			if (IsLoading) return;
-
-			IsLoading = true;
-
 			try
 			{
 				var products = await _productItemService.LoadJsonDataAsync();
+				Products.Clear();
 
-				Products.Clear(); // Clear existing item'
-				
 				foreach (var product in products)
 				{
 					Products.Add(product);
 				}
+				System.Diagnostics.Debug.WriteLine($"Total list of products --->  {Products.Count}");
+
 			}
 			catch (Exception ex)
 			{
-				// Handle exception (e.g., log it or show a message to the user)
-				Console.WriteLine($"Error loading products: {ex.Message}");
-			}
-			finally
-			{
-				IsLoading = false;
+				System.Diagnostics.Debug.WriteLine($"Error loading products --->  {ex.Message}");
 			}
 		}
 
-		public async Task LoadSalesAsync()
+		private async void LoadSalesItem()
 		{
-			if (IsLoading) return;
+            try
+            {
+                var saleItems = await _salesService.LoadJsonDataAsync();
+				SalesItems.Clear();
 
-			IsLoading = true;
+                foreach (var sale in saleItems)
+                {
+                    SalesItems.Add(sale);
+                }
+                System.Diagnostics.Debug.WriteLine($"Total list of products --->  {Products.Count}");
 
-			try
-			{
-				var saleitems = await _salesService.LoadJsonDataAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading products --->  {ex.Message}");
+            }
 
-				Products.Clear(); // Clear existing item'
-
-				foreach (var saleitem in saleitems)
-				{
-					SaleItems.Add(saleitem);
-				}
-			}
-			catch (Exception ex)
-			{
-				// Handle exception (e.g., log it or show a message to the user)
-				Console.WriteLine($"Error loading products: {ex.Message}");
-			}
-			finally
-			{
-				IsLoading = false;
-			}
-		}
-
-		public void FilteredProductsByCategory(string category)
-		{
-			FilteredProducts.Clear();
-			var filtered = Products.Where(p => p.category.Equals(category, StringComparison.OrdinalIgnoreCase));
-			foreach(var product in filtered)
-			{
-				FilteredProducts.Add(product);
-			}
-		}
-
-		public async void OnCategoryTapped(string category)
-		{
-			FilteredProducts.Clear();
-			foreach(var product in Products)
-			{
-				if (product.category == category)
-				{
-					FilteredProducts.Add(product);
-				}
-			}
-
-			NavigateToFilteredProductsPage(category);
-		}
-
-		private void NavigateToFilteredProductsPage(string category)
-		{
-			var productsPage = new ProductListPage(category);
-			Application.Current.MainPage.Navigation.PushAsync(productsPage);
-		}
-
-		private void AddToWishList(Product product)
-		{
-			_wishListServices.AddToWishList(product);
-		}
+        }
 
 	}
 }

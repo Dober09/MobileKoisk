@@ -51,6 +51,7 @@ namespace MobileKoisk
 
             builder.Services.AddSingleton<ProductItemService>();
 			builder.Services.AddSingleton<WishListServices>();
+            builder.Services.AddSingleton<SalesService>();
 
             builder.Services.AddTransient<ScanningViewModel>();
             builder.Services.AddTransient<ScanningPage>();

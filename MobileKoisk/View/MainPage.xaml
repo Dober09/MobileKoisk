@@ -20,7 +20,7 @@
         <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
             <Frame Padding="10" BorderColor="Transparent">
                 <VerticalStackLayout HorizontalOptions="FillAndExpand">
-                    <Label Text="Welcome Ayisha" FontAttributes="Bold" FontSize="30" VerticalOptions="Start"/>
+                    <Label Text="Welcome to MobileKiosk" FontAttributes="Bold" FontSize="20" VerticalOptions="Start"/>
                     <Label Text="Ready to shop smart at mankweng shoprite :) ?" FontSize="15" VerticalOptions="Start"/>
                     <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
                 </VerticalStackLayout>
@@ -36,7 +36,7 @@
 
         <!-- Grocery Category -->
         <Grid Grid.Row="2">
-            <ScrollView Orientation="Horizontal">
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
                 <HorizontalStackLayout Spacing="10" Margin="0,20,10,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
                     <StackLayout>
                         <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
@@ -100,21 +100,99 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Sales Items -->
-                <Grid Grid.Row="0" Margin="0,0,0,10" RowSpacing="10">
-                    <CollectionView ItemsSource="{Binding SaleItems}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:SaleItem">
-                                <Frame Margin="25" BackgroundColor="Yellow" CornerRadius="20" WidthRequest="350" HeightRequest="160">
-                                    <VerticalStackLayout Padding="10">
-                                        <Label Text="{Binding sale_description}" FontAttributes="Bold" TextColor="White" FontSize="30"/>
-                                        <Label Text="{Binding sale_name}" TextColor="White" FontSize="20"/>
-                                        <Label Text="{Binding sale_date}" TextColor="White" Margin="0,20,0,0"/>
+                <!-- Ads section a.k.a SALES ITEMS --> 
+                <Grid Grid.Row="0"
+                      Margin="0,0,0,10"
+                      RowSpacing="10" >
+
+                    <ScrollView Orientation="Horizontal" 
+                                WidthRequest="370"
+                                HorizontalOptions="Center"
+                                HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout  Spacing="10">
+                            <!--Container Ads 1-->
+                                <Border Stroke="{DynamicResource Primary}"
+                                        StrokeShape="RoundRectangle 10"
+                                        Margin="10"
+                                        WidthRequest="350"
+                                        HeightRequest="100"
+                                        HorizontalOptions="Center"
+                                        >
+                                    <VerticalStackLayout  HorizontalOptions="Center" 
+                                                          VerticalOptions="Center">
+                                    
+                                            <Label Text="Get School Essentials at Low Costs"
+                                                   HorizontalOptions="Center"
+                                                   FontAttributes="Bold" 
+                                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                                   FontSize="20"/>
+                                            <Label Text="Back To School"
+                                                   TextColor="{DynamicResource  PrimaryDarkText }"
+                                                   FontSize="10" HorizontalTextAlignment="Center"/>
+                                            <Label Text="07-28 Jan 2025 "
+                                                   TextColor="{DynamicResource PrimaryDarkText }"
+                                                   Margin="0,10,0,0" HorizontalTextAlignment="Center"/>
                                     </VerticalStackLayout>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                </Border>
+                            <!--Container Ads 2-->
+                            <Border Stroke="{DynamicResource Primary}"
+                                    StrokeShape="RoundRectangle 10"
+                                    Margin="10"
+                                    WidthRequest="350"
+                                    HeightRequest="100"
+                                    HorizontalOptions="Center"
+                                    >
+                                <VerticalStackLayout Margin="10"
+                                                     HorizontalOptions="Center"
+                                                     VerticalOptions="Center">
+
+                                    <Label Text="Get Selected Fresh items at R10"
+                                           FontAttributes="Bold" TextColor="{DynamicResource PrimaryDarkText}"
+                                           FontSize="20"/>
+                                    <Label Text="Fresh Wednesdays"
+                                           TextColor="{DynamicResource PrimaryDarkText}"
+                                           FontSize="10"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="Every Wednesdays"
+                                           TextColor="{DynamicResource PrimaryDarkText}"
+                                           Margin="0,20,0,0"
+                                           HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <!--Container Ads 3-->
+                            <Border Stroke="{DynamicResource Primary}"
+                                    StrokeShape="RoundRectangle 10"
+                                    Margin="10"
+                                    WidthRequest="350"
+                                    HeightRequest="100"
+                                    HorizontalOptions="Center"
+                                  >
+                                <VerticalStackLayout Margin="10"
+                                                     HorizontalOptions="Center"
+                                                     VerticalOptions="Center">
+
+                                    <Label Text="Big save with our combos"
+                                           FontAttributes="Bold"
+                                           TextColor="{DynamicResource PrimaryDarkText}"
+                                           FontSize="20"/>
+                                    <Label Text="Month-end Sale"
+                                           TextColor="{DynamicResource PrimaryDarkText}"
+                                           FontSize="10"
+                                           HorizontalTextAlignment="Center"/>
+                                    <Label Text="07-28 Jan 2025 "
+                                           TextColor="{DynamicResource PrimaryDarkText}"
+                                           Margin="0,20,0,0" 
+                                           HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+
+                            </Border>
+
+
+
+                        </HorizontalStackLayout>
+                    </ScrollView >
+                   
+                    
                 </Grid>
 
                 <!-- Product Items -->

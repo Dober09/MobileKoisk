@@ -5,7 +5,6 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              x:Class="MobileKoisk.View.ScanningPage"
              x:DataType="viewmodel:ScanningViewModel"
-           
             >
     
     <!--Layout-->
