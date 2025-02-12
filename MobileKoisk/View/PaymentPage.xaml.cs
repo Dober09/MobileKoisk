@@ -12,7 +12,7 @@ public partial class PaymentPage : ContentPage
 	private async void GoToReceiptPage(object sender, EventArgs e)
 	{
 
-		await Shell.Current.GoToAsync("reciptpage");
+		await Shell.Current.GoToAsync("ReciptPage");
 	}
 
     private async void GoToPrevPage(object sender, EventArgs e)

@@ -19,7 +19,7 @@ public partial class MyBasketPage : ContentPage , IDisposable
     }
 	private async void GoToPayment(object sender, EventArgs e)
 	{
-		await Shell.Current.GoToAsync("paymentpage", true);
+		await Shell.Current.GoToAsync("PaymentPage", true);
     }
 
     //private void UpBagdeCounter(object sender, EventArgs e)

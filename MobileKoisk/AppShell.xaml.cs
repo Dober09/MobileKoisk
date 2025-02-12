@@ -33,6 +33,7 @@ namespace MobileKoisk
             Routing.RegisterRoute("SalePage", typeof(SalePage));
             Routing.RegisterRoute("ScanningPage", typeof(ScanningPage));
             Routing.RegisterRoute("MyBasketPage", typeof(MyBasketPage));
+            Routing.RegisterRoute("ReciptPage", typeof(ReceiptPage));
             Routing.RegisterRoute("MorePage", typeof(MorePage));
         }
 

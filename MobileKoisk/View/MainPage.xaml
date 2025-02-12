@@ -90,6 +90,8 @@
                     </StackLayout>
                 </HorizontalStackLayout>
             </ScrollView>
+
+       
         </Grid>
 
         <!-- Sales Items and Product Items -->
@@ -102,11 +104,13 @@
 
                 <!-- Ads section a.k.a SALES ITEMS --> 
                 <Grid Grid.Row="0"
+                      RowDefinitions="auto,3*"
                       Margin="0,0,0,10"
                       RowSpacing="10" >
 
                     <ScrollView Orientation="Horizontal" 
                                 WidthRequest="370"
+                                Grid.Row="0"
                                 HorizontalOptions="Center"
                                 HorizontalScrollBarVisibility="Never">
                         <HorizontalStackLayout  Spacing="10">
@@ -191,7 +195,20 @@
 
                         </HorizontalStackLayout>
                     </ScrollView >
-                   
+                    <!-- the indicator is not showing  -->
+                    <IndicatorView Grid.RowSpan="1"
+                                   IndicatorColor="{DynamicResource PrimaryDarkText}"
+                                   IndicatorSize="10"
+                                   HeightRequest="10"
+                                    Grid.Row="1"
+                                   BackgroundColor="Blue"
+                  
+                   SelectedIndicatorColor="DarkGray"
+                   HorizontalOptions="Center"
+                                   
+                                   
+                                   
+                                   ></IndicatorView>
                     
                 </Grid>
 

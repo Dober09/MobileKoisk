@@ -14,16 +14,21 @@ namespace MobileKoisk.ViewModel
 	public class MainViewModel : BaseViewModel
 	{
 		private readonly SalesService _salesService;
-	 
-		private readonly ProductItemService _productItemService;
+
+
+        private readonly WishListServices _wishListServices;
+
+        private readonly ProductItemService _productItemService;
 
 		public ObservableCollection <Product> Products { get; set; }
 
 		public ObservableCollection<SaleItem> SalesItems { get; set; }
 
-		public MainViewModel(ProductItemService productItemService, SalesService  salesService) { 
+		public ObservableCollection<Product> FilteredProducts { get; set; } = new ObservableCollection<Product>();
+		public MainViewModel(ProductItemService productItemService, SalesService  salesService, WishListServices wishListServices) { 
 		
 			_productItemService = productItemService;
+			_wishListServices = wishListServices;
 			_salesService = salesService;
 			Products = new ObservableCollection<Product>();
 			SalesItems = new ObservableCollection<SaleItem>(); 
@@ -31,11 +36,15 @@ namespace MobileKoisk.ViewModel
 
 
 			LoadProductItems();
-			//LoadSalesItem();
-		}
+            CategoryTappedCommand = new Command<string>(OnCategoryTapped);
+            AddToWishListCommand = new Command<Product>(AddToWishList);
+            //LoadSalesItem();
+        }
 
 
-		private async void LoadProductItems()
+        public ICommand AddToWishListCommand { get; }
+        public ICommand CategoryTappedCommand { get; }
+        private async void LoadProductItems()
 		{
 			try
 			{
@@ -46,7 +55,7 @@ namespace MobileKoisk.ViewModel
 				{
 					Products.Add(product);
 				}
-				System.Diagnostics.Debug.WriteLine($"Total list of products --->  {Products.Count}");
+				System.Diagnostics.Debug.WriteLine($"Total list of products --->  {Products.Count}" );
 
 			}
 			catch (Exception ex)
@@ -76,5 +85,33 @@ namespace MobileKoisk.ViewModel
 
         }
 
-	}
+        public async void OnCategoryTapped(string category)
+        {
+            FilteredProducts.Clear();
+            foreach (var product in Products)
+            {
+                if (product.category == category)
+                {
+                    FilteredProducts.Add(product);
+                }
+            }
+
+            NavigateToFilteredProductsPage(category);
+        }
+
+        private void NavigateToFilteredProductsPage(string category)
+        {
+            var productsPage = new ProductListPage(category);
+            Application.Current.MainPage.Navigation.PushAsync(productsPage);
+        }
+
+
+        private void AddToWishList(Product product)
+        {
+            _wishListServices.AddToWishList(product);
+            WishlistCounterServirce.SetCount(WishlistCounterServirce.Count + 1);
+            System.Diagnostics.Debug.WriteLine($"Product {product.item_description} added to wishlist");
+        }
+
+    }
 }
