@@ -53,9 +53,9 @@ namespace MobileKoisk.ViewModel
 
 				foreach (var product in products)
 				{
+				System.Diagnostics.Debug.WriteLine($"image --->{product.item_description} && {product.image_url} " );
 					Products.Add(product);
 				}
-				System.Diagnostics.Debug.WriteLine($"Total list of products --->  {Products.Count}" );
 
 			}
 			catch (Exception ex)

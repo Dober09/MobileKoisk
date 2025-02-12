@@ -3,216 +3,273 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              xmlns:model="clr-namespace:MobileKoisk.Models"
+             xmlns:converters="clr-namespace:MobileKoisk.Converters"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="True"
              x:Class="MobileKoisk.View.MainPage">
 
+   
     <!-- Layout -->
-    <Grid>
+    <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="90"/>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Welcome Header -->
-        <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
+        <StackLayout Grid.Row="0" Padding="15" Margin="0,10,0,0">
             <Frame Padding="10" BorderColor="Transparent">
-                <VerticalStackLayout HorizontalOptions="FillAndExpand">
-                    <Label Text="Welcome to MobileKiosk" FontAttributes="Bold" FontSize="20" VerticalOptions="Start"/>
-                    <Label Text="Ready to shop smart at mankweng shoprite :) ?" FontSize="15" VerticalOptions="Start"/>
-                    <Image Source="profile.png" HeightRequest="50" WidthRequest="50" VerticalOptions="EndAndExpand" HorizontalOptions="End" Margin="0,-50,10,0"/>
-                </VerticalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <VerticalStackLayout Grid.Column="0" Spacing="5">
+                        <Label Text="Welcome to MobileKiosk" 
+                               FontAttributes="Bold" 
+                               FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"
+                               LineBreakMode="WordWrap"/>
+                        <Label Text="Ready to shop smart at mankweng shoprite :) ?" 
+                               FontSize="{OnIdiom Phone=15, Tablet=18, Desktop=20}"
+                               LineBreakMode="WordWrap"/>
+                    </VerticalStackLayout>
+
+                    <Image Grid.Column="1" 
+                           Source="profile.png" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=60, Desktop=70}"
+                           WidthRequest="{OnIdiom Phone=50, Tablet=60, Desktop=70}"
+                           Aspect="AspectFit"/>
+                </Grid>
             </Frame>
         </StackLayout>
 
         <!-- Search Bar -->
-        <Grid Grid.Row="1">
-            <Frame BorderColor="Transparent" Background="#E1E1E1" Margin="20, 10, 20, 10" HasShadow="True">
-                <SearchBar Placeholder="Search items ..." FontSize="20" TextColor="Black" PlaceholderColor="Gray" HorizontalOptions="FillAndExpand"/>
+        <Grid Grid.Row="1" Padding="15,0">
+            <Frame BorderColor="Transparent" 
+                   BackgroundColor="#E1E1E1" 
+                   Padding="5"
+                   HasShadow="True">
+                <SearchBar Placeholder="Search items ..." 
+                          FontSize="{OnIdiom Phone=16, Tablet=20, Desktop=22}"
+                          TextColor="Black" 
+                          PlaceholderColor="Gray"/>
             </Frame>
         </Grid>
 
         <!-- Grocery Category -->
         <Grid Grid.Row="2">
-            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
-                <HorizontalStackLayout Spacing="10" Margin="0,20,10,20" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+            <ScrollView Orientation="Horizontal" 
+                HorizontalScrollBarVisibility="Never">
+                <HorizontalStackLayout Spacing="{OnIdiom Phone=10, Tablet=15, Desktop=20}" 
+                             Margin="{OnIdiom Phone='0,20,10,20', Tablet='0,25,15,25', Desktop='0,30,20,30'}" 
+                             HorizontalOptions="Center" 
+                             VerticalOptions="FillAndExpand">
                     <StackLayout>
-                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80" Margin="10,0,0,0">
-                            <Image Source="fruitsandvegetables.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                        <Frame CornerRadius="50" 
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       Margin="10,0,0,0">
+                            <Image Source="fruitsandvegetables.png" 
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Fresh"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
-                        <Label Text="Fresh" HorizontalOptions="Center"/>
+                        <Label Text="Fresh" 
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
-                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80">
-                            <Image Source="medicine.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                        <Frame CornerRadius="50" 
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Image Source="medicine.png" 
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Health"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
-                        <Label Text="Health" HorizontalOptions="Center"/>
+                        <Label Text="Health" 
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
-                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80">
-                            <Image Source="beef.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                        <Frame CornerRadius="50" 
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Image Source="beef.png" 
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Buchery"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
-                        <Label Text="Burchery" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="Burchery" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
-                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80">
-                            <Image Source="shampoo.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                        <Frame CornerRadius="50" 
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Image Source="shampoo.png" 
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Beauty"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
-                        <Label Text="Beauty" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="Beauty" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
-                        <Frame CornerRadius="50" HeightRequest="80" WidthRequest="80">
-                            <Image Source="bakery.png" Aspect="AspectFill" WidthRequest="50" HeightRequest="50">
+                        <Frame CornerRadius="50" 
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Image Source="bakery.png" 
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Bakery"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
-                        <Label Text="Bakery" HorizontalOptions="Center"/>
+                        <Label Text="Bakery" 
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                 </HorizontalStackLayout>
             </ScrollView>
-
-       
         </Grid>
-
         <!-- Sales Items and Product Items -->
         <ScrollView Orientation="Vertical" Grid.Row="3">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="{OnIdiom Phone=150, Tablet=180, Desktop=200}"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Ads section a.k.a SALES ITEMS --> 
+                <!-- Ads section a.k.a SALES ITEMS -->
                 <Grid Grid.Row="0"
-                      RowDefinitions="auto,3*"
+                      RowDefinitions="*, Auto"
                       Margin="0,0,0,10"
-                      RowSpacing="10" >
+                      RowSpacing="10">
 
-                    <ScrollView Orientation="Horizontal" 
-                                WidthRequest="370"
+                    <ScrollView x:Name="adsScrollView"
+                                Orientation="Horizontal" 
+                                WidthRequest="{OnIdiom Phone=370, Tablet=500, Desktop=600}"
                                 Grid.Row="0"
                                 HorizontalOptions="Center"
                                 HorizontalScrollBarVisibility="Never">
-                        <HorizontalStackLayout  Spacing="10">
+                        <HorizontalStackLayout Spacing="10">
                             <!--Container Ads 1-->
-                                <Border Stroke="{DynamicResource Primary}"
-                                        StrokeShape="RoundRectangle 10"
-                                        Margin="10"
-                                        WidthRequest="350"
-                                        HeightRequest="100"
-                                        HorizontalOptions="Center"
-                                        >
-                                    <VerticalStackLayout  HorizontalOptions="Center" 
-                                                          VerticalOptions="Center">
-                                    
-                                            <Label Text="Get School Essentials at Low Costs"
-                                                   HorizontalOptions="Center"
-                                                   FontAttributes="Bold" 
-                                                   TextColor="{DynamicResource PrimaryDarkText}"
-                                                   FontSize="20"/>
-                                            <Label Text="Back To School"
-                                                   TextColor="{DynamicResource  PrimaryDarkText }"
-                                                   FontSize="10" HorizontalTextAlignment="Center"/>
-                                            <Label Text="07-28 Jan 2025 "
-                                                   TextColor="{DynamicResource PrimaryDarkText }"
-                                                   Margin="0,10,0,0" HorizontalTextAlignment="Center"/>
-                                    </VerticalStackLayout>
-                                </Border>
-                            <!--Container Ads 2-->
                             <Border Stroke="{DynamicResource Primary}"
                                     StrokeShape="RoundRectangle 10"
                                     Margin="10"
-                                    WidthRequest="350"
-                                    HeightRequest="100"
-                                    HorizontalOptions="Center"
-                                    >
-                                <VerticalStackLayout Margin="10"
-                                                     HorizontalOptions="Center"
+                                    WidthRequest="{OnIdiom Phone=350, Tablet=480, Desktop=580}"
+                                    HeightRequest="{OnIdiom Phone=100, Tablet=130, Desktop=150}"
+                                    HorizontalOptions="Center">
+                                <VerticalStackLayout HorizontalOptions="Center" 
                                                      VerticalOptions="Center">
-
+                                    <Label Text="Get School Essentials at Low Costs"
+                                           HorizontalOptions="Center"
+                                           FontAttributes="Bold" 
+                                           TextColor="{DynamicResource PrimaryDarkText}"
+                                           FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"/>
+                                    <Label Text="Back To School"
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}" 
+                                   HorizontalTextAlignment="Center"/>
+                                    <Label Text="07-28 Jan 2025"
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}"
+                                   Margin="0,10,0,0" 
+                                   HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <!--Container Ads 2-->
+                            <Border Stroke="{DynamicResource Primary}"
+                            StrokeShape="RoundRectangle 10"
+                            Margin="10"
+                            WidthRequest="{OnIdiom Phone=350, Tablet=480, Desktop=580}"
+                            HeightRequest="{OnIdiom Phone=100, Tablet=130, Desktop=150}"
+                            HorizontalOptions="Center">
+                                <VerticalStackLayout Margin="10"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
                                     <Label Text="Get Selected Fresh items at R10"
-                                           FontAttributes="Bold" TextColor="{DynamicResource PrimaryDarkText}"
-                                           FontSize="20"/>
+                                   FontAttributes="Bold" 
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"/>
                                     <Label Text="Fresh Wednesdays"
-                                           TextColor="{DynamicResource PrimaryDarkText}"
-                                           FontSize="10"
-                                           HorizontalTextAlignment="Center"/>
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}"
+                                   HorizontalTextAlignment="Center"/>
                                     <Label Text="Every Wednesdays"
-                                           TextColor="{DynamicResource PrimaryDarkText}"
-                                           Margin="0,20,0,0"
-                                           HorizontalTextAlignment="Center"/>
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}"
+                                   Margin="0,20,0,0"
+                                   HorizontalTextAlignment="Center"/>
                                 </VerticalStackLayout>
                             </Border>
                             <!--Container Ads 3-->
                             <Border Stroke="{DynamicResource Primary}"
-                                    StrokeShape="RoundRectangle 10"
-                                    Margin="10"
-                                    WidthRequest="350"
-                                    HeightRequest="100"
-                                    HorizontalOptions="Center"
-                                  >
+                            StrokeShape="RoundRectangle 10"
+                            Margin="10"
+                            WidthRequest="{OnIdiom Phone=350, Tablet=480, Desktop=580}"
+                            HeightRequest="{OnIdiom Phone=100, Tablet=130, Desktop=150}"
+                            HorizontalOptions="Center">
                                 <VerticalStackLayout Margin="10"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="Center">
-
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
                                     <Label Text="Big save with our combos"
-                                           FontAttributes="Bold"
-                                           TextColor="{DynamicResource PrimaryDarkText}"
-                                           FontSize="20"/>
+                                   FontAttributes="Bold"
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"/>
                                     <Label Text="Month-end Sale"
-                                           TextColor="{DynamicResource PrimaryDarkText}"
-                                           FontSize="10"
-                                           HorizontalTextAlignment="Center"/>
-                                    <Label Text="07-28 Jan 2025 "
-                                           TextColor="{DynamicResource PrimaryDarkText}"
-                                           Margin="0,20,0,0" 
-                                           HorizontalTextAlignment="Center"/>
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}"
+                                   HorizontalTextAlignment="Center"/>
+                                    <Label Text="07-28 Jan 2025"
+                                   TextColor="{DynamicResource PrimaryDarkText}"
+                                   FontSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}"
+                                   Margin="0,20,0,0" 
+                                   HorizontalTextAlignment="Center"/>
                                 </VerticalStackLayout>
-
                             </Border>
-
-
-
                         </HorizontalStackLayout>
-                    </ScrollView >
-                    <!-- the indicator is not showing  -->
-                    <IndicatorView Grid.RowSpan="1"
-                                   IndicatorColor="{DynamicResource PrimaryDarkText}"
-                                   IndicatorSize="10"
-                                   HeightRequest="10"
-                                    Grid.Row="1"
-                                   BackgroundColor="Blue"
-                  
-                   SelectedIndicatorColor="DarkGray"
-                   HorizontalOptions="Center"
-                                   
-                                   
-                                   
-                                   ></IndicatorView>
-                    
+                    </ScrollView>
+
+                    <!-- Fixed Indicator -->
+                    <IndicatorView Grid.Row="1"
+                          x:Name="adsIndicator"
+                          IndicatorSize="{OnIdiom Phone=10, Tablet=12, Desktop=14}"
+                          IndicatorColor="{DynamicResource Gray300}"
+                          SelectedIndicatorColor="{DynamicResource Primary}"
+                          HorizontalOptions="Center"
+                          Count="3"
+                          Position="0"
+                          Margin="0,5,0,0"/>
                 </Grid>
 
-                <!-- Product Items -->
+                <!-- Product Items - Keeping as is -->
                 <Grid Grid.Row="1">
                     <CollectionView x:DataType="vm:MainViewModel" ItemsSource="{Binding Products}">
                         <CollectionView.ItemsLayout>
@@ -223,15 +280,9 @@
                             <DataTemplate x:DataType="model:Product">
                                 <Frame BorderColor="Gray" CornerRadius="15" Margin="5,10,0,0" Padding="10" HeightRequest="180" WidthRequest="180">
                                     <StackLayout>
-                                        <Image Source="{Binding image_url}" HeightRequest="70" WidthRequest="70" Aspect="AspectFill">
-                                            <Image.Triggers>
-                                                <DataTrigger TargetType="Image"
-                                                             Binding="{Binding image_url, Converter={StaticResource NullOrEmptyToBoolConverter}}"
-                                                             Value="True">
-                                                    <Setter Property="Source" Value="placeholder.png"/>
-                                                </DataTrigger>
-                                            </Image.Triggers>
-                                        </Image>
+                                        <Image Source="{Binding image_url}" HeightRequest="70" WidthRequest="70" Aspect="AspectFill" />
+
+
                                         <HorizontalStackLayout Margin="0,12,0,0">
                                             <StackLayout>
                                                 <Label Text="{Binding item_description}" FontSize="14" FontAttributes="Bold"/>
@@ -244,19 +295,19 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <Label Grid.Column="0"
-                                                   Text="{Binding selling_price, StringFormat='R {0}'}"
-                                                   FontSize="16"
-                                                   TextColor="Green"
-                                                   FontAttributes="Bold"
-                                                   VerticalOptions="Center"/>
+                                           Text="{Binding selling_price, StringFormat='R {0}'}"
+                                           FontSize="16"
+                                           TextColor="Green"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center"/>
                                             <ImageButton Grid.Column="1"
-                                                         Source="plus.png"
-                                                         Aspect="AspectFill"
-                                                         WidthRequest="30"
-                                                         HeightRequest="30"
-                                                         VerticalOptions="Center"
-                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=AddToWishListCommand}"
-                                                         CommandParameter="{Binding .}"/>
+                                                Source="plus.png"
+                                                Aspect="AspectFill"
+                                                WidthRequest="30"
+                                                HeightRequest="30"
+                                                VerticalOptions="Center"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=AddToWishListCommand}"
+                                                CommandParameter="{Binding .}"/>
                                         </Grid>
                                     </StackLayout>
                                 </Frame>

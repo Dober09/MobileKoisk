@@ -5,14 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MobileKoisk"
     xmlns:view="clr-namespace:MobileKoisk.View"
-  
     Shell.FlyoutBehavior="Disabled"
     Title="MobileKoisk">
 
 
     <ShellContent ContentTemplate="{DataTemplate view:IntroScreenPage}"
-
-              Route="IntroPage"/>
+                  Route="IntroPage"/>
 
 
     <TabBar>

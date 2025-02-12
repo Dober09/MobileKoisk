@@ -1,7 +1,67 @@
-﻿using System.Globalization;
+﻿
+using System.Globalization;
 
 namespace MobileKoisk.Converters
 {
+    public class ByteArrayToImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return null;
+
+            if (value is byte[] imageBytes)
+            {
+                return ImageSource.FromStream(() => new MemoryStream(imageBytes));
+            }
+
+            if (value is string base64String)
+            {
+                try
+                {
+                    byte[] bytes = System.Convert.FromBase64String(base64String);
+                    return ImageSource.FromStream(() => new MemoryStream(bytes));
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    // Converter string image to image
+    public class Base64ImageSourceConverter : IValueConverter
+    {
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            if (value is string base64String && !base64String.Equals("user.png"))
+            {
+                try
+                {
+                    byte[] imageBytes = System.Convert.FromBase64String(base64String);
+                    return ImageSource.FromStream(() => new MemoryStream(imageBytes));
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error converting base64 to image: {ex.Message}");
+                }
+            }
+                    return "user.png";
+        }
+
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     // Convert bool to page title
     public class BoolToTextConverter : IValueConverter
     {

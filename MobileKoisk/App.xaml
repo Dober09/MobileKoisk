@@ -22,6 +22,7 @@
             <!--converter:InverseBoolConverter x:Key="InverseBoolConverters"/-->
             <converters:StringToRadioConverter x:Key="StringToRadioConverter"/>
             <converters:LoginRegisterToggleTextConverter x:Key="LoginRegisterToggleTextConverter"/>
+            <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"  />
 
             <!--Additional styles -->
             <!--Large Text-->

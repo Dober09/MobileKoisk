@@ -88,7 +88,7 @@ namespace MobileKoisk.ViewModel
                         }
                         else
                         {
-                            await Application.Current.MainPage.DisplayAlert(
+                            await App.Current.MainPage.DisplayAlert(
                                 "Product Not Found",
                                 $"No product found with barcode: {scanResult}",
                                 "OK");
