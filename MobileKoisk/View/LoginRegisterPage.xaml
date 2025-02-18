@@ -6,171 +6,183 @@
              xmlns:entry="clr-namespace:MobileKoisk"
              x:Class="MobileKoisk.View.LoginRegisterPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource White}">
-    
-
-    
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="20" VerticalOptions="Center">
-            <!-- Title -->
-            <Label 
-                Text="{Binding IsLogin, Converter={StaticResource BoolToTextConverter}}"
-                FontSize="24"
-                HorizontalOptions="Center"
-                FontAttributes="Bold"
-                TextColor="{StaticResource Primary}" />
+        <Grid RowSpacing="0" Padding="20,40,20,20">
+            <Frame BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}"
+                   CornerRadius="30"
+                   HasShadow="True"
+                   Margin="0,20"
+                   BorderColor="Transparent">
 
-                       <!-- Name Entry (Visible only during registration) -->
-            <Border Stroke="{StaticResource Primary}"
-                    StrokeThickness="1"
-                    BackgroundColor="Transparent"
-                    Padding="10"
-                    IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}">
-                <entry:BorderlessEntry 
-                    Placeholder="Name"
-                    Text="{Binding Name}"
-                    TextColor="{StaticResource Black}"
-                    PlaceholderColor="{StaticResource Gray100}" />
-            </Border>
+                <VerticalStackLayout Spacing="25" Padding="15">
+                    <!-- Title -->
+                    <Label Text="{Binding IsLogin, Converter={StaticResource BoolToTextConverter}}"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           Margin="0,10,0,20"
+                           TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
 
-            <!-- Surname Entry (Visible only during registration) -->
-            <Border Stroke="{StaticResource Primary}"
-                    StrokeThickness="1"
-                    BackgroundColor="Transparent"
-                    Padding="10"
-                    IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}">
-                <entry:BorderlessEntry 
-                    Placeholder="Surname"
-                    Text="{Binding Surname}"
-                    TextColor="{StaticResource Black}"
-                    PlaceholderColor="{StaticResource Gray100}" />
-            </Border>
+                    <!-- Name Entry (Registration only) -->
+                    <Frame IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}"
+                           Padding="15,5"
+                           CornerRadius="12"
+                           BorderColor="{StaticResource PrimaryDarkText}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray800}}">
+                        <entry:BorderlessEntry Placeholder="Name"
+                                             Text="{Binding Name}"
+                                             TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                             PlaceholderColor="{StaticResource Gray400}" />
+                    </Frame>
 
-            <!-- Email Entry with Icon -->
-            <Border Stroke="{StaticResource Primary}"
-                    StrokeThickness="1"
-                    BackgroundColor="Transparent"
-                    
-                    Padding="10">
-                <Grid ColumnDefinitions="*, Auto">
-                    <entry:BorderlessEntry 
-                        Background="White"
-                        Grid.Column="0"
-                        Placeholder="Email"
-                        Text="{Binding Email}"
-                        Keyboard="Email"
-                        TextColor="{StaticResource Black}"
-                        PlaceholderColor="{StaticResource Gray100}" />
+                    <!-- Surname Entry (Registration only) -->
+                    <Frame IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}"
+                           Padding="15,5"
+                           CornerRadius="12"
+                           BorderColor="{StaticResource PrimaryDarkText}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray800}}">
+                        <entry:BorderlessEntry Placeholder="Surname"
+                                             Text="{Binding Surname}"
+                                             TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                             PlaceholderColor="{StaticResource Gray400}" />
+                    </Frame>
 
-                   
-                </Grid>
-            </Border>
+                    <!-- Email Entry -->
+                    <Frame Padding="15,5"
+                           CornerRadius="12"
+                           BorderColor="{StaticResource PrimaryDarkText}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray800}}">
+                        <entry:BorderlessEntry Placeholder="Email"
+                                             Text="{Binding Email}"
+                                             Keyboard="Email"
+                                             TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                             PlaceholderColor="{StaticResource Gray400}" />
+                    </Frame>
 
-            <!-- Password Entry -->
-            <Border Stroke="{StaticResource Primary}"
-                    StrokeThickness="1"
-                    BackgroundColor="Transparent"
-                    Padding="10">
-                <Grid ColumnDefinitions="*, Auto">
-                    <entry:BorderlessEntry
-                        Grid.Column="0"
-                        Background="Transparent"
-                        Placeholder="Password"
-                        Text="{Binding Password}"
-                        IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBoolConverter}}"
-                        TextColor="{StaticResource Black}"
-                        PlaceholderColor="{StaticResource Gray100}" />
+                    <!-- Password Entry -->
+                    <Frame Padding="15,5"
+                           CornerRadius="12"
+                           BorderColor="{StaticResource PrimaryDarkText}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray800}}">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <entry:BorderlessEntry Grid.Column="0"
+                                                 Placeholder="Password"
+                                                 Text="{Binding Password}"
+                                                 IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBoolConverter}}"
+                                                 TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                                 PlaceholderColor="{StaticResource Gray400}" />
+                            <ImageButton Grid.Column="1"
+                                       Source="{Binding PasswordIcon}"
+                                       Command="{Binding TogglePasswordVisibilityCommand}"
+                                       WidthRequest="24"
+                                       HeightRequest="24"
+                                       Opacity="0.7"
+                                       BackgroundColor="Transparent" />
+                        </Grid>
+                    </Frame>
 
-                    <ImageButton 
-                        Grid.Column="1"
-                        Source="eye.png"
-                        Command="{Binding TogglePasswordVisibilityCommand}"
-                        WidthRequest="30"
-                        HeightRequest="30"
-                        BackgroundColor="Transparent" />
-                </Grid>
-            </Border>
+                    <!-- Confirm Password (Registration only) -->
+                    <Frame IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}"
+                           Padding="15,5"
+                           CornerRadius="12"
+                           BorderColor="{StaticResource PrimaryDarkText}"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray50}, Dark={StaticResource Gray800}}">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Entry Grid.Column="0"
+                                   Placeholder="Confirm Password"
+                                   Text="{Binding ConfirmPassword}"
+                                   IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBoolConverter}}"
+                                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                   PlaceholderColor="{StaticResource Gray400}" />
+                            <ImageButton Grid.Column="1"
+                                       Source="{Binding PasswordIcon}"
+                                       Command="{Binding TogglePasswordVisibilityCommand}"
+                                       WidthRequest="24"
+                                       HeightRequest="24"
+                                       Opacity="0.7"
+                                       BackgroundColor="Transparent" />
+                        </Grid>
+                    </Frame>
 
-            <!-- Confirm Password Entry (Only for Registration) -->
-            <Border Stroke="{StaticResource Primary}"
-                    StrokeThickness="1"
-                    BackgroundColor="Transparent"
-                    Padding="10"
-                    IsVisible="{Binding IsLogin, Converter={StaticResource InverseBoolConverter}}">
-                <Grid ColumnDefinitions="*, Auto">
-                    <Entry 
-                        Grid.Column="0"
-                        Placeholder="Confirm Password"
-                        Text="{Binding ConfirmPassword}"
-                        IsPassword="{Binding IsPasswordVisible, Converter={StaticResource InverseBoolConverter}}"
-                        TextColor="{StaticResource Black}"
-                        PlaceholderColor="{StaticResource Gray100}" />
+                    <!-- Submit Button -->
+                    <Button Text="{Binding IsLogin, Converter={StaticResource BoolToButtonTextConverter}}"
+                            Command="{Binding SubmitCommand}"
+                            BackgroundColor="{StaticResource Primary}"
+                            TextColor="{StaticResource White}"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            HeightRequest="50"
+                            Margin="0,10" />
 
-                    <ImageButton 
-                        Grid.Column="1"
-                        Source="eye.png"
-                        Command="{Binding TogglePasswordVisibilityCommand}"
-                        WidthRequest="30"
-                        HeightRequest="30"
-                        BackgroundColor="Transparent" />
-                </Grid>
-            </Border>
+                    <!-- Social Login Divider -->
+                    <Grid ColumnDefinitions="*, Auto, *" RowDefinitions="Auto" Margin="0,10">
+                        <Line Grid.Column="0" 
+                              BackgroundColor="{StaticResource Gray300}"
+                              HeightRequest="1"
+                              VerticalOptions="Center"/>
+                        <Label Grid.Column="1" 
+                               Text="or continue with"
+                               TextColor="{StaticResource Gray400}"
+                               Margin="10,0"/>
+                        <Line Grid.Column="2"
+                              BackgroundColor="{StaticResource Gray300}"
+                              HeightRequest="1"
+                              VerticalOptions="Center"/>
+                    </Grid>
 
-            <!-- Submit Button -->
-            <Button 
-                Text="{Binding IsLogin, Converter={StaticResource BoolToButtonTextConverter}}"
-                Command="{Binding SubmitCommand}"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="{StaticResource Black}"
-                CornerRadius="10"
-                Padding="15" />
+                    <!-- Social Login Options -->
+                    <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                        <Frame CornerRadius="12"
+                               Padding="15"
+                               HasShadow="True"
+                               BorderColor="Transparent">
+                            <ImageButton Source="google.png"
+                                       Command="{Binding GoogleLoginCommand}"
+                                       WidthRequest="30"
+                                       HeightRequest="30"
+                                       BackgroundColor="Transparent" />
+                        </Frame>
+                        <Frame CornerRadius="12"
+                               Padding="15"
+                               HasShadow="True"
+                               BorderColor="Transparent">
+                            <ImageButton Source="facebook.png"
+                                       Command="{Binding FacebookLoginCommand}"
+                                       WidthRequest="30"
+                                       HeightRequest="30"
+                                       BackgroundColor="Transparent" />
+                        </Frame>
+                    </HorizontalStackLayout>
 
-            <!-- Social Login Options -->
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                <ImageButton 
-                    Source="google.png" 
-                    Command="{Binding GoogleLoginCommand}"
-                    WidthRequest="40"
-                    HeightRequest="40"
-                    BackgroundColor="Transparent" />
+                    <!-- Toggle Login/Register -->
+                    <Label HorizontalOptions="Center" Margin="0,10">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding IsLogin, Converter={StaticResource LoginRegisterToggleTextConverter}, ConverterParameter=Prompt}"
+                                      TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+                                <Span Text="{Binding IsLogin, Converter={StaticResource LoginRegisterToggleTextConverter}, ConverterParameter=Action}"
+                                      TextColor="{StaticResource Primary}"
+                                      FontAttributes="Bold">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ToggleLoginRegisterCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                <ImageButton 
-                    Source="facebook.png" 
-                    Command="{Binding FacebookLoginCommand}"
-                    WidthRequest="40"
-                    HeightRequest="40"
-                    BackgroundColor="Transparent" />
-            </HorizontalStackLayout>
-
-            <!-- Toggle Login/Register -->
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding IsLogin, Converter={StaticResource LoginRegisterToggleTextConverter}, ConverterParameter=Prompt}" 
-                              TextColor="{StaticResource Black}" />
-                        <Span Text="{Binding IsLogin, Converter={StaticResource LoginRegisterToggleTextConverter}, ConverterParameter=Action}" 
-                              TextColor="{StaticResource Accent}">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ToggleLoginRegisterCommand}" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                
-            <Button Text="Join in as Guest"
-                    TextColor="{StaticResource PrimaryDarkText}"
-                    Clicked="Button_Clicked"
-                    FontSize="23"
-                    FontAttributes="Bold"
-                    BackgroundColor="Transparent"
-                    
-                    
-                    />
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+                    <!-- Guest Login -->
+                    <Button Text="Join as Guest"
+                            TextColor="{StaticResource Primary}"
+                            Clicked="Button_Clicked"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"
+                            Margin="0,-10,0,0" />
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
     </ScrollView>
 </ContentPage>
-

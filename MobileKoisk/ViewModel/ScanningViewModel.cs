@@ -11,6 +11,11 @@ namespace MobileKoisk.ViewModel
 {
     public partial class ScanningViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private bool showManualEntry;
+
+        [ObservableProperty]
+        private string manualBarcode;
 
         [ObservableProperty]
         private bool isScanning = true;
@@ -162,6 +167,40 @@ namespace MobileKoisk.ViewModel
             {
                 System.Diagnostics.Debug.WriteLine($"Error in OnPageAppearing: {ex}");
             }
+        }
+
+        [RelayCommand]
+        private void OpenManualEntry()
+        {
+            ShowManualEntry = true;
+        }
+
+      
+        [RelayCommand]
+        private void ToggleManualEntry()
+        {
+          
+            ShowManualEntry = !ShowManualEntry;
+            if (ShowManualEntry) ManualBarcode = string.Empty;
+        }
+
+        [RelayCommand]
+        private void ConfirmManualEntry()
+        {
+            if (!string.IsNullOrWhiteSpace(ManualBarcode))
+            {
+                // Handle the manual barcode entry
+                //HandleBarcode(ManualBarcode);
+            }
+            ShowManualEntry = false;
+        }
+
+
+        [RelayCommand]
+        private void CloseManualEntry()
+        {
+            ShowManualEntry = false;
+            ManualBarcode = string.Empty;
         }
 
     }

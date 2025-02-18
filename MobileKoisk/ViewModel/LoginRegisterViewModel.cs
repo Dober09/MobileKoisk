@@ -1,236 +1,237 @@
-﻿using System;
-using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MobileKoisk.Models;
+using CommunityToolkit.Mvvm.Input;
+using System.Text.RegularExpressions;
+
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using System.Threading.Tasks;
+
 
 namespace MobileKiosk.ViewModel
 {
-	public class LoginRegisterViewModel : INotifyPropertyChanged
-	{
-		private string _name;
-		private string _surname;
-		private string _email;
-		private string _password;
-		private string _confirmPassword;
-		private bool _isLogin = true;
-		private bool _isPasswordVisible;
-		private string _userType = "Customer";
-		private bool _isCustomer;
-		private bool _isStoreHandler;
+    public partial class LoginRegisterViewModel : ObservableObject
+    {
+        // Mock database of users
+        private static readonly List<UserData> _users = new();
 
-		public string Name
-		{
-			get => _name;
-			set => SetProperty(ref _name, value);
-		}
+        [ObservableProperty]
+        private string name;
 
-		public string Surname
-		{
-			get => _surname;
-			set => SetProperty(ref _surname, value);
-		}
+        [ObservableProperty]
+        private string surname;
 
-		public string Email
-		{
-			get => _email;
-			set => SetProperty(ref _email, value);
-		}
+        [ObservableProperty]
+        private string email;
 
-		public string Password
-		{
-			get => _password;
-			set => SetProperty(ref _password, value);
-		}
+        [ObservableProperty]
+        private string password;
 
-		public string ConfirmPassword
-		{
-			get => _confirmPassword;
-			set => SetProperty(ref _confirmPassword, value);
-		}
+        [ObservableProperty]
+        private string confirmPassword;
 
-		public bool IsLogin
-		{
-			get => _isLogin;
-			set => SetProperty(ref _isLogin, value);
-		}
+        [ObservableProperty]
+        private bool isLogin = true;
 
-		public bool IsPasswordVisible
-		{
-			get => _isPasswordVisible;
-			set => SetProperty(ref _isPasswordVisible, value);
-		}
+        [ObservableProperty]
+        private bool isPasswordVisible;
 
-		public string UserType
-		{
-			get => _userType;
-			set => SetProperty(ref _userType, value);
-		}
+        [ObservableProperty]
+        private string userType = "Customer";
 
-		public bool IsCustomer
-		{
-			get => _isCustomer;
-			set
-			{
-				if (SetProperty(ref _isCustomer, value))
-				{
-					if (_isCustomer)
-					{
-						UserType = "Customer";
-						IsStoreHandler = false;  // Ensure StoreHandler is false
-					}
-				}
-			}
-		}
+        [ObservableProperty]
+        private string passwordIcon = "eye.png";
 
-		public bool IsStoreHandler
-		{
-			get => _isStoreHandler;
-			set
-			{
-				if (SetProperty(ref _isStoreHandler, value))
-				{
-					if (_isStoreHandler)
-					{
-						UserType = "StoreHandler";
-						IsCustomer = false;  // Ensure Customer is false
-					}
-				}
-			}
-		}
+        private bool isCustomer;
+        private bool isStoreHandler;
 
-		public ICommand SetRoleCommand { get; }
-		public ICommand GoogleLoginCommand { get; }
-		public ICommand FacebookLoginCommand { get; }
-		public ICommand ToggleLoginRegisterCommand { get; }
-		public ICommand SubmitCommand { get; }
-		public ICommand TogglePasswordVisibilityCommand { get; }
+        public bool IsCustomer
+        {
+            get => isCustomer;
+            set
+            {
+                if (SetProperty(ref isCustomer, value) && isCustomer)
+                {
+                    UserType = "Customer";
+                    IsStoreHandler = false;
+                }
+            }
+        }
 
-		public LoginRegisterViewModel()
-		{
-			SetRoleCommand = new Command<string>(SetRole);
-			GoogleLoginCommand = new Command(OnGoogleLogin);
-			FacebookLoginCommand = new Command(OnFacebookLogin);
-			ToggleLoginRegisterCommand = new Command(ToggleLoginRegister);
-			SubmitCommand = new Command(OnSubmit);
-			TogglePasswordVisibilityCommand = new Command(TogglePasswordVisibility);
-		}
+        public bool IsStoreHandler
+        {
+            get => isStoreHandler;
+            set
+            {
+                if (SetProperty(ref isStoreHandler, value) && isStoreHandler)
+                {
+                    UserType = "StoreHandler";
+                    IsCustomer = false;
+                }
+            }
+        }
 
-		// Method to toggle password visibility
-		private void TogglePasswordVisibility()
-		{
-			IsPasswordVisible = !IsPasswordVisible;
-		}
+        public LoginRegisterViewModel()
+        {
+            // Add test user if empty
+            if (!_users.Any())
+            {
+                _users.Add(new UserData
+                {
+                    Email = "test@example.com",
+                    Password = "password123",
+                    Name = "Test",
+                    Surname = "User",
+                    UserType = "Customer"
+                });
+            }
+        }
 
-		private void SetRole(string role)
-		{
-			if (role == "Customer")
-			{
-				IsCustomer = true;
-				IsStoreHandler = false;
-			}
-			else if (role == "StoreHandler")
-			{
-				IsStoreHandler = true;
-				IsCustomer = false;
-			}
-		}
+        [RelayCommand]
+        private void SetRole(string role)
+        {
+            if (role == "Customer")
+            {
+                IsCustomer = true;
+                IsStoreHandler = false;
+            }
+            else if (role == "StoreHandler")
+            {
+                IsStoreHandler = true;
+                IsCustomer = false;
+            }
+        }
 
-		private void ToggleLoginRegister()
-		{
-			IsLogin = !IsLogin;
-			Email = string.Empty;
-			Password = string.Empty;
-			ConfirmPassword = string.Empty;
-		}
+        [RelayCommand]
+        private async Task GoogleLogin()
+        {
+            await ShowAlert("Google Login", "Google login is not implemented yet.");
+        }
 
-		private async void OnGoogleLogin()
-		{
-			await ShowAlert("Google Login", "Google login is not implemented yet.");
-		}
+        [RelayCommand]
+        private async Task FacebookLogin()
+        {
+            await ShowAlert("Facebook Login", "Facebook login is not implemented yet.");
+        }
 
-		private async void OnFacebookLogin()
-		{
-			await ShowAlert("Facebook Login", "Facebook login is not implemented yet.");
-		}
+        [RelayCommand]
+        private void ToggleLoginRegister()
+        {
+            IsLogin = !IsLogin;
+            ClearFields();
+        }
 
-		private async void OnSubmit()
-		{
-			if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
-			{
-				await ShowAlert("Error", "Please fill in all fields");
-				return;
-			}
+        [RelayCommand]
+        private async Task Submit()
+        {
+            if (!ValidateEmail(Email))
+            {
+                await ShowAlert("Error", "Please enter a valid email address");
+                return;
+            }
 
-			if (!IsLogin)
-			{
-				if (Password != ConfirmPassword)
-				{
-					await ShowAlert("Error", "Passwords do not match");
-					return;
-				}
+            if (!ValidatePassword(Password))
+            {
+                await ShowAlert("Error", "Password must be at least 8 characters long and contain at least one number");
+                return;
+            }
 
-				bool registrationResult = await RegisterUser();
-				if (registrationResult)
-				{
-					//await NavigateToMainPage();
-					await Shell.Current.GoToAsync("///MainPage");
-				}
-			}
-			else
-			{
-				bool loginResult = await LoginUser();
-				if (loginResult)
-				{
-					await Shell.Current.GoToAsync("///MainPage");
-				}
-			}
-		}
+            if (!IsLogin)
+            {
+                if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Surname))
+                {
+                    await ShowAlert("Error", "Please fill in all fields");
+                    return;
+                }
 
-		private async Task<bool> LoginUser()
-		{
+                if (Password != ConfirmPassword)
+                {
+                    await ShowAlert("Error", "Passwords do not match");
+                    return;
+                }
 
-			await Shell.Current.GoToAsync("///MainPage");
-			//bool isAuthenticated = Email == "test@example.com" && Password == "password";
-			//if (!isAuthenticated)
-			//{
-			//    await ShowAlert("Login Failed", "Invalid email or password");
-			//    return false;
-			//}
-			return true;
-		}
+                bool registrationResult = await RegisterUser();
+                if (registrationResult)
+                {
+                    await Shell.Current.GoToAsync("///MainPage");
+                }
+            }
+            else
+            {
+                bool loginResult = await LoginUser();
+                if (loginResult)
+                {
+                    await Shell.Current.GoToAsync("///MainPage");
+                }
+            }
+        }
 
-		private async Task<bool> RegisterUser()
-		{
-			await ShowAlert("Registration", $"Registered as {UserType}");
-			return true;
-		}
+        [RelayCommand]
+        private void TogglePasswordVisibility()
+        {
+            IsPasswordVisible = !IsPasswordVisible;
+            PasswordIcon = IsPasswordVisible ? "openeye.png" : "eye.png";
+        }
 
-		private async Task NavigateToMainPage()
-		{
-			await Shell.Current.GoToAsync("///MainPage");
-		}
+        private void ClearFields()
+        {
+            Email = string.Empty;
+            Password = string.Empty;
+            ConfirmPassword = string.Empty;
+            Name = string.Empty;
+            Surname = string.Empty;
+        }
 
-		private async Task ShowAlert(string title, string message)
-		{
-			await Application.Current.MainPage.DisplayAlert(title, message, "OK");
-		}
+        private bool ValidateEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            return Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
 
-		public event PropertyChangedEventHandler PropertyChanged;
+        private bool ValidatePassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password)) return false;
+            return password.Length >= 8 && password.Any(char.IsDigit);
+        }
 
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
+        private async Task<bool> LoginUser()
+        {
+            var user = _users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
 
-		protected bool SetProperty<T>(ref T backingStore, T value, [CallerMemberName] string propertyName = "")
-		{
-			if (EqualityComparer<T>.Default.Equals(backingStore, value))
-				return false;
+            if (user == null)
+            {
+                await ShowAlert("Login Failed", "Invalid email or password");
+                return false;
+            }
 
-			backingStore = value;
-			OnPropertyChanged(propertyName);
-			return true;
-		}
-	}
+            UserType = user.UserType;
+            return true;
+        }
+
+        private async Task<bool> RegisterUser()
+        {
+            if (_users.Any(u => u.Email == Email))
+            {
+                await ShowAlert("Registration Failed", "An account with this email already exists");
+                return false;
+            }
+
+            _users.Add(new UserData
+            {
+                Name = Name,
+                Surname = Surname,
+                Email = Email,
+                Password = Password,
+                UserType = UserType
+            });
+
+            await ShowAlert("Registration Successful", $"Registered as {UserType}");
+            return true;
+        }
+
+        private async Task ShowAlert(string title, string message)
+        {
+            await Application.Current.MainPage.DisplayAlert(title, message, "OK");
+        }
+
+
+    }
 }

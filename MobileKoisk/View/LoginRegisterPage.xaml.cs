@@ -1,5 +1,4 @@
 using MobileKiosk.ViewModel;
-using MobileKoisk.ViewModel;
 
 namespace MobileKoisk.View;
 
