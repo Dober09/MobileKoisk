@@ -12,6 +12,11 @@ namespace MobileKoisk.ViewModel
     public partial class ScanningViewModel : ObservableObject
     {
         [ObservableProperty]
+        private bool isManualEntry;
+
+       
+
+        [ObservableProperty]
         private bool showManualEntry;
 
         [ObservableProperty]
@@ -47,11 +52,63 @@ namespace MobileKoisk.ViewModel
             };
             isScanning = true;
 
+            isManualEntry = false;
+        }
 
+        [RelayCommand]
+        private void OpenManualEntry()
+        {
+            IsManualEntry = true;
+            IsScanning = false;
+            ManualBarcode = string.Empty;
+        }
+
+        [RelayCommand]
+        private void ReturnToScanner()
+        {
+            IsManualEntry = false;
+            IsScanning = true;
+            ManualBarcode = string.Empty;
         }
 
 
         [RelayCommand]
+        private async Task SearchBarcode()
+        {
+            if (string.IsNullOrWhiteSpace(ManualBarcode))
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Please enter a barcode", "OK");
+                return;
+            }
+
+            try
+            {
+                var productResults = await productItemService.LoadJsonDataAsync();
+                var product = productResults.FirstOrDefault(item => item.barcode.ToString() == ManualBarcode);
+
+                if (product != null)
+                {
+                    var popup = new ScannedPopup(product);
+                    await App.Current.MainPage.ShowPopupAsync(popup);
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(
+                        "Product Not Found",
+                        $"No product found with barcode: {ManualBarcode}",
+                        "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Failed to search barcode", "OK");
+                System.Diagnostics.Debug.WriteLine($"Error in SearchBarcode: {ex}");
+            }
+
+        }
+
+
+            [RelayCommand]
         private async Task HandleBarcodesDected(BarcodeDetectionEventArgs args)
         {
 
@@ -169,11 +226,7 @@ namespace MobileKoisk.ViewModel
             }
         }
 
-        [RelayCommand]
-        private void OpenManualEntry()
-        {
-            ShowManualEntry = true;
-        }
+     
 
       
         [RelayCommand]

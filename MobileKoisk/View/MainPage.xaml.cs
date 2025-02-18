@@ -1,4 +1,3 @@
-
 using MobileKoisk.ViewModel;
 namespace MobileKoisk.View;
 
