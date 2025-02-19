@@ -52,7 +52,7 @@
                         x:DataType="vm:BasketPageViewModel"
                         ItemsSource="{Binding BasketItems}" 
                         VerticalOptions="Start"
-                        
+              
                         Grid.Row="1">
 
             <CollectionView.EmptyView>

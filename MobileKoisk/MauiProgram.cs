@@ -44,7 +44,7 @@ namespace MobileKoisk
 
 
 
-            // Register your servicesa
+            // Register your services
 
             builder.Services.AddSingleton<LoginRegisterPage>();
             builder.Services.AddSingleton<LoginRegisterViewModel>();
@@ -55,9 +55,14 @@ namespace MobileKoisk
 
             builder.Services.AddTransient<ScanningViewModel>();
             builder.Services.AddTransient<ScanningPage>();
+            builder.Services.AddTransient<ScannedPopup>();
+    
 
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<MainViewModel>();
+
+            builder.Services.AddSingleton<BasketPageViewModel>();
+            builder.Services.AddSingleton<BadgeCounterService>();
 
 			builder.Services.AddTransient<WishListPage>(serviceProvider =>
 			new WishListPage(serviceProvider.GetRequiredService<WishListServices>()));

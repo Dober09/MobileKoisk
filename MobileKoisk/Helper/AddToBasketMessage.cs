@@ -11,6 +11,7 @@ namespace MobileKoisk.Helper
 
         {
             ProductItem = product ??  throw new ArgumentNullException(nameof(product));
+            System.Diagnostics.Debug.WriteLine($"AddToBasketMessage created for: {product.item_description}");
         }
     }
 }

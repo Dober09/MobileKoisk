@@ -9,11 +9,14 @@ using MobileKoisk.Models;
 using MobileKoisk.Services;
 using MobileKoisk.View;
 
+
 namespace MobileKoisk.ViewModel
 {
 	public class MainViewModel : BaseViewModel
 	{
-		private readonly SalesService _salesService;
+       
+
+        private readonly SalesService _salesService;
 
 
         private readonly WishListServices _wishListServices;
@@ -25,7 +28,11 @@ namespace MobileKoisk.ViewModel
 		public ObservableCollection<SaleItem> SalesItems { get; set; }
 
 		public ObservableCollection<Product> FilteredProducts { get; set; } = new ObservableCollection<Product>();
-		public MainViewModel(ProductItemService productItemService, SalesService  salesService, WishListServices wishListServices) { 
+		public MainViewModel(ProductItemService productItemService,
+            SalesService  salesService,
+            WishListServices wishListServices) {
+            
+           
 		
 			_productItemService = productItemService;
 			_wishListServices = wishListServices;
@@ -41,6 +48,23 @@ namespace MobileKoisk.ViewModel
             //LoadSalesItem();
         }
 
+        private async Task LoadImageAsync(Product product)
+        {
+            if (string.IsNullOrEmpty(product.image_url))
+                return;
+
+            try
+            {
+                // Add cache buster to force fresh load when needed
+                product.image_url = product.image_url + "?cache=" + DateTime.Now.Ticks;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading image for {product.item_description}: {ex.Message}");
+                product.image_url = "placeholder_image.png";
+            }
+        }
+
 
         public ICommand AddToWishListCommand { get; }
         public ICommand CategoryTappedCommand { get; }
@@ -54,6 +78,7 @@ namespace MobileKoisk.ViewModel
 				foreach (var product in products)
 				{
 				System.Diagnostics.Debug.WriteLine($"image --->{product.item_description} && {product.image_url} " );
+                    await LoadImageAsync(product);
 					Products.Add(product);
 				}
 

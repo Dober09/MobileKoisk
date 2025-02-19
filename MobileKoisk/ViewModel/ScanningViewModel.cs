@@ -34,6 +34,8 @@ namespace MobileKoisk.ViewModel
         [ObservableProperty]
         private BarcodeReaderOptions readerOptions;
 
+        private readonly BadgeCounterService _badgeCounterService;
+
 
         public ObservableCollection<Product> ScannedItems { get; set; }
 
@@ -42,7 +44,8 @@ namespace MobileKoisk.ViewModel
         ProductItemService productItemService;
         // products for scanned items
 
-        public ScanningViewModel(ProductItemService productItemService) {
+        public ScanningViewModel(ProductItemService productItemService ,BadgeCounterService badgeCounterService) {
+            _badgeCounterService = badgeCounterService;
 
             this.productItemService = productItemService;
             ReaderOptions = new BarcodeReaderOptions {
@@ -55,13 +58,17 @@ namespace MobileKoisk.ViewModel
             isManualEntry = false;
         }
 
+
         [RelayCommand]
         private void OpenManualEntry()
         {
             IsManualEntry = true;
             IsScanning = false;
             ManualBarcode = string.Empty;
+
         }
+
+
 
         [RelayCommand]
         private void ReturnToScanner()
@@ -88,7 +95,7 @@ namespace MobileKoisk.ViewModel
 
                 if (product != null)
                 {
-                    var popup = new ScannedPopup(product);
+                    var popup = new ScannedPopup(product ,_badgeCounterService);
                     await App.Current.MainPage.ShowPopupAsync(popup);
                 }
                 else
@@ -108,7 +115,7 @@ namespace MobileKoisk.ViewModel
         }
 
 
-            [RelayCommand]
+        [RelayCommand]
         private async Task HandleBarcodesDected(BarcodeDetectionEventArgs args)
         {
 
@@ -143,7 +150,7 @@ namespace MobileKoisk.ViewModel
                         {
 
 
-                            var popup = new ScannedPopup(product);
+                            var popup = new ScannedPopup(product, _badgeCounterService);
                             
 
                              App.Current.MainPage.ShowPopup(popup);
@@ -236,6 +243,7 @@ namespace MobileKoisk.ViewModel
             ShowManualEntry = !ShowManualEntry;
             if (ShowManualEntry) ManualBarcode = string.Empty;
         }
+
 
         [RelayCommand]
         private void ConfirmManualEntry()

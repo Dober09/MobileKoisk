@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              xmlns:model="clr-namespace:MobileKoisk.Models"
              xmlns:converters="clr-namespace:MobileKoisk.Converters"
+             xmlns:behaviors="clr-namespace:MobileKoisk.Behaviors"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="True"
              x:Class="MobileKoisk.View.MainPage">
@@ -280,8 +281,22 @@
                             <DataTemplate x:DataType="model:Product">
                                 <Frame BorderColor="Gray" CornerRadius="15" Margin="5,10,0,0" Padding="10" HeightRequest="180" WidthRequest="180">
                                     <StackLayout>
-                                        <Image Source="{Binding image_url}" HeightRequest="70" WidthRequest="70" Aspect="AspectFill" />
-
+                                        <Grid HeightRequest="70" WidthRequest="70">
+                                            <ActivityIndicator x:Name="LoadingIndicator"
+                                                               IsRunning="True"
+                                                               IsVisible="True"
+                                                               HorizontalOptions="Center"
+                                                               VerticalOptions="Center"
+                                                               Color="{DynamicResource Primary}"/>
+                                            <Image Source="{Binding image_url}" 
+                                                   HeightRequest="70" 
+                                                   WidthRequest="70" 
+                                                   Aspect="AspectFill">
+                                                <Image.Behaviors>
+                                                    <behaviors:ImageLoadingBehavior />
+                                                </Image.Behaviors>
+                                            </Image>
+                                        </Grid>
 
                                         <HorizontalStackLayout Margin="0,12,0,0">
                                             <StackLayout>

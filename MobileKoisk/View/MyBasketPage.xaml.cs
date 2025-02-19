@@ -1,16 +1,24 @@
 using MobileKoisk.ViewModel;
 using MobileKoisk.Services;
 
+
+using MobileKoisk.Helper;
+
+
+
 namespace MobileKoisk.View;
 
 public partial class MyBasketPage : ContentPage , IDisposable
 {
-	public MyBasketPage()
+    private BasketPageViewModel _viewModel;
+    public MyBasketPage()
 	{
 		InitializeComponent();
-        BindingContext = new BasketPageViewModel();
+        _viewModel = new BasketPageViewModel();
+        BindingContext = _viewModel;
         BadgeCounterService.CountChanged += OnCountChanged;
 	}
+
 
 
     private void OnCountChanged(object? sender,int newCount)
@@ -22,20 +30,18 @@ public partial class MyBasketPage : ContentPage , IDisposable
 		await Shell.Current.GoToAsync("PaymentPage", true);
     }
 
-    //private void UpBagdeCounter(object sender, EventArgs e)
-    //{
-    //    BadgeCounterService.SetCount(BadgeCounterService.Count + 1);
-    //}
+    
 
-    //private void DownBageCounter(object sender, EventArgs e)
-    //{
-    //    BadgeCounterService.SetCount(BadgeCounterService.Count - 1);
+    public void Dispose() {
 
-    //}
-    public void Dispose () => BadgeCounterService.CountChanged -= OnCountChanged;
+      
+        BadgeCounterService.CountChanged -= OnCountChanged;
+        System.Diagnostics.Debug.WriteLine("MyBasketPage disposed");
+    }
 
     private void ToolbarItem_Clicked(object sender, EventArgs e)
     {
+        BasketService.ClearBasket();
         BadgeCounterService.SetCount(0);
     }
 }

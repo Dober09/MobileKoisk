@@ -5,6 +5,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MobileKoisk.Helper;
 using MobileKoisk.Models;
+using MobileKoisk.Services;
 
 namespace MobileKoisk.ViewModel
 {
@@ -43,7 +44,7 @@ namespace MobileKoisk.ViewModel
 
 
 		//basket items list
-		public ObservableCollection<BasketItem> BasketItems { get; set; }
+		public ObservableCollection<BasketItem> BasketItems => BasketService.BasketItems;
 
 		//sales list
 		private ObservableCollection<SaleItem> _salesItem;
@@ -122,17 +123,32 @@ namespace MobileKoisk.ViewModel
 		public BasketPageViewModel()
 		{
 
+			BasketService.BasketItemsChanged += OnBasketItemsChanged;
+			BasketService.OnBasketItemAdded += OnBasketItemAdded;
+
+			UpdateTotalPrice();
 			// Initialize the basket items
-			BasketItems = new ObservableCollection<BasketItem>();
+			//BasketItems = new ObservableCollection<BasketItem>();
 
+			//BasketItems.Add(
 
-			WeakReferenceMessenger.Default.Register<AddToBasketMessage>(this, HandleAddToBasketMessage);
+			//	new BasketItem { 
+			//		ProductName = "dfdfdf"
+			//	});
 
-			// Attach property change notifications for basket items
-			foreach (var item in BasketItems)
-			{
-				item.PropertyChanged += OnBasketItemChanged;
-			}
+			//         // Register for messages
+			//         WeakReferenceMessenger.Default.Register<AddToBasketMessage>(this, (r, m) => {
+			//             System.Diagnostics.Debug.WriteLine($"Message received in ViewModel for product: {m.ProductItem?.item_description}");
+			//             HandleAddToBasketMessage(m);
+
+			//             System.Diagnostics.Debug.WriteLine($"Initial basket count: {BasketItems.Count}");
+			//         });
+
+			//         // Attach property change notifications for basket items
+			//         foreach (var item in BasketItems)
+			//{
+			//	item.PropertyChanged += OnBasketItemChanged;
+			//}
 
 			// Update the total price
 			UpdateTotalPrice();
@@ -140,44 +156,82 @@ namespace MobileKoisk.ViewModel
 		}
 
 
-		//
+        private void OnBasketItemAdded(BasketItem item)
+        {
+            item.PropertyChanged += OnBasketItemChanged;
+            UpdateTotalPrice();
+        }
 
-		private void HandleAddToBasketMessage(object recipient, AddToBasketMessage message)
-		{
-			if (message?.ProductItem == null) return;
+        private void OnBasketItemsChanged()
+        {
+            UpdateTotalPrice();
+            OnPropertyChanged(nameof(BasketItems));
+        }
 
-			MainThread.BeginInvokeOnMainThread(() =>
-			{
-				try
-				{
-					//check if item already exists
-					var existingItem = BasketItems.FirstOrDefault(item => item.ProductName == message.ProductItem.item_description);
-					if (existingItem != null)
-					{
-						existingItem.Quantity++;
-					}
-					else
-					{
-						var newItem = new BasketItem
-						{
-							ProductName = message.ProductItem.item_description,
-							Price = (decimal)message.ProductItem.selling_price,
-							Quantity = 1,
+        private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(BasketItem.Quantity))
+            {
+                UpdateTotalPrice();
+            }
+        }
 
 
+        private void UpdateTotalPrice()
+        {
+            TotalPrice = BasketService.GetTotalPrice();
+        }
+  //      private void HandleAddToBasketMessage( AddToBasketMessage message)
+		//{
 
-						};
-						BasketItems.Add(newItem);
-					}
-					UpdateTotalPrice();
-				}
-				catch (Exception ex)
-				{
-					System.Diagnostics.Debug.WriteLine($"Error adding to basket: {ex.Message}");
-				}
-			});
 
-		}
+  //          try
+  //          {
+  //              if (message?.ProductItem == null)
+  //              {
+  //                  System.Diagnostics.Debug.WriteLine("Received null message or product");
+  //                  return;
+  //              }
+
+  //              System.Diagnostics.Debug.WriteLine($"Processing product: {message.ProductItem.item_description}");
+
+  //              //check if item already exists
+  //              var existingItem = BasketItems.FirstOrDefault(item => item.ProductName == message.ProductItem.item_description);
+  //              if (existingItem != null)
+  //              {
+  //                  existingItem.Quantity++;
+  //                  System.Diagnostics.Debug.WriteLine($"Updated quantity for {existingItem.ProductName} to {existingItem.Quantity}");
+  //              }
+  //              else
+  //              {
+  //                  var newItem = new BasketItem
+  //                  {
+  //                      ProductName = message.ProductItem.item_description,
+  //                      Price = (decimal)message.ProductItem.selling_price,
+  //                      Quantity = 1,
+  //                      ImageSource = message.ProductItem.image_url, //  set the image
+                       
+  //                  };
+
+  //                  // Make sure to add property changed handler before adding to collection
+  //                  newItem.PropertyChanged += OnBasketItemChanged;
+
+  //                  MainThread.BeginInvokeOnMainThread(() => {
+  //                      BasketItems.Add(newItem);
+  //                      System.Diagnostics.Debug.WriteLine($"Current basket count: {BasketItems.Count}");
+		//				System.Diagnostics.Debug.WriteLine($"Added new item: {newItem.ProductName}");
+  //                      OnPropertyChanged(nameof(BasketItems));
+  //                      UpdateTotalPrice();
+  //                  });
+  //              }
+  //          }
+  //          catch (Exception ex)
+  //          {
+  //              System.Diagnostics.Debug.WriteLine($"Error adding to basket: {ex.Message}");
+  //          }
+
+
+  //      }
 
         //private void AddProductToBasket(ProductItem productItem)
         //{
@@ -203,29 +257,29 @@ namespace MobileKoisk.ViewModel
         //	});
         //}
 
-        private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
-		{
-			if (e.PropertyName == nameof(BasketItem.Quantity))
-			{
-				UpdateTotalPrice();
-			}
-		}
+  //      private void OnBasketItemChanged(object sender, PropertyChangedEventArgs e)
+		//{
+		//	if (e.PropertyName == nameof(BasketItem.Quantity))
+		//	{
+		//		UpdateTotalPrice();
+		//	}
+		//}
 
-		private void UpdateTotalPrice()
-		{
-			// Calculate the total price by summing up the price of each item multiplied by its quantity
-			TotalPrice = BasketItems.Sum(item => item.Price * item.Quantity);
+		//private void UpdateTotalPrice()
+		//{
+		//	// Calculate the total price by summing up the price of each item multiplied by its quantity
+		//	TotalPrice = BasketItems.Sum(item => item.Price * item.Quantity);
 
-			//calculate vat
-			VatAmount = TotalPrice * _vatRate /(1 + _vatRate);
+		//	//calculate vat
+		//	VatAmount = TotalPrice * _vatRate /(1 + _vatRate);
 
-			////Calculate Total Amount including vat
-			TotalAmount = TotalPrice;
+		//	////Calculate Total Amount including vat
+		//	TotalAmount = TotalPrice;
 
-			// Notify that VAT-related properties have changed
-			OnPropertyChanged(nameof(VatAmount));
-			OnPropertyChanged(nameof(TotalAmount));
-		}
+		//	// Notify that VAT-related properties have changed
+		//	OnPropertyChanged(nameof(VatAmount));
+		//	OnPropertyChanged(nameof(TotalAmount));
+		//}
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		protected void OnPropertyChanged(string propertyName)

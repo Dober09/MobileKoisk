@@ -35,7 +35,7 @@ namespace MobileKoisk
             Routing.RegisterRoute("MyBasketPage", typeof(MyBasketPage));
             Routing.RegisterRoute("ReciptPage", typeof(ReceiptPage));
             Routing.RegisterRoute("MorePage", typeof(MorePage));
-            Routing.RegisterRoute("ManualBarcodeEntry", typeof(ManualBarcodeEntry));
+          
         }
 
         // Use OnAppearing to handle navigation after Shell is initialized

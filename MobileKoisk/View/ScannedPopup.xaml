@@ -4,49 +4,80 @@
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
                x:DataType="vm:ScanningViewModel"
-               x:Class="MobileKoisk.View.ScannedPopup">
-    <Grid RowDefinitions="*,*"
-          RowSpacing="70"
-          WidthRequest="310" 
-          HeightRequest="200"
-          Padding="10"
-          BackgroundColor="{StaticResource SecondaryDarkText}"
-          >
+               x:Class="MobileKoisk.View.ScannedPopup"
+               Color="Transparent">
 
-        <FlexLayout Grid.Row="0"
-                    JustifyContent="SpaceBetween"
-                    AlignItems="Center"
-                    
-                    Margin="0,20,0,0"
-     
-                    Direction="Row" >
-            <HorizontalStackLayout>
-                <Image Source="meat.png"
-                   WidthRequest="100"
-                   HeightRequest="100"/>
+    <Frame CornerRadius="20" 
+           BackgroundColor="White"
+           BorderColor="Transparent"
+           Padding="0"
+           HasShadow="True"
+           WidthRequest="340"
+           HeightRequest="250">
+
+        <Grid RowDefinitions="Auto,*,Auto"
+              RowSpacing="15"
+              Padding="20">
+
+            <!-- Product Details Section -->
+            <FlexLayout Grid.Row="0"
+                        Margin="0,50,0,0"
+                        JustifyContent="SpaceBetween"
+                        AlignItems="Center"
+                        Direction="Row">
+
+                <!-- Product Image with Frame -->
+                <Frame CornerRadius="15"
+                       IsClippedToBounds="True"
+                       Padding="0"
+                       BorderColor="Transparent"
+                       HasShadow="False">
+                    <Image x:Name="ProductImage"
+                           WidthRequest="110"
+                           HeightRequest="110"
+                           Aspect="AspectFill"/>
+                </Frame>
+
+                <!-- Product Information -->
+                <VerticalStackLayout Spacing="8"
+                                   Margin="15,0,0,0">
+                    <Label x:Name="ProductName"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#333333"/>
+
+                    <Label x:Name="Price"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryDark}"
+                           Text="R 20.00"/>
+
+                    <Label x:Name="ItemLeft"
+                           FontSize="14"
+                           TextColor="#666666"/>
+                </VerticalStackLayout>
+            </FlexLayout>
+
+            <!-- Buttons Section -->
+            <HorizontalStackLayout Grid.Row="2"
+                                 HorizontalOptions="Center"
+                                 Spacing="15">
+
+                <Button Text="Remove"
+                        WidthRequest="120"
+                        HeightRequest="45"
+                        BackgroundColor="#F5F5F5"
+                        TextColor="#666666"
+                        CornerRadius="10"/>
+
+                <Button Text="Add to basket"
+                        Clicked="AddToBasket"
+                        WidthRequest="120"
+                        HeightRequest="45"
+                      
+                        TextColor="White"
+                        CornerRadius="10"/>
             </HorizontalStackLayout>
-
-            <VerticalStackLayout>
-                <Label Text="" x:Name="ProductName"/>
-                <Label Text="R 20.00" x:Name="Price" HorizontalTextAlignment="End"/>
-                <Label x:Name="ItemLeft" HorizontalTextAlignment="End"/>
-
-            </VerticalStackLayout>
-            
-        </FlexLayout>
-
-        
-            <HorizontalStackLayout HeightRequest="50" 
-                                   Grid.Row="1"
-                                   HorizontalOptions="Center"
-                                   
-                                   Spacing="40">
-                <Button Text="Remove"/>
-                <Button Text="Add to Monkey"
-                        Clicked="AddToMonkey"/>
-            </HorizontalStackLayout>
-            
-        
-        
-    </Grid>
+        </Grid>
+    </Frame>
 </toolkit:Popup>
