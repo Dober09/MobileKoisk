@@ -158,18 +158,17 @@
                                 </Border>
                                     
                                 </HorizontalStackLayout>
-                            <Button Grid.Column="3" 
- Grid.Row="0"
- Text="×"
- FontSize="20"
- TextColor="Red"
- BackgroundColor="Transparent"
- Command="{Binding RemoveFromBasketCommand}"
- HorizontalOptions="End"
- VerticalOptions="Start"
- Margin="0,-5,0,0"
- Padding="5"
- BorderWidth="0"/>
+                            <ImageButton Grid.Column="3" 
+                                    Grid.Row="0"
+                                    Source="delete.png"
+                                       WidthRequest="40"
+                                         HeightRequest="40"
+                                    Command="{Binding RemoveFromBasketCommand}"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Start"
+                                    Margin="0,-5,0,0"
+                                    Padding="5"
+                                    BorderWidth="0"/>
                             
 
                         </Grid>

@@ -204,6 +204,17 @@ namespace MobileKoisk.ViewModel
             }finally { isProcessingBarcode = false; }
         }
 
+
+        public void ResetScanningState()
+        {
+            isProcessingBarcode = false;
+            IsManualEntry = false;
+            IsScanning = true;
+            ScanResult = string.Empty;
+            lastScannedBarcode = string.Empty; 
+        }
+
+
         [RelayCommand]
         private async Task RequestCameraPermission()
         {
@@ -223,8 +234,9 @@ namespace MobileKoisk.ViewModel
         {
             try { 
                 isProcessingBarcode = false;
+                await Task.Delay(100); //  small delay
                 IsScanning = true;
-                
+                System.Diagnostics.Debug.WriteLine("Camera started");
 
             } catch (Exception ex) {
                 System.Diagnostics.Debug.WriteLine($"Error is StartScanning {ex}");
@@ -233,7 +245,18 @@ namespace MobileKoisk.ViewModel
         }
 
         [RelayCommand]
-        public async void StopScanning() { IsScanning = false; }
+        public async void StopScanning()
+        {
+            try
+            {
+                IsScanning = false;
+                System.Diagnostics.Debug.WriteLine("Camera stopped");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in StopScanning: {ex}");
+            }
+        }
 
         //Add a method to handle page appearing
         [RelayCommand]

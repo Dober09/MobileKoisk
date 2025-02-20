@@ -43,14 +43,13 @@
                                    Margin="0,5,0,0"/>
 
                             <!-- Remove Button -->
-                            <Button Grid.Column="1" 
+                            <ImageButton Grid.Column="1" 
                                     Grid.RowSpan="2"
-                                    Text="Remove"
-                                    FontSize="14"
+                                    Source="delete.png"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveCommand}"
                                     CommandParameter="{Binding .}"
-                                    BackgroundColor="{StaticResource Danger}"
-                                    TextColor="White"
+                                   
+                                   
                                     CornerRadius="8"
                                     HeightRequest="40"
                                     Margin="10,0,0,0"/>

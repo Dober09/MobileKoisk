@@ -15,14 +15,21 @@ public partial class ScanningPage : ContentPage
         
     }
 
-    protected  override void OnAppearing()
+    protected  override async void OnAppearing()
     {
         base.OnAppearing();
-        if (BindingContext is ScanningViewModel vm) {
-         
-            vm.StartScanningCommand.Execute(null);
-            
-            
+        if (BindingContext is ScanningViewModel vm)
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+            if (status == PermissionStatus.Granted)
+            {
+                vm.ResetScanningState();
+                vm.StartScanningCommand.Execute(null);
+            }
+            else
+            {
+                await vm.RequestCameraPermissionCommand.ExecuteAsync(null);
+            }
         }
     }
 
