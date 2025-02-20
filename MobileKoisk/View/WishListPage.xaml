@@ -5,9 +5,9 @@
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
              >
 
-    <Grid RowDefinitions="Auto,*" Padding="20">
+    <Grid RowDefinitions="Auto,*,auto" Padding="20">
         <!-- Header -->
-        <Label Text="Wishlist Items" 
+        <Label Text="Wishlist" 
                FontSize="24" 
                FontAttributes="Bold"
                Margin="0,0,0,20"
@@ -73,5 +73,24 @@
                 </StackLayout>
             </CollectionView.EmptyView>
         </CollectionView>
+
+        <Frame Grid.Row="2" 
+               Margin="0,10,0,0"
+               Padding="15"
+               BorderColor="{StaticResource PrimaryDarkText}"
+               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray800}}"
+               CornerRadius="10">
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="Total Price"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                <Label Grid.Column="1"
+                       Text="{Binding TotalPrice, StringFormat='R{0:N2}'}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"/>
+            </Grid>
+        </Frame>
     </Grid>
 </ContentPage>
