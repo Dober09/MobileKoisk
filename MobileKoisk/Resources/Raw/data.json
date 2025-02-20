@@ -14,7 +14,7 @@
   {
     "from_date": "20-Feb",
     "section": 32,
-    "barcode": "000000000010241931",
+    "barcode": 1111111111111,
     "item_num": 376,
     "item_description": "Sasko Brown Bread",   
     "selling_price": 15.99,
@@ -25,7 +25,7 @@
   {
     "from_date": "20-Feb",
     "section": 32,
-    "barcode": "000000000010627849",
+    "barcode":3434343434343,
     "item_num": 376,
     "item_description": "Choc Kit Kat Cake",
     "selling_price": 109.99,
@@ -36,7 +36,7 @@
   {
     "from_date": "20-Feb",
     "section": 32,
-    "barcode": "000000000010627849",
+    "barcode":6009612470694,
     "item_num": 376,
     "item_description": "Milk Tart Pack",
     "selling_price": 19.99,

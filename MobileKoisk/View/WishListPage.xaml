@@ -21,8 +21,9 @@
                 <DataTemplate>
                     <Frame Margin="0,0,0,15" 
                            Padding="15"
-                           BorderColor="Transparent"
-                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray800}}"
+                           BorderColor="{StaticResource PrimaryDarkText}"
+                           
+                           BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray800}}"
                            CornerRadius="10">
                         <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto,Auto">
                             <!-- Item Description -->

@@ -44,7 +44,7 @@ namespace MobileKoisk.ViewModel
 
             IntroScreens.Add(new IntroScreenModel
             {
-                IntroTitle = "Welcome to Mobile Koisk",
+                IntroTitle = "Welcome to Mobile Kiosk",
                 IntroDescription = "Skip the line and shop smarter",
                 IntroImage = "clearbasket.png",
             }); 

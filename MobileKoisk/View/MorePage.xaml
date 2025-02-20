@@ -31,7 +31,7 @@
                                                     VerticalOptions="Center"
                                                     HorizontalOptions="Center" >
                                 
-                                <Label Text="Mobile Koisk"
+                                <Label Text="Mobile Kiosk"
                                        FontFamily="PoppinsBold"
                                        FontAttributes="Bold"
                                        FontSize="27"

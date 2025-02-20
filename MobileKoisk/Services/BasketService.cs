@@ -28,6 +28,15 @@ namespace MobileKoisk.Services
             BasketItemsChanged?.Invoke();
         }
 
+        public static void RemoveFromBasket(BasketItem item)
+        {
+            if (BasketItems.Contains(item))
+            {
+                BasketItems.Remove(item);
+                BasketItemsChanged?.Invoke();
+            }
+        }
+
         public static void AddItem(Product product)
         {
             var existingItem = _basketItems.FirstOrDefault(item => item.ProductName == product.item_description);

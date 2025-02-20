@@ -52,7 +52,6 @@
                         x:DataType="vm:BasketPageViewModel"
                         ItemsSource="{Binding BasketItems}" 
                         VerticalOptions="Start"
-              
                         Grid.Row="1">
 
             <CollectionView.EmptyView>
@@ -111,34 +110,67 @@
 
 
                             <!-- Quantity Controls -->
-                                <HorizontalStackLayout Grid.Column="3" Margin="0,35,0,0" >
+                                <HorizontalStackLayout Grid.Column="3"
+                                                      
+                                                       Margin="0,35,0,0">
+                                <Border Stroke="{StaticResource PrimaryDarkText}"
+                                        WidthRequest="103"
+                                      
+                                        HeightRequest="40"
+                                        Background="#ccc"
+                                        StrokeShape="RoundRectangle 10">
+                                    <HorizontalStackLayout>
+                                        
+
+                                    
                                     <Button Text="-" 
                                             VerticalOptions="Center"
                                             WidthRequest="35"
                                             HeightRequest="35"
+                                            TextColor="{StaticResource PrimaryDarkText}"
                                             Padding="0,-3,0,5"
                                             FontSize="28"
-                                            BackgroundColor="#B08600"
+                                            BackgroundColor="{StaticResource Primary}"
                                             Command="{Binding DecreaseQuantityCommand}"
                                     />
                                     <Label Text="{Binding Quantity}" 
                                            FontSize="18"
                                            VerticalOptions="Center"
+                                           TextColor="{StaticResource PrimaryDarkText}"
                                            HorizontalTextAlignment="Center"
                                            WidthRequest="30"
-                                           BackgroundColor="#E1E1E1"/>
+                                           
+                                          />
                                            
                                     <Button Text="+" 
                                             FontSize="28"
                                             WidthRequest="35"
                                             HeightRequest="35"
                                             VerticalOptions="Center"
+                                            TextColor="{StaticResource PrimaryDarkText}"
                                             Padding="0,-3,0,5"
-                                            BackgroundColor="#B08600"
+                                            BackgroundColor="{StaticResource Primary}"
                                             Command="{Binding IncreaseQuantityCommand}"
                                              />
 
+                                    </HorizontalStackLayout>
+                                    
+                                </Border>
+                                    
                                 </HorizontalStackLayout>
+                            <Button Grid.Column="3" 
+ Grid.Row="0"
+ Text="×"
+ FontSize="20"
+ TextColor="Red"
+ BackgroundColor="Transparent"
+ Command="{Binding RemoveFromBasketCommand}"
+ HorizontalOptions="End"
+ VerticalOptions="Start"
+ Margin="0,-5,0,0"
+ Padding="5"
+ BorderWidth="0"/>
+                            
 
                         </Grid>
                     </Frame>

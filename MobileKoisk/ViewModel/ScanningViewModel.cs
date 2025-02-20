@@ -7,6 +7,7 @@ using MobileKoisk.Services;
 using MobileKoisk.View;
 using CommunityToolkit.Maui.Views;
 
+
 namespace MobileKoisk.ViewModel
 {
     public partial class ScanningViewModel : ObservableObject
@@ -35,6 +36,11 @@ namespace MobileKoisk.ViewModel
         private BarcodeReaderOptions readerOptions;
 
         private readonly BadgeCounterService _badgeCounterService;
+
+        private string lastScannedBarcode;
+        private DateTime lastScanTime = DateTime.MinValue;
+
+        private const int SCAN_COOLDOWN_MS = 3000;
 
 
         public ObservableCollection<Product> ScannedItems { get; set; }
@@ -133,6 +139,18 @@ namespace MobileKoisk.ViewModel
                     System.Diagnostics.Debug.WriteLine("No results found");
                     return;
                 }
+
+               //Check if this is the same barcode and if enough time has passed
+                var currentTime = DateTime.Now;
+                if (result.Value == lastScannedBarcode &&
+                    (currentTime - lastScanTime).TotalMilliseconds < SCAN_COOLDOWN_MS)
+                {
+                    return;
+                }
+                isProcessingBarcode = true;
+                lastScannedBarcode = result.Value;
+                lastScanTime = currentTime;
+
 
                 IsScanning = false;
                 System.Diagnostics.Debug.WriteLine($"Detected barcode: {result.Value}");

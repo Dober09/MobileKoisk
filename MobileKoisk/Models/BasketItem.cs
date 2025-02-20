@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
+using MobileKoisk.Services;
 
 namespace MobileKoisk.Models
 {
@@ -56,8 +57,16 @@ namespace MobileKoisk.Models
 		{
 			Quantity++;
 		}
+        //
+        public ICommand RemoveFromBasketCommand => new Command(() =>
+        {
+            // Since 'this' here refers to the BasketItem instance,
+            // we can pass it directly to the BasketService
+            BasketService.RemoveFromBasket(this);
+            BadgeCounterService.DecrementCount();
+        });
 
-		private void DecreaseQuantity()
+        private void DecreaseQuantity()
 		{
 			if (Quantity > 0)
 			{

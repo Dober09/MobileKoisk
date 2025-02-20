@@ -47,23 +47,12 @@ namespace MobileKoisk.ViewModel
             AddToWishListCommand = new Command<Product>(AddToWishList);
             //LoadSalesItem();
         }
+       
 
-        private async Task LoadImageAsync(Product product)
-        {
-            if (string.IsNullOrEmpty(product.image_url))
-                return;
 
-            try
-            {
-                // Add cache buster to force fresh load when needed
-                product.image_url = product.image_url + "?cache=" + DateTime.Now.Ticks;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error loading image for {product.item_description}: {ex.Message}");
-                product.image_url = "placeholder_image.png";
-            }
-        }
+
+      
+       
 
 
         public ICommand AddToWishListCommand { get; }
@@ -78,7 +67,7 @@ namespace MobileKoisk.ViewModel
 				foreach (var product in products)
 				{
 				System.Diagnostics.Debug.WriteLine($"image --->{product.item_description} && {product.image_url} " );
-                    await LoadImageAsync(product);
+                  
 					Products.Add(product);
 				}
 

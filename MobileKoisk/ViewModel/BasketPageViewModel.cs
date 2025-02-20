@@ -155,6 +155,12 @@ namespace MobileKoisk.ViewModel
 		
 		}
 
+        //public ICommand RemoveFromBasketCommand => new Command(() =>
+        //{
+        //    BasketService.RemoveFromBasket(this);
+        //    // Update the badge counter
+        //    BadgeCounterService.DecrementCount();
+        //});
 
         private void OnBasketItemAdded(BasketItem item)
         {

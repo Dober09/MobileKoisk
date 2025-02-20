@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
+using MobileKoisk.Services;
 using System.Runtime.CompilerServices;
 
 namespace MobileKoisk.ViewModel
@@ -17,7 +18,34 @@ namespace MobileKoisk.ViewModel
         private bool _isCreditCardSelected;
 
         private bool _isCreditCardButtonSelected;
+        private decimal _totalAmount;
 
+        public decimal TotalAmount
+        {
+            get => _totalAmount;
+            set
+            {
+                if (_totalAmount != value)
+                {
+                    _totalAmount = value;
+                    OnPropertyChanged(nameof(TotalAmount));
+                }
+            }
+        }
+
+        public PaymentViewModel()
+        {
+            // Get total from BasketService
+            TotalAmount = BasketService.GetTotalPrice();
+
+            // Subscribe to basket changes
+            BasketService.BasketItemsChanged += OnBasketItemsChanged;
+        }
+
+        private void OnBasketItemsChanged()
+        {
+            TotalAmount = BasketService.GetTotalPrice();
+        }
         public bool IsCreditCardSelected
         {
             get => _isCreditCardSelected;

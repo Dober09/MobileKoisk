@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:MobileKoisk.ViewModel"
              xmlns:model="clr-namespace:MobileKoisk.Models"
              xmlns:converters="clr-namespace:MobileKoisk.Converters"
-             xmlns:behaviors="clr-namespace:MobileKoisk.Behaviors"
+           
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="True"
              x:Class="MobileKoisk.View.MainPage">
@@ -18,61 +18,164 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!-- Welcome Header -->
-        <StackLayout Grid.Row="0" Padding="15" Margin="0,10,0,0">
-            <Frame Padding="10" BorderColor="Transparent">
-                <Grid>
+        
+        
+        
+        <!---Header Section-->
+        
+        <Grid Grid.Row="0" RowDefinitions="Auto" Padding="7,10,0,10" >
+            <Frame BackgroundColor="White"
+           Padding="2"
+           BorderColor="Transparent"
+           CornerRadius="16"
+           HasShadow="True">
+                <Grid ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <VerticalStackLayout Grid.Column="0" Spacing="5">
-                        <Label Text="Welcome to MobileKiosk" 
-                               FontAttributes="Bold" 
-                               FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"
-                               LineBreakMode="WordWrap"/>
-                        <Label Text="Ready to shop smart at mankweng shoprite :) ?" 
-                               FontSize="{OnIdiom Phone=15, Tablet=18, Desktop=20}"
-                               LineBreakMode="WordWrap"/>
+                    <!-- Welcome Text Section -->
+                    <VerticalStackLayout Grid.Column="0" 
+                               Spacing="8">
+                        <Label Text="Welcome to MobileKiosk"
+                       TextColor="#1F2937"
+                       FontFamily="OpenSansRegular"
+                       FontAttributes="Bold"
+                       FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"
+                       LineBreakMode="WordWrap"/>
+                        <Label Text="Ready to shop smart at mankweng shoprite :)"
+                       TextColor="#6B7280"
+                       FontFamily="OpenSansRegular"
+                       FontSize="{OnIdiom Phone=15, Tablet=18, Desktop=20}"
+                       LineBreakMode="WordWrap"/>
                     </VerticalStackLayout>
 
-                    <Image Grid.Column="1" 
-                           Source="profile.png" 
+                    <!-- Notification Bell -->
+                    <Frame  Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            BorderColor="Transparent"
+                            Padding="8"
+                            CornerRadius="12"
+                            HasShadow="False"
+                            VerticalOptions="Start">
+                        <Grid>
+                            <Image Source="bell.png"
+                                   HeightRequest="24"
+                                   WidthRequest="24"
+                                   Aspect="AspectFit"/>
+                            <!-- Notification Badge -->
+                            <Frame BackgroundColor="#EF4444"
+                                   HeightRequest="16"
+                                   WidthRequest="16"
+                                   CornerRadius="8"
+                                   Padding="0"
+                                   HasShadow="False"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Start"
+                                   Margin="-5,-5,0,0">
+                                <Label Text="2"
+                                       TextColor="White"
+                                       FontSize="10"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                            </Frame>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenNotificationsCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <!-- Profile Picture -->
+                    <Frame Grid.Column="2"
+                           BackgroundColor="Transparent"
+                           BorderColor="Transparent"
+                           Padding="0"
+                           CornerRadius="15"
+                           HasShadow="False"
+                           IsClippedToBounds="True"
                            HeightRequest="{OnIdiom Phone=50, Tablet=60, Desktop=70}"
-                           WidthRequest="{OnIdiom Phone=50, Tablet=60, Desktop=70}"
-                           Aspect="AspectFit"/>
+                           WidthRequest="{OnIdiom Phone=50, Tablet=60, Desktop=70}">
+                        <Image Source="profile.png"
+                       Aspect="AspectFill"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenProfileCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
                 </Grid>
             </Frame>
-        </StackLayout>
+        </Grid>
+        <!---End Of Header-->
 
         <!-- Search Bar -->
         <Grid Grid.Row="1" Padding="15,0">
-            <Frame BorderColor="Transparent" 
-                   BackgroundColor="#E1E1E1" 
-                   Padding="5"
-                   HasShadow="True">
-                <SearchBar Placeholder="Search items ..." 
-                          FontSize="{OnIdiom Phone=16, Tablet=20, Desktop=22}"
-                          TextColor="Black" 
-                          PlaceholderColor="Gray"/>
+            <Frame BackgroundColor="White"
+                   
+           Padding="0"
+           HasShadow="True"
+           BorderColor="{StaticResource PrimaryDarkText}"
+           CornerRadius="12">
+
+                <Grid ColumnDefinitions="Auto,*,Auto" 
+              Padding="15,0"
+              HeightRequest="50">
+
+                    <!-- Search Icon -->
+                    <Image Grid.Column="0"
+                   Source="lookup.png"
+                   HeightRequest="20"
+                   WidthRequest="20"
+                   VerticalOptions="Center"/>
+
+                    <!-- Search Entry -->
+                    <Entry Grid.Column="1"
+                   x:Name="SearchEntry"
+                   Placeholder="Search items..."
+                   PlaceholderColor="#9CA3AF"
+                   TextColor="#374151"
+                   BackgroundColor="Transparent"
+                   Margin="10,0,0,0"
+                   VerticalOptions="Center"
+                   ClearButtonVisibility="WhileEditing">
+                        <!--Entry.Behaviors>
+                            <EventToCommandBehavior 
+                        EventName="TextChanged"
+                        Command="{Binding SearchCommand}"/>
+                        </Entry.Behaviors-->
+                    </Entry >
+
+                    <!-- Clear Button (Visible when text is entered) -->
+                    <ImageButton Grid.Column="2"
+                        x:Name="ClearButton"
+                        Source="clear.png"
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        BackgroundColor="Transparent"
+                        IsVisible="False"
+                       
+                        VerticalOptions="Center"/>
+                </Grid>
             </Frame>
         </Grid>
-
-        <!-- Grocery Category -->
+        <!-- End of Search-->
+        
+        <!--Category Section-->
         <Grid Grid.Row="2">
             <ScrollView Orientation="Horizontal" 
                 HorizontalScrollBarVisibility="Never">
-                <HorizontalStackLayout Spacing="{OnIdiom Phone=10, Tablet=15, Desktop=20}" 
+                <HorizontalStackLayout Spacing="{OnIdiom Phone=50, Tablet=55, Desktop=20}" 
                              Margin="{OnIdiom Phone='0,20,10,20', Tablet='0,25,15,25', Desktop='0,30,20,30'}" 
                              HorizontalOptions="Center" 
+                                      
                              VerticalOptions="FillAndExpand">
                     <StackLayout>
                         <Frame CornerRadius="50" 
-                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                       Margin="10,0,0,0">
+                               BorderColor="{StaticResource PrimaryDarkText}"
+                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                                Margin="10,0,0,0">
                             <Image Source="fruitsandvegetables.png" 
                            Aspect="AspectFit" 
                            WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
@@ -83,83 +186,100 @@
                             </Image>
                         </Frame>
                         <Label Text="Fresh" 
+                               Style="{DynamicResource largeText}"
+                               TextColor="{StaticResource PrimaryDarkText}"
                        HorizontalOptions="Center"
                        FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
-                        <Frame CornerRadius="50" 
-                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                        <Frame CornerRadius="50"
+                               BorderColor="{StaticResource PrimaryDarkText}"
+                               
+                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
                             <Image Source="medicine.png" 
-                           Aspect="AspectFit" 
-                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                                   Aspect="AspectFit" 
+                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Health"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Health" 
-                       HorizontalOptions="Center"
-                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                               Style="{DynamicResource largeText}"
+                               TextColor="{StaticResource PrimaryDarkText}"
+                               HorizontalOptions="Center"
+                               FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
                         <Frame CornerRadius="50" 
-                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
-                            <Image Source="beef.png" 
-                           Aspect="AspectFit" 
-                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                               BorderColor="{StaticResource PrimaryDarkText}"
+                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Image Source="meat.png" 
+                                   Aspect="AspectFit" 
+                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Buchery"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Burchery" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center"
-                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                               Style="{DynamicResource largeText}"
+                               TextColor="{StaticResource PrimaryDarkText}"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"
+                               FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
                         <Frame CornerRadius="50" 
-                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                               BorderColor="{StaticResource PrimaryDarkText}"
+                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
                             <Image Source="shampoo.png" 
-                           Aspect="AspectFit" 
-                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                                   Aspect="AspectFit" 
+                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Beauty"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Beauty" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center"
-                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                               Style="{DynamicResource largeText}"
+                                TextColor="{StaticResource PrimaryDarkText}"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"
+                                FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                     <StackLayout>
                         <Frame CornerRadius="50" 
-                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                               BorderColor="{StaticResource PrimaryDarkText}"
+                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
                             <Image Source="bakery.png" 
-                           Aspect="AspectFit" 
-                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                                   Aspect="AspectFit" 
+                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Bakery"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Bakery" 
-                       HorizontalOptions="Center"
-                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                               Style="{DynamicResource largeText}"
+                               TextColor="{StaticResource PrimaryDarkText}"
+                               HorizontalOptions="Center"
+                               FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
                     </StackLayout>
                 </HorizontalStackLayout>
             </ScrollView>
         </Grid>
-        <!-- Sales Items and Product Items -->
+        <!--End of Search section-->
+        
+        <!-- Product Items Section -->
         <ScrollView Orientation="Vertical" Grid.Row="3">
             <Grid>
                 <Grid.RowDefinitions>
@@ -281,7 +401,10 @@
                             <DataTemplate x:DataType="model:Product">
                                 <Frame BorderColor="Gray" CornerRadius="15" Margin="5,10,0,0" Padding="10" HeightRequest="180" WidthRequest="180">
                                     <StackLayout>
-                                        <Grid HeightRequest="70" WidthRequest="70">
+                                        <Grid Grid.Row="0" 
+                                              HeightRequest="70" 
+                                              WidthRequest="70" 
+                                              HorizontalOptions="Center">
                                             <ActivityIndicator x:Name="LoadingIndicator"
                                                                IsRunning="True"
                                                                IsVisible="True"
@@ -289,12 +412,12 @@
                                                                VerticalOptions="Center"
                                                                Color="{DynamicResource Primary}"/>
                                             <Image Source="{Binding image_url}" 
-                                                   HeightRequest="70" 
-                                                   WidthRequest="70" 
-                                                   Aspect="AspectFill">
-                                                <Image.Behaviors>
-                                                    <behaviors:ImageLoadingBehavior />
-                                                </Image.Behaviors>
+                                                    HeightRequest="70" 
+                                                    WidthRequest="70" 
+                                                    Aspect="AspectFit"
+                                                    >
+                                               
+                                                
                                             </Image>
                                         </Grid>
 
