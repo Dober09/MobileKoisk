@@ -45,7 +45,7 @@
                        FontAttributes="Bold"
                        FontSize="{OnIdiom Phone=20, Tablet=24, Desktop=28}"
                        LineBreakMode="WordWrap"/>
-                        <Label Text="Ready to shop smart at mankweng shoprite :)"
+                        <Label Text="Ready to shop smart?"
                        TextColor="#6B7280"
                        FontFamily="OpenSansRegular"
                        FontSize="{OnIdiom Phone=15, Tablet=18, Desktop=20}"
@@ -168,116 +168,154 @@
                 <HorizontalStackLayout Spacing="{OnIdiom Phone=50, Tablet=55, Desktop=20}" 
                              Margin="{OnIdiom Phone='0,20,10,20', Tablet='0,25,15,25', Desktop='0,30,20,30'}" 
                              HorizontalOptions="Center" 
-                                      
                              VerticalOptions="FillAndExpand">
                     <StackLayout>
                         <Frame CornerRadius="50" 
-                               BorderColor="{StaticResource PrimaryDarkText}"
-                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                                Margin="10,0,0,0">
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       Margin="10,0,0,0">
+                            <Frame.BorderColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Frame.BorderColor>
                             <Image Source="fruitsandvegetables.png" 
                            Aspect="AspectFit" 
                            WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
                            HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Fresh"/>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" NumberOfTapsRequired="1" CommandParameter="Fresh"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Fresh" 
-                               Style="{DynamicResource largeText}"
-                               TextColor="{StaticResource PrimaryDarkText}"
+                       Style="{DynamicResource largeText}"
                        HorizontalOptions="Center"
-                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}">
+                            <Label.TextColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Label.TextColor>
+                        </Label>
                     </StackLayout>
+
                     <StackLayout>
                         <Frame CornerRadius="50"
-                               BorderColor="{StaticResource PrimaryDarkText}"
-                               
-                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Frame.BorderColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Frame.BorderColor>
                             <Image Source="medicine.png" 
-                                   Aspect="AspectFit" 
-                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Health"/>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" NumberOfTapsRequired="1" CommandParameter="Health"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Health" 
-                               Style="{DynamicResource largeText}"
-                               TextColor="{StaticResource PrimaryDarkText}"
-                               HorizontalOptions="Center"
-                               FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                       Style="{DynamicResource largeText}"
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}">
+                            <Label.TextColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Label.TextColor>
+                        </Label>
                     </StackLayout>
+
+                    <!-- Butchery Category -->
                     <StackLayout>
-                        <Frame CornerRadius="50" 
-                               BorderColor="{StaticResource PrimaryDarkText}"
-                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                        <Frame CornerRadius="50"
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Frame.BorderColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Frame.BorderColor>
                             <Image Source="meat.png" 
-                                   Aspect="AspectFit" 
-                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Buchery"/>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" NumberOfTapsRequired="1" CommandParameter="Butchery"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
-                        <Label Text="Burchery" 
-                               Style="{DynamicResource largeText}"
-                               TextColor="{StaticResource PrimaryDarkText}"
-                               HorizontalOptions="Center" 
-                               VerticalOptions="Center"
-                               FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                        <Label Text="Butchery" 
+                       Style="{DynamicResource largeText}"
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}">
+                            <Label.TextColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Label.TextColor>
+                        </Label>
                     </StackLayout>
+
+                    <!-- Beauty Category -->
                     <StackLayout>
-                        <Frame CornerRadius="50" 
-                               BorderColor="{StaticResource PrimaryDarkText}"
-                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                        <Frame CornerRadius="50"
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Frame.BorderColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Frame.BorderColor>
                             <Image Source="shampoo.png" 
-                                   Aspect="AspectFit" 
-                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Beauty"/>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" NumberOfTapsRequired="1" CommandParameter="Beauty"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Beauty" 
-                               Style="{DynamicResource largeText}"
-                                TextColor="{StaticResource PrimaryDarkText}"
-                               HorizontalOptions="Center" 
-                               VerticalOptions="Center"
-                                FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                       Style="{DynamicResource largeText}"
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}">
+                            <Label.TextColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Label.TextColor>
+                        </Label>
                     </StackLayout>
+
+                    <!-- Bakery Category -->
                     <StackLayout>
-                        <Frame CornerRadius="50" 
-                               BorderColor="{StaticResource PrimaryDarkText}"
-                               HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
-                               WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                        <Frame CornerRadius="50"
+                       HeightRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}" 
+                       WidthRequest="{OnIdiom Phone=80, Tablet=100, Desktop=120}">
+                            <Frame.BorderColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryLight}"
+                                       Dark="{StaticResource PrimaryDark}" />
+                            </Frame.BorderColor>
                             <Image Source="bakery.png" 
-                                   Aspect="AspectFit" 
-                                   WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
-                                   HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
+                           Aspect="AspectFit" 
+                           WidthRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}" 
+                           HeightRequest="{OnIdiom Phone=50, Tablet=65, Desktop=80}">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" CommandParameter="Bakery"/>
+                                    <TapGestureRecognizer Command="{Binding CategoryTappedCommand}" NumberOfTapsRequired="1" CommandParameter="Bakery"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </Frame>
                         <Label Text="Bakery" 
-                               Style="{DynamicResource largeText}"
-                               TextColor="{StaticResource PrimaryDarkText}"
-                               HorizontalOptions="Center"
-                               FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"/>
+                       Style="{DynamicResource largeText}"
+                       HorizontalOptions="Center"
+                       FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}">
+                            <Label.TextColor>
+                                <AppThemeBinding Light="{StaticResource PrimaryDarkText}"
+                                       Dark="{StaticResource Primary}" />
+                            </Label.TextColor>
+                        </Label>
                     </StackLayout>
                 </HorizontalStackLayout>
             </ScrollView>
         </Grid>
-        <!--End of Search section-->
+        <!--End of Category section-->
         
         <!-- Product Items Section -->
         <ScrollView Orientation="Vertical" Grid.Row="3">

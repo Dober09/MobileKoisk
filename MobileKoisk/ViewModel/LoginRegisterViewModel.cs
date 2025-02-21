@@ -3,15 +3,26 @@ using MobileKoisk.Models;
 using CommunityToolkit.Mvvm.Input;
 using System.Text.RegularExpressions;
 
-using System.Runtime.CompilerServices;
 
 
 namespace MobileKiosk.ViewModel
 {
     public partial class LoginRegisterViewModel : ObservableObject
     {
+
+       
+
+        [ObservableProperty]
+        private DateTime dateOfBirth = DateTime.Today;
+
+        [ObservableProperty]
+        private string phoneNumber;
+
+   
         // Mock database of users
         private static readonly List<UserData> _users = new();
+        [ObservableProperty]
+        private bool acceptedTerms;
 
         [ObservableProperty]
         private string name;
@@ -122,6 +133,12 @@ namespace MobileKiosk.ViewModel
         [RelayCommand]
         private async Task Submit()
         {
+
+            if (!IsLogin && !AcceptedTerms)
+            {
+                await ShowAlert("Error", "Please accept the terms and conditions");
+                return;
+            }
             if (!ValidateEmail(Email))
             {
                 await ShowAlert("Error", "Please enter a valid email address");
@@ -142,6 +159,18 @@ namespace MobileKiosk.ViewModel
                     return;
                 }
 
+                if (!ValidatePhoneNumber(PhoneNumber))
+                {
+                    await ShowAlert("Error", "Please enter a valid phone number");
+                    return;
+                }
+
+                var age = CalculateAge(DateOfBirth);
+                if (age < 18)
+                {
+                    await ShowAlert("Error", "You must be 18 or older to register");
+                    return;
+                }
                 if (Password != ConfirmPassword)
                 {
                     await ShowAlert("Error", "Passwords do not match");
@@ -164,6 +193,22 @@ namespace MobileKiosk.ViewModel
             }
         }
 
+
+        private bool ValidatePhoneNumber(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber)) return false;
+            return Regex.IsMatch(phoneNumber, @"^\+?[\d\s-]{10,}$");
+        }
+
+        private int CalculateAge(DateTime birthDate)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - birthDate.Year;
+            if (birthDate.Date > today.AddYears(-age)) age--;
+            return age;
+        }
+
+
         [RelayCommand]
         private void TogglePasswordVisibility()
         {
@@ -178,6 +223,8 @@ namespace MobileKiosk.ViewModel
             ConfirmPassword = string.Empty;
             Name = string.Empty;
             Surname = string.Empty;
+            PhoneNumber = string.Empty;
+            DateOfBirth = DateTime.Today;
         }
 
         private bool ValidateEmail(string email)

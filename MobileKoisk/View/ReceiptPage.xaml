@@ -17,16 +17,16 @@
                            HeightRequest="60" 
                            HorizontalOptions="Center"
                            Margin="0,0,0,10"/>
-                    <Label Text="Retail Mobile Kioske"
+                    <Label Text="Retail Mobile Kiosk"
                            FontSize="26"
                            FontAttributes="Bold"
                            HorizontalOptions="Center"
                            TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
-                    <Label Text="Address: University street, Mankweng"
+                    <Label Text="Address: Store Location"
                            FontSize="14"
                            HorizontalOptions="Center"
                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
-                    <Label Text="Contact: +27 123 456 789"
+                    <Label Text="Contact: Store Number"
                            FontSize="14"
                            HorizontalOptions="Center"
                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
@@ -119,26 +119,22 @@
                                    Grid.Column="1"
                                    FontAttributes="Bold"
                                    VerticalOptions="Center"/>
-                            
-                            <Label Text="VAT Amount:"
-                                   Grid.Row="1"
-                                   Grid.Column="0"
-                                   VerticalOptions="Center"/>
-                            <Label Text="{Binding VatAmount, StringFormat='R{0:F2}'}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"
-                                   VerticalOptions="Center"/>
-                            
+
+
                             <Label Text="Total Amount Paid:"
-                                   Grid.Row="2"
+                                   Grid.Row="1"
                                    Grid.Column="0"
                                    FontAttributes="Bold"
                                    VerticalOptions="Center"/>
-                            <Label Text="{Binding TotalAmount, StringFormat='R{0:F2}'}"
-                                   Grid.Row="2"
+                            
+                            <Label Text="{Binding TotalPrice, StringFormat='R{0:F2}'}"
+                                   Grid.Row="1"
                                    Grid.Column="1"
-                                   FontAttributes="Bold"
+                                    FontAttributes="Bold"
                                    VerticalOptions="Center"/>
+                            
+                            
+
                         </Grid>
                     </StackLayout>
                 </Frame>
