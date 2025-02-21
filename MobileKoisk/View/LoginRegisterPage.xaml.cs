@@ -25,6 +25,19 @@ public partial class LoginRegisterPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//MainPage");
+        bool isAdult = await DisplayAlert("Age Verification",
+            "Are you 18 years or older?",
+            "Yes", "No");
+
+        if (isAdult)
+        {
+            await Shell.Current.GoToAsync("//MainPage");
+        }
+        else
+        {
+            await DisplayAlert("Access Denied",
+                "We apologize, but you must be 18 or older to use this application. Please return when you meet the age requirement.",
+                "OK");
+        }
     }
 }
