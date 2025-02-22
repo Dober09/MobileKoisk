@@ -121,7 +121,7 @@ dotnet test --filter Category=Integration
 ## 📖 Documentation
 
 - [User Guide](docs/user-guide.md)
-- [API Documentation](docs/api/index.html)
+- [API Documentation](https://github.com/Dober09/MobileKoisk/tree/master/MobileKoisk.Api#readme)
 - [Deployment Guide](docs/deployment.md)
 - [Contributing Guide](CONTRIBUTING.md)
 
