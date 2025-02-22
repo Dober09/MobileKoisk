@@ -43,6 +43,11 @@ namespace MobileKoisk
                 });
 
 
+         
+            //Register services
+            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<IPreferences>(Preferences.Default);
+
 
             // Register your services
 

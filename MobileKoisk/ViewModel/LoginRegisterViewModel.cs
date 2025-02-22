@@ -2,7 +2,8 @@
 using MobileKoisk.Models;
 using CommunityToolkit.Mvvm.Input;
 using System.Text.RegularExpressions;
-
+using MobileKoisk.Services;
+using MobileKoisk.Utils;
 
 
 namespace MobileKiosk.ViewModel
@@ -10,6 +11,9 @@ namespace MobileKiosk.ViewModel
     public partial class LoginRegisterViewModel : ObservableObject
     {
 
+
+        private readonly AuthService _authService;
+        private readonly IPreferences _preferences;
        
 
         [ObservableProperty]
@@ -80,20 +84,22 @@ namespace MobileKiosk.ViewModel
             }
         }
 
-        public LoginRegisterViewModel()
+        public LoginRegisterViewModel(AuthService authService,IPreferences preferences)
         {
-            // Add test user if empty
-            if (!_users.Any())
-            {
-                _users.Add(new UserData
-                {
-                    Email = "test@example.com",
-                    Password = "password123",
-                    Name = "Test",
-                    Surname = "User",
-                    UserType = "Customer"
-                });
-            }
+            _authService = authService;
+            _preferences = preferences; 
+            //// Add test user if empty
+            //if (!_users.Any())
+            //{
+            //    _users.Add(new UserData
+            //    {
+            //        Email = "test@example.com",
+            //        Password = "password123",
+            //        Name = "Test",
+            //        Surname = "User",
+            //        UserType = "Customer"
+            //    });
+            //}
         }
 
         [RelayCommand]
@@ -193,6 +199,30 @@ namespace MobileKiosk.ViewModel
             }
         }
 
+        //new methods
+        private async Task<bool> LoginUser()
+        {
+            try
+            {
+                var response = await _authService.Login(Email, Password);
+
+                //Save auth data
+                _preferences.Set(Constants.AuthToken, response.Token);
+                _preferences.Set(Constants.UserId, response.UserId);
+                _preferences.Set(Constants.UserEmail, response.Email);
+                _preferences.Set(Constants.UserType, response.UserType);
+
+
+                userType = response.UserType;
+                return true;
+            }
+            catch (Exception ex) {
+                await ShowAlert("Login Failed",ex.Message);
+                return false;
+            
+            }
+        }
+
 
         private bool ValidatePhoneNumber(string phoneNumber)
         {
@@ -227,6 +257,17 @@ namespace MobileKiosk.ViewModel
             DateOfBirth = DateTime.Today;
         }
 
+        [RelayCommand]
+        private async Task Logout()
+        {
+            _preferences.Remove(Constants.AuthToken);
+            _preferences.Remove(Constants.UserId);
+            _preferences.Remove(Constants.UserEmail);
+            _preferences.Remove(Constants.UserType);
+
+            await Shell.Current.GoToAsync("///LoginRegisterPage");
+        }
+
         private bool ValidateEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
@@ -239,40 +280,76 @@ namespace MobileKiosk.ViewModel
             return password.Length >= 8 && password.Any(char.IsDigit);
         }
 
-        private async Task<bool> LoginUser()
-        {
-            var user = _users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
 
-            if (user == null)
-            {
-                await ShowAlert("Login Failed", "Invalid email or password");
-                return false;
-            }
-
-            UserType = user.UserType;
-            return true;
-        }
 
         private async Task<bool> RegisterUser()
         {
-            if (_users.Any(u => u.Email == Email))
+            try
             {
-                await ShowAlert("Registration Failed", "An account with this email already exists");
+                var userData = new UserData
+                {
+                    Name = Name,
+                    Surname = Surname,
+                    Email = Email,
+                    Password = Password,
+                    DateOfBirth = DateOfBirth,
+                    PhoneNumber = PhoneNumber,
+                    UserType = UserType,
+                };
+
+                var response = await _authService.Register(userData);
+
+
+                //save auto data
+                _preferences.Set(Constants.AuthToken, response.Token);
+                _preferences.Set(Constants.UserId, response.UserId);
+                _preferences.Set(Constants.UserEmail, response.Email);
+                _preferences.Set(Constants.UserType, response.UserType);
+                await ShowAlert("Registration Successful", $"Registered as {response.UserType}");
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                await ShowAlert("Registration Failed", ex.Message);
                 return false;
             }
-
-            _users.Add(new UserData
-            {
-                Name = Name,
-                Surname = Surname,
-                Email = Email,
-                Password = Password,
-                UserType = UserType
-            });
-
-            await ShowAlert("Registration Successful", $"Registered as {UserType}");
-            return true;
         }
+
+        //private async Task<bool> LoginUser()
+        //{
+        //    var user = _users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
+
+        //    if (user == null)
+        //    {
+        //        await ShowAlert("Login Failed", "Invalid email or password");
+        //        return false;
+        //    }
+
+        //    UserType = user.UserType;
+        //    return true;
+        //}
+
+        //private async Task<bool> RegisterUser()
+        //{
+        //    if (_users.Any(u => u.Email == Email))
+        //    {
+        //        await ShowAlert("Registration Failed", "An account with this email already exists");
+        //        return false;
+        //    }
+
+        //    _users.Add(new UserData
+        //    {
+        //        Name = Name,
+        //        Surname = Surname,
+        //        Email = Email,
+        //        Password = Password,
+        //        UserType = UserType
+        //    });
+
+        //    await ShowAlert("Registration Successful", $"Registered as {UserType}");
+        //    return true;
+        //}
 
         private async Task ShowAlert(string title, string message)
         {

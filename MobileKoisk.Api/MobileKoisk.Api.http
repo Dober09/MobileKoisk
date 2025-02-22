@@ -1,0 +1,14 @@
+@MobileKoisk.Api_HostAddress = http://localhost:5171
+
+POST {{MobileKoisk.Api_HostAddress}}/Register/
+Accept: application/json
+
+{
+    "name": "John",
+    "surname": "Doe",
+    "email": "john.doe@example.com",
+    "password": "Password123!",
+    "dateOfBirth": "1990-01-01",
+    "phoneNumber": "+1234567890"
+}
+###
