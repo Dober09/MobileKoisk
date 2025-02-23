@@ -17,13 +17,16 @@ Mobile Kiosk is an innovative .NET MAUI application that turns smartphones into 
   - Barcode/QR scanning
   - Multiple payment methods
   - Digital receipts
-  - Split payment support
+
+-  **Budget Friendly Tools**
+  - Digital Shopping list (wishlist)
 
 - **Budget-Friendly Tools**
   - Real-time price tracking
   - Automatic coupon application
   - Price comparison
   - SNAP/EBT integration
+    
 
 - **Accessibility Features**
   - Voice guidance
@@ -50,7 +53,7 @@ Mobile Kiosk is an innovative .NET MAUI application that turns smartphones into 
 ```bash
 # Required tools
 - Visual Studio 2022 (17.3 or later)
-- .NET 7.0 SDK
+- .NET 8.0 SDK
 - .NET MAUI workload
 ```
 
