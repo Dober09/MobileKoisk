@@ -11,8 +11,8 @@ using MobileKoisk.Api.Data;
 namespace MobileKoisk.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250221214817_AddUserIdToUserData")]
-    partial class AddUserIdToUserData
+    [Migration("20250223025839_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

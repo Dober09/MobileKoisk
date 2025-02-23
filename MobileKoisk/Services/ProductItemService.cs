@@ -27,15 +27,7 @@ namespace MobileKoisk.Services
             products = JsonSerializer.Deserialize<List<Product>>(content);
 
 
-            // online api from  our database designed by use
-           // var url = "";// the url from the api we created
-                         //connect it to the net
-            //var response = await httpClient.GetAsync(url);
-
-            //if (response.IsSuccessStatusCode)
-            //{
-                //products = await response.Content.ReadAsStringAsync(ProductItemContext.Default.ListProductItem);
-            //}
+       
              
 
             return products;

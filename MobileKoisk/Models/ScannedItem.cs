@@ -13,7 +13,7 @@ namespace MobileKoisk.Models
         public string Barcode { get; set; }
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public string ProductCategory { get; set; }
         public string ManufacturerDetails { get; set; }
         public DateTime ScannedAt { get; set; }

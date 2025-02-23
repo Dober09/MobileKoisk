@@ -1,134 +1,229 @@
-# MobileKiosk API
+﻿# Mobile Kiosk API
 
-A .NET API backend for the Mobile Kiosk application, providing authentication and product management capabilities.
+A comprehensive ASP.NET Core API for a mobile kiosk system, featuring user authentication, product management, shopping basket functionality, and transaction processing.
 
-## Configuration Overview
+## Features
 
-### API Endpoints
-The API runs on the following endpoints in development:
-- HTTP: http://0.0.0.0:5171
-- HTTPS: https://0.0.0.0:7171
+- 🔐 JWT Authentication
+- 🛍️ Product Management
+- 🛒 Shopping Basket
+- 📝 Receipt Generation
+- 📱 Push Notifications
+- 💳 Transaction Processing
 
-### Authentication
-The API uses JWT (JSON Web Token) authentication with the following configuration:
-- Bearer token authentication scheme
-- Token validation for issuer, audience, lifetime, and signing key
-- Tokens are generated via the JwtService
+## Technologies
 
-### Database
-- Uses SQLite with Entity Framework Core
-- Connection string is configured in appsettings.json
-- Manages user data and authentication information
+- ASP.NET Core 7.0
+- Entity Framework Core
+- SQLite Database
+- JWT Bearer Authentication
+- Swagger/OpenAPI Documentation
 
-### CORS Configuration
-In development mode, CORS is configured to allow:
-- Any origin
-- Any method
-- Any header
+## Prerequisites
+
+- .NET 7.0 SDK
+- Visual Studio 2022 or VS Code
+- SQLite
+
+## Getting Started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/mobile-kiosk-api.git
+cd mobile-kiosk-api
+```
+
+2. Update the connection string in `appsettings.json`:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=mobilekiosk.db"
+  },
+  "Jwt": {
+    "Key": "your-secret-key-here",
+    "Issuer": "your-issuer",
+    "Audience": "your-audience"
+  }
+}
+```
+
+3. Run migrations:
+```bash
+dotnet ef database update
+```
+
+4. Run the application:
+```bash
+dotnet run
+```
+
+The API will be available at `http://localhost:5171`
 
 ## API Endpoints
 
-### Authentication Controller (`/api/Auth`)
+### Authentication
+- POST `/api/Auth/register` - Register new user
+- POST `/api/Auth/login` - Login user
 
-#### Register
-- **Endpoint**: POST `/api/Auth/register`
-- **Purpose**: Creates a new user account
-- **Request Body**:
-  ```json
-  {
-    "name": "string",
-    "surname": "string",
-    "email": "string",
-    "password": "string",
-    "dateOfBirth": "date",
-    "phoneNumber": "string"
-  }
-  ```
+### Products
+- GET `/api/Product` - Get all products
+- GET `/api/Product/{barcode}` - Get product by barcode
+- GET `/api/Product/category/{category}` - Get products by category
+- POST `/api/Product` - Create new product (Admin only)
 
-#### Login
-- **Endpoint**: POST `/api/Auth/login`
-- **Purpose**: Authenticates a user
-- **Request Body**:
-  ```json
-  {
-    "email": "string",
-    "password": "string"
-  }
-  ```
+### Basket
+- GET `/api/Basket/{userId}` - Get user's basket
+- POST `/api/Basket` - Create new basket
+- POST `/api/Basket/{basketId}/items` - Add item to basket
 
-## Security Features
+### Receipts
+- GET `/api/Receipt/user/{userId}` - Get user's receipts
+- GET `/api/Receipt/{id}` - Get specific receipt
+- POST `/api/Receipt` - Create receipt
 
-1. Password Hashing
-   - Uses BCrypt for secure password hashing
-   - Passwords are never stored in plain text
+### Notifications
+- GET `/api/Notification/user/{userId}` - Get user's notifications
+- POST `/api/Notification` - Create notification
+- PUT `/api/Notification/{id}/read` - Mark notification as read
 
-2. JWT Authentication
-   - Tokens include validation for:
-     - Issuer
-     - Audience
-     - Lifetime
-     - Signing key
+### Transactions
+- POST `/api/Transaction/checkout` - Process checkout
 
-3. User Account Protection
-   - Email uniqueness validation
-   - Account activation status checking
-   - Last login tracking
+## Authentication
+
+The API uses JWT Bearer authentication. Include the token in the Authorization header:
+```
+Authorization: Bearer your-token-here
+```
+
+## Models
+
+### User
+```csharp
+public class UserData
+{
+    public int UserId { get; set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string PhoneNumber { get; set; }
+}
+```
+
+### Product
+```csharp
+public class Product
+{
+    public string from_date { get; set; }
+    public int section { get; set; }
+    public object barcode { get; set; }
+    public string item_description { get; set; }
+    public double selling_price { get; set; }
+    public double quantity { get; set; }
+    public string category { get; set; }
+}
+```
+
+### BasketItem
+```csharp
+public class BasketItem
+{
+    public string Barcode { get; set; }
+    public string ProductName { get; set; }
+    public double Price { get; set; }
+    public int Quantity { get; set; }
+}
+```
 
 ## Development Setup
 
-1. Install Dependencies:
-   ```bash
-   dotnet restore
-   ```
+### Visual Studio
+1. Open the solution file
+2. Restore NuGet packages
+3. Update database using Package Manager Console:
+```
+Update-Database
+```
 
-2. Configure Environment:
-   - Set up your JWT configuration in appsettings.json:
-     ```json
-     {
-       "Jwt": {
-         "Key": "your-secret-key",
-         "Issuer": "your-issuer",
-         "Audience": "your-audience"
-       }
-     }
-     ```
+### VS Code
+1. Install C# extension
+2. Restore dependencies:
+```bash
+dotnet restore
+```
+3. Update database:
+```bash
+dotnet ef database update
+```
 
-3. Run Migrations:
-   ```bash
-   dotnet ef database update
-   ```
+## Testing
 
-4. Run the API:
-   ```bash
-   dotnet run
-   ```
+Use Swagger UI for testing endpoints:
+- Development: `http://localhost:5171/swagger`
 
-## Mobile Client Integration
+Example curl commands:
 
-The mobile client (MAUI application) connects to this API using:
-- Base URL: http://10.0.2.2:5171/api/Auth/ (Android emulator)
-- Timeout: 15 seconds
-- Content Type: application/json
+1. Register User:
+```bash
+curl -X POST http://localhost:5171/api/Auth/register \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "John",
+  "surname": "Doe",
+  "email": "john@example.com",
+  "password": "Password123!",
+  "dateOfBirth": "1990-01-01",
+  "phoneNumber": "1234567890"
+}'
+```
 
-## Development Tools
+2. Login:
+```bash
+curl -X POST http://localhost:5171/api/Auth/login \
+-H "Content-Type: application/json" \
+-d '{
+  "email": "john@example.com",
+  "password": "Password123!"
+}'
+```
 
-- Swagger UI available in development at `/swagger`
-- Debug logging enabled in development mode
-- CORS enabled for development testing
+## Error Handling
 
-## Dependencies
+The API returns standard HTTP status codes:
+- 200: Success
+- 400: Bad Request
+- 401: Unauthorized
+- 403: Forbidden
+- 404: Not Found
+- 500: Internal Server Error
 
-- Microsoft.AspNetCore.Authentication.JwtBearer
-- Microsoft.EntityFrameworkCore
-- BCrypt.Net-Next
-- Microsoft.EntityFrameworkCore.Sqlite
+## Security
 
-## Security Notes
+- Passwords are hashed using BCrypt
+- JWT tokens are required for protected endpoints
+- CORS is configured for development
+- HTTPS is enforced in production
 
-1. HTTPS redirection is configurable (currently disabled in development)
-2. Debug certificate validation is bypassed in development mode
-3. Proper middleware order is maintained for security:
-   - UseRouting
-   - UseCors
-   - UseAuthentication
-   - UseAuthorization
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support, email support@mobilekiosk.com or open an issue in the repository.
+
+## Acknowledgments
+
+- ASP.NET Core team
+- Entity Framework Core team
+- SQLite team
