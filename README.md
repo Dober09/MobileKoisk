@@ -13,18 +13,15 @@ Mobile Kiosk is an innovative .NET MAUI application that turns smartphones into 
 
 ### 🛒 For Shoppers
 - **Fast Self-Service Checkout**
-  - Barcode/QR scanning
+  - Barcode scanning
   - Multiple payment methods
   - Digital receipts
 
--  **Budget Friendly Tools**
-  - Digital Shopping list (wishlist)
 
 - **Budget-Friendly Tools**
   - Real-time price tracking
-  - Automatic coupon application
+  - Digital Shopping list (Wishlist)
   - Price comparison
-  - SNAP/EBT integration
     
 
 - **Accessibility Features**
@@ -187,7 +184,9 @@ Mobile Kiosk is MIT licensed, as found in the [LICENSE](LICENSE) file.
 ## 🌟 Acknowledgments
 
 -   Lebohang Lehutjo
--   seimela ayishah
+-   Seimela Ayishah
+-   Lentsoane Thato
+-   Phogole Mazwi
 ---
 
 Made with ❤️ by the Mobile Kiosk Team
