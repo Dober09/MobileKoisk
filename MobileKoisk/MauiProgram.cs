@@ -80,7 +80,10 @@ namespace MobileKoisk
             builder.Services.AddSingleton<BasketPageViewModel>();
             builder.Services.AddSingleton<BadgeCounterService>();
 
-			builder.Services.AddTransient<WishListPage>(serviceProvider =>
+            builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<ProfilePage>();
+
+            builder.Services.AddTransient<WishListPage>(serviceProvider =>
 			new WishListPage(serviceProvider.GetRequiredService<WishListServices>()));
 
 #if DEBUG

@@ -11,7 +11,8 @@ namespace MobileKoisk.Utils
         public const string AuthToken = "auth_token";
         public const string UserId = "user_id";
         public const string UserEmail = "user_email";
-        public const string UserType = "user_type";
+        public const string UserType = "user_type"; 
+        public const string UserName= "Default_name";
 
         // Add to Constants.cs
         public static bool IsAuthenticated =>
