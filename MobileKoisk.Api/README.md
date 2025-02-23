@@ -7,13 +7,14 @@ A comprehensive ASP.NET Core API for a mobile kiosk system, featuring user authe
 - 🔐 JWT Authentication
 - 🛍️ Product Management
 - 🛒 Shopping Basket
+- Wishlist
 - 📝 Receipt Generation
 - 📱 Push Notifications
 - 💳 Transaction Processing
 
 ## Technologies
 
-- ASP.NET Core 7.0
+- ASP.NET Core 8.0
 - Entity Framework Core
 - SQLite Database
 - JWT Bearer Authentication
@@ -21,7 +22,7 @@ A comprehensive ASP.NET Core API for a mobile kiosk system, featuring user authe
 
 ## Prerequisites
 
-- .NET 7.0 SDK
+- .NET 8.0 SDK
 - Visual Studio 2022 or VS Code
 - SQLite
 
