@@ -43,7 +43,18 @@ namespace MobileKoisk
                 });
 
 
-         
+            // Add HttpClient configuration
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+            builder.Services.AddSingleton(sp =>
+            {
+                var handler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                };
+                return new HttpClient(handler);
+            });
+
+
             //Register services
             builder.Services.AddSingleton<AuthService>();
             builder.Services.AddSingleton<IPreferences>(Preferences.Default);

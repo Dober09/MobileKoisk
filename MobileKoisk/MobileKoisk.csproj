@@ -71,6 +71,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
 	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Light.ttf" />
 	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
@@ -121,6 +122,12 @@
 		<PackageReference Include="MySql.Data" Version="9.1.0" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Update="Platforms\Android\Resources\xml\network_security_config.xml">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </AndroidResource>
 	</ItemGroup>
 
 	<ItemGroup>
