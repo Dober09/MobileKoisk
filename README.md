@@ -1,7 +1,6 @@
 # Mobile Kiosk 📱🛍️
 > Transform any mobile device into an accessible retail self-service station
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-.NET%20MAUI-512BD4)]()
 [![Build Status](https://img.shields.io/travis/mobile-kiosk/mobile-kiosk/main.svg)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
@@ -128,24 +127,6 @@ dotnet test --filter Category=Integration
 - [Deployment Guide](docs/deployment.md)
 - [Contributing Guide](CONTRIBUTING.md)
 
-## 🔨 Basic Usage
-
-```csharp
-// Initialize kiosk
-var kioskService = new KioskService();
-await kioskService.InitializeAsync();
-
-// Start checkout session
-var session = await kioskService.StartSessionAsync();
-
-// Scan items
-await session.ScanItemAsync();
-
-// Process payment
-await session.ProcessPaymentAsync();
-```
-
-## 🌟 Features in Detail
 
 ### Self-Service Checkout
 ```csharp
@@ -155,17 +136,6 @@ public async Task ProcessCheckout()
     var cart = await _cartService.GetCurrentCartAsync();
     var payment = await _paymentService.ProcessPaymentAsync(cart.Total);
     var receipt = await _receiptService.GenerateDigitalReceiptAsync(payment);
-}
-```
-
-### Budget Management
-```csharp
-// Example of budget tracking
-public async Task TrackBudget()
-{
-    var budget = await _budgetService.GetCustomerBudgetAsync();
-    var savings = await _savingsService.CalculateTotalSavingsAsync();
-    await _notificationService.AlertIfOverBudgetAsync(budget, cart.Total);
 }
 ```
 
@@ -216,11 +186,8 @@ Mobile Kiosk is MIT licensed, as found in the [LICENSE](LICENSE) file.
 
 ## 🌟 Acknowledgments
 
-- Our community contributors
-- .NET MAUI team
-- All our beta testers
-- Supporting retail partners
-
+-   Lebohang Lehutjo
+-   seimela ayishah
 ---
 
 Made with ❤️ by the Mobile Kiosk Team
