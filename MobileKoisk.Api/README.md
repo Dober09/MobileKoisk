@@ -7,7 +7,7 @@ A comprehensive ASP.NET Core API for a mobile kiosk system, featuring user authe
 - 🔐 JWT Authentication
 - 🛍️ Product Management
 - 🛒 Shopping Basket
-- Wishlist
+- 📝 Wishlist(Digital Shopping list)
 - 📝 Receipt Generation
 - 📱 Push Notifications
 - 💳 Transaction Processing
