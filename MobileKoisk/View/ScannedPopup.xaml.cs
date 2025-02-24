@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using MobileKoisk.Helper;
@@ -28,7 +29,9 @@ public partial class ScannedPopup : Popup
         try
         {
             System.Diagnostics.Debug.WriteLine($"AddToBasket clicked for product: {_productItem.item_description}");
-
+            string message = "added item to basket";
+            var toast = Toast.Make(message, CommunityToolkit.Maui.Core.ToastDuration.Short, 20);
+            toast.Show();
             BasketService.AddItem( _productItem );
        
             BadgeCounterService.SetCount(BadgeCounterService.Count + 1);

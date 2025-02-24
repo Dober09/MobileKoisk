@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Maui.Alerts;
 using MobileKoisk.Models;
 using MobileKoisk.Services;
 using MobileKoisk.View;
@@ -122,6 +123,11 @@ namespace MobileKoisk.ViewModel
 
         private void AddToWishList(Product product)
         {
+            string message = "added item to wishlist";
+            var toast =Toast.Make(message, CommunityToolkit.Maui.Core.ToastDuration.Short, 20);
+            toast.Show();
+
+
             _wishListServices.AddToWishList(product);
             WishlistCounterServirce.SetCount(WishlistCounterServirce.Count + 1);
             System.Diagnostics.Debug.WriteLine($"Product {product.item_description} added to wishlist");
